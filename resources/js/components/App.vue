@@ -1,23 +1,39 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header">Example Component</div>
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
+        <div class="row app-container">
+            <app-nav></app-nav>
+            <router-view class="col-md-8"></router-view>
         </div>
-    </div>
+
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+import AppNav from './Nav';
+
+export default {
+    components: {
+        AppNav
     }
+}
 </script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    background-color: #eee;
+    min-height: 100vh;
+}
+
+.app-container {
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    margin-top: 10px;
+}
+</style>

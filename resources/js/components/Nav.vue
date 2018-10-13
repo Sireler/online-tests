@@ -1,13 +1,30 @@
 <template>
-    $END$
+    <nav class="col-md-2 text-center text-md-left app-nav">
+        <div class="nav flex-column nav-pills" id="v-pills-tab">
+            <router-link class="nav-link" to="/main" activeClass="active">Main</router-link>
+            <router-link class="nav-link" to="/home" activeClass="active">Home</router-link>
+            <router-link class="nav-link" to="/tests" activeClass="active">Tests</router-link>
+            <router-link class="nav-link" to="/auth" activeClass="active">Login</router-link>
+        </div>
+    </nav>
 </template>
 
 <script>
-    export default {
-        name: "Nav"
-    }
+export default {
+
+}
 </script>
 
 <style scoped>
+.app-nav {
+    padding-top: 10px;
+    min-height: inherit;
+    background: #fff;
+}
 
+@media screen and (max-width: 767px) {
+    .app-nav {
+        min-height: 0px;
+    }
+}
 </style>
