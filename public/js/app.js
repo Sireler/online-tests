@@ -30842,6 +30842,10 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_auth_Auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_auth_Auth__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_NotFound__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_NotFound___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_NotFound__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_tests_Tests__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_tests_Tests___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_tests_Tests__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_tests_Create__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_tests_Create___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_tests_Create__);
 
 
 
@@ -30853,6 +30857,10 @@ if (false) {
 // 404 error component
 
 
+// Tests
+
+
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 var routes = [{ path: '/home', component: __WEBPACK_IMPORTED_MODULE_2__components_home_Home___default.a },
@@ -30861,7 +30869,10 @@ var routes = [{ path: '/home', component: __WEBPACK_IMPORTED_MODULE_2__component
 { path: '/auth', component: __WEBPACK_IMPORTED_MODULE_3__components_auth_Auth___default.a },
 
 // Not found
-{ path: '*', component: __WEBPACK_IMPORTED_MODULE_4__components_NotFound___default.a }];
+{ path: '*', component: __WEBPACK_IMPORTED_MODULE_4__components_NotFound___default.a },
+
+// Tests
+{ path: '/tests', component: __WEBPACK_IMPORTED_MODULE_5__components_tests_Tests___default.a }, { path: '/tests/create', component: __WEBPACK_IMPORTED_MODULE_6__components_tests_Create___default.a }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     mode: 'history',
@@ -34457,6 +34468,995 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-2ce50e5a", module.exports)
+  }
+}
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(83)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(85)
+/* template */
+var __vue_template__ = __webpack_require__(86)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/tests/Tests.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-eca353d0", Component.options)
+  } else {
+    hotAPI.reload("data-v-eca353d0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(84);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("c277f7b2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-eca353d0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tests.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-eca353d0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tests.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      { staticClass: "btn-group", attrs: { role: "group" } },
+      [
+        _c(
+          "router-link",
+          { staticClass: "btn btn-secondary", attrs: { to: "tests/create" } },
+          [_vm._v("Create test")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          { staticClass: "btn btn-secondary", attrs: { to: "tests/create" } },
+          [_vm._v("My tests")]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-eca353d0", module.exports)
+  }
+}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(88)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(90)
+/* template */
+var __vue_template__ = __webpack_require__(96)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-63e9e395"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/tests/Create.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-63e9e395", Component.options)
+  } else {
+    hotAPI.reload("data-v-63e9e395", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(89);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("2a5ce539", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63e9e395\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Create.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63e9e395\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Create.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.questions-start[data-v-63e9e395] {\n    margin-top: 20px;\n}\n.container[data-v-63e9e395] {\n    min-height: 10px;\n}\n.oi-check[data-v-63e9e395] {\n    color: green;\n    margin-top: 20px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ResultTable__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ResultTable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ResultTable__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        ResultTable: __WEBPACK_IMPORTED_MODULE_0__ResultTable___default.a
+    },
+    data: function data() {
+        return {
+            numQuestions: 2,
+            currQuestion: 0,
+            testTitle: '',
+            state: 'ask',
+            questions: [],
+            question: {},
+            answers: [],
+            correct: 0
+        };
+    },
+
+    methods: {
+        startCreate: function startCreate() {
+            this.state = 'creating';
+        },
+        startQuestions: function startQuestions() {
+            this.state = 'questions';
+        },
+        nextQuestion: function nextQuestion() {
+
+            this.questions.push({
+                title: this.questions.title,
+                answers: {
+                    0: this.answers[0],
+                    1: this.answers[1],
+                    2: this.answers[2],
+                    3: this.answers[3]
+                },
+                correctIndex: this.correct
+            });
+
+            // next screen if last question
+            if (this.lastQuestion) {
+                this.state = 'result';
+                return;
+            }
+
+            this.currQuestion++;
+            this.questions.title = '';
+            this.answers = [];
+        }
+    },
+    computed: {
+        lastQuestion: function lastQuestion() {
+            return this.currQuestion + 1 === this.numQuestions;
+        }
+    }
+});
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(92)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(94)
+/* template */
+var __vue_template__ = __webpack_require__(95)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-89eaab30"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/tests/ResultTable.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-89eaab30", Component.options)
+  } else {
+    hotAPI.reload("data-v-89eaab30", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(93);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("31871506", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-89eaab30\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ResultTable.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-89eaab30\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ResultTable.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ntable[data-v-89eaab30] {\n    background-color: #fff;\n}\ntable .table-title[data-v-89eaab30] {\n    text-align: center;\n    vertical-align: middle;\n}\ntable .table-answer[data-v-89eaab30] {\n    border-left: 1px solid #DEE2E6;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['testTitle', 'questions'],
+    methods: {
+        createTest: function createTest() {
+            console.log(this.questions);
+        }
+    }
+});
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h2", [_vm._v("Test title: " + _vm._s(_vm.testTitle))]),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-striped" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.questions, function(question) {
+          return [
+            _c("tr", [
+              _c(
+                "td",
+                { staticClass: "table-title", attrs: { rowspan: "5" } },
+                [_vm._v(_vm._s(question.title))]
+              )
+            ]),
+            _vm._v(" "),
+            _vm._l(question.answers, function(answer, i) {
+              return _c("tr", [
+                _c("td", { staticClass: "table-answer" }, [
+                  _vm._v(_vm._s(answer))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-center" }, [
+                  _vm._v(_vm._s(question.correctIndex == i ? "+" : "-"))
+                ])
+              ])
+            })
+          ]
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "btn btn-secondary", on: { click: _vm.createTest } },
+      [_vm._v("\n        Create\n    ")]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "text-center" }, [_vm._v("Question title")]),
+      _vm._v(" "),
+      _c("td", { staticClass: "text-center" }, [_vm._v("Answer")]),
+      _vm._v(" "),
+      _c("td", { staticClass: "text-center" }, [_vm._v("Correct")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-89eaab30", module.exports)
+  }
+}
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("h2", [_vm._v("Создание теста")]),
+    _vm._v(" "),
+    _vm.state === "ask"
+      ? _c("div", [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "questions" } }, [
+              _vm._v("Number of questions")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.numQuestions,
+                  expression: "numQuestions"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "questions", type: "number" },
+              domProps: { value: _vm.numQuestions },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.numQuestions = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary",
+                on: { click: _vm.startCreate }
+              },
+              [_vm._v("\n                Next\n            ")]
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.state === "creating"
+      ? _c("div", [
+          _c("h5", [_vm._v("Question " + _vm._s(_vm.currQuestion + 1))]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group questions-start" }, [
+            _c("label", { attrs: { for: "test-title" } }, [
+              _vm._v("Test title")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.testTitle,
+                  expression: "testTitle"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "test-title", type: "text" },
+              domProps: { value: _vm.testTitle },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.testTitle = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary",
+              on: { click: _vm.startQuestions }
+            },
+            [_vm._v("\n            Next\n        ")]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.state === "questions"
+      ? _c("div", [
+          _c("div", { staticClass: "alert alert-info" }, [
+            _c("h5", [_vm._v("Test: " + _vm._s(_vm.testTitle))]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(
+              "\n            Question " +
+                _vm._s(_vm.currQuestion + 1) +
+                " / " +
+                _vm._s(_vm.numQuestions) +
+                "\n        "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Question")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.questions.title,
+                  expression: "questions.title"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.questions.title },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.questions, "title", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-10" }, [
+              _c("label", [_vm._v("(A)")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.answers[0],
+                    expression: "answers[0]"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.answers[0] },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.answers, 0, $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("label", { staticClass: "col-md-2" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.correct,
+                    expression: "correct"
+                  }
+                ],
+                staticClass: "form-check",
+                attrs: { value: "0", type: "radio", checked: "" },
+                domProps: { checked: _vm._q(_vm.correct, "0") },
+                on: {
+                  change: function($event) {
+                    _vm.correct = "0"
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "oi oi-check" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-10" }, [
+              _c("label", [_vm._v("(B)")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.answers[1],
+                    expression: "answers[1]"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.answers[1] },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.answers, 1, $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("label", { staticClass: "col-md-2" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.correct,
+                    expression: "correct"
+                  }
+                ],
+                staticClass: "form-check",
+                attrs: { value: "1", type: "radio" },
+                domProps: { checked: _vm._q(_vm.correct, "1") },
+                on: {
+                  change: function($event) {
+                    _vm.correct = "1"
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "oi oi-check" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-10" }, [
+              _c("label", [_vm._v("(C)")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.answers[2],
+                    expression: "answers[2]"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.answers[2] },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.answers, 2, $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("label", { staticClass: "col-md-2" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.correct,
+                    expression: "correct"
+                  }
+                ],
+                staticClass: "form-check",
+                attrs: { value: "2", type: "radio" },
+                domProps: { checked: _vm._q(_vm.correct, "2") },
+                on: {
+                  change: function($event) {
+                    _vm.correct = "2"
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "oi oi-check" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-10" }, [
+              _c("label", [_vm._v("(D)")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.answers[3],
+                    expression: "answers[3]"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.answers[3] },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.answers, 3, $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("label", { staticClass: "col-md-2" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.correct,
+                    expression: "correct"
+                  }
+                ],
+                staticClass: "form-check",
+                attrs: { value: "3", type: "radio" },
+                domProps: { checked: _vm._q(_vm.correct, "3") },
+                on: {
+                  change: function($event) {
+                    _vm.correct = "3"
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "oi oi-check" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  on: { click: _vm.nextQuestion }
+                },
+                [_vm._v("\n                    Next\n                ")]
+              )
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.state === "result"
+      ? _c(
+          "div",
+          [
+            _c("result-table", {
+              attrs: { testTitle: _vm.testTitle, questions: _vm.questions }
+            })
+          ],
+          1
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-63e9e395", module.exports)
   }
 }
 
