@@ -11,7 +11,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Название карточки</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Количество вопросов:</h6>
-                                <a href="#" class="card-link">Пройти тест</a>
+                                <router-link class="card-link" to="/tests/start/1">Начать</router-link>
                             </div>
                         </div>
                     </div>

@@ -12,6 +12,7 @@ import NotFound from './components/NotFound';
 // Tests
 import Tests from './components/tests/Tests';
 import CreateTest from './components/tests/Create';
+import StartTest from './components/tests/Start';
 
 Vue.use(VueRouter);
 
@@ -26,7 +27,8 @@ const routes = [
 
     // Tests
     { path: '/tests', component: Tests },
-    { path: '/tests/create', component: CreateTest }
+    { path: '/tests/create', component: CreateTest },
+    { path: '/tests/start/:id', component: StartTest, props: true },
 ];
 
 export const router = new VueRouter({
