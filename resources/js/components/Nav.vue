@@ -20,11 +20,13 @@ export default {
     padding-top: 10px;
     min-height: inherit;
     background: #fff;
+    box-shadow: 5px 0 5px -5px #cccccc;
 }
 
 @media screen and (max-width: 767px) {
     .app-nav {
         min-height: 0px;
+        box-shadow: none;
     }
 }
 </style>

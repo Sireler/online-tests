@@ -30703,7 +30703,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.app-nav[data-v-7cd4f788] {\n    padding-top: 10px;\n    min-height: inherit;\n    background: #fff;\n}\n@media screen and (max-width: 767px) {\n.app-nav[data-v-7cd4f788] {\n        min-height: 0px;\n}\n}\n", ""]);
+exports.push([module.i, "\n.app-nav[data-v-7cd4f788] {\n    padding-top: 10px;\n    min-height: inherit;\n    background: #fff;\n    -webkit-box-shadow: 5px 0 5px -5px #cccccc;\n            box-shadow: 5px 0 5px -5px #cccccc;\n}\n@media screen and (max-width: 767px) {\n.app-nav[data-v-7cd4f788] {\n        min-height: 0px;\n        -webkit-box-shadow: none;\n                box-shadow: none;\n}\n}\n", ""]);
 
 // exports
 
