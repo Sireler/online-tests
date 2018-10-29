@@ -39,32 +39,30 @@ export default {
 </script>
 
 <style scoped>
-.login-container{
+.login-container {
     margin-top: 5%;
     margin-bottom: 5%;
 }
-.login-form{
+.login-form {
     padding: 5%;
-    background: #0062cc;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2),
-    0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    background: #3490DC;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 .login-form h3{
     text-align: center;
     color: #fff;
 }
-.login-container form{
+.login-container form {
     padding: 10%;
 }
-.btnSubmit
-{
+.btnSubmit {
     width: 50%;
     border-radius: 1rem;
     padding: 1.5%;
     border: none;
     cursor: pointer;
 }
-.login-form .btnSubmit{
+.login-form .btnSubmit {
     font-weight: 600;
 }
 .login-form .form-btn {
