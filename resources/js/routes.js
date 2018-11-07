@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import AppMain from './components/Main';
 import AppHome from './components/home/Home';
 
 // Auth
@@ -17,6 +18,8 @@ import StartTest from './components/tests/Start';
 Vue.use(VueRouter);
 
 const routes = [
+
+    { path: '/', component: AppMain },
     { path: '/home', component: AppHome },
 
     // Auth

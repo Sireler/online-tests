@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-4">Главная страница</h1>
+            <h1 class="display-4">Опросы</h1>
             <p class="lead">Lead</p>
             <hr class="my-4">
             <div class="cards">

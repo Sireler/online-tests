@@ -1,10 +1,8 @@
 <template>
-
-        <div class="row app-container">
-            <app-nav></app-nav>
-            <router-view class="col-md-8"></router-view>
-        </div>
-
+    <div class="row app-container">
+        <app-nav v-if="$route.path !== '/'"></app-nav>
+        <router-view class="col-md-8"></router-view>
+    </div>
 </template>
 
 <script>
