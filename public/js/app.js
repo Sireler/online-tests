@@ -30830,7 +30830,9 @@ var render = function() {
           "div",
           { staticClass: "row app-container" },
           [
-            _vm.$route.path !== "/" ? _c("app-nav") : _vm._e(),
+            _vm.$route.path !== "/" && _vm.$auth.check()
+              ? _c("app-nav")
+              : _vm._e(),
             _vm._v(" "),
             _c("router-view", { staticClass: "col-md-8" })
           ],
@@ -30895,7 +30897,7 @@ if (false) {
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_Main___default.a }, { path: '/home', component: __WEBPACK_IMPORTED_MODULE_3__components_home_Home___default.a },
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_Main___default.a }, { path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_3__components_home_Home___default.a },
 
 // Auth
 { path: '/auth', component: __WEBPACK_IMPORTED_MODULE_4__components_auth_Auth___default.a },
@@ -34204,10 +34206,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     email: this.inputEmail,
                     password: this.inputPassword
                 },
+                redirect: '/home',
+                fetchUser: true,
+                success: function success(res) {
+                    //localStorage.setItem('token', res.data.access_token);
+                },
                 rememberMe: true
             }).catch(function (res) {
                 // TODO::handle error
             });
+
+            console.log(this.$auth.user());
+
+            console.log(localStorage.length);
         }
     }
 });

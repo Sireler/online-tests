@@ -20,7 +20,7 @@ Vue.use(VueRouter);
 const routes = [
 
     { path: '/', component: AppMain },
-    { path: '/home', component: AppHome },
+    { path: '/home', name: 'home', component: AppHome },
 
     // Auth
     { path: '/auth', component: Auth },

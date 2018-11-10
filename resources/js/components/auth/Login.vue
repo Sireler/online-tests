@@ -47,10 +47,19 @@ export default {
                     email: this.inputEmail,
                     password: this.inputPassword
                 },
+                redirect: '/home',
+                fetchUser: true,
+                success: function(res) {
+                    //localStorage.setItem('token', res.data.access_token);
+                },
                 rememberMe: true
             }).catch(function(res) {
                 // TODO::handle error
             });
+
+            console.log(this.$auth.user());
+
+            console.log(localStorage.length);
         }
     }
 }

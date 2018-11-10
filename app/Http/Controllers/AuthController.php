@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
@@ -22,15 +23,16 @@ class AuthController extends Controller
      * Get a JWT token via given credentials.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Response
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
+    public function login(Request $request, Response $response)
     {
         $credentials = $request->only('email', 'password');
 
         if ($token = $this->guard()->attempt($credentials)) {
-            return $this->respondWithToken($token);
+            return response()->json(['token' => $token])->header('Authorization', "Bearer {$token}");
         }
 
         return response()->json(['error' => 'Unauthorized'], 401);
