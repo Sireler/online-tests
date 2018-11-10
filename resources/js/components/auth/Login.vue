@@ -3,15 +3,15 @@
         <div class="row">
             <div class="col-md-10 offset-md-1 login-form">
                 <h3>Login</h3>
-                <form>
+                <form v-on:submit.prevent>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Email *" value="" />
+                        <input type="text" v-model="inputEmail" class="form-control" placeholder="Your Email *" value="" />
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Your Password *" value="" />
+                        <input type="password" v-model="inputPassword" class="form-control" placeholder="Your Password *" value="" />
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btnSubmit login-btn btn-light" value="Login" />
+                        <input @click="login" type="submit" class="btnSubmit login-btn btn-light" value="Login" />
                     </div>
                     <div class="form-group">
                         <a href="#" class="form-btn " value="Login">Forget Password?</a>
@@ -30,10 +30,28 @@
 
 <script>
 export default {
+    data() {
+        return {
+            inputEmail: '',
+            inputPassword: ''
+        }
+    },
     methods: {
         showRegForm() {
             this.$emit('changeView', 'register');
         },
+
+        login() {
+            this.$auth.login({
+                data: {
+                    email: this.inputEmail,
+                    password: this.inputPassword
+                },
+                rememberMe: true
+            }).catch(function(res) {
+                // TODO::handle error
+            });
+        }
     }
 }
 </script>
