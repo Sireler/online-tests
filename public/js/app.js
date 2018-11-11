@@ -30828,10 +30828,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$auth.logout({
                 makeRequest: true,
                 success: function success(res) {
-                    console.log(res);
+                    //console.log(res)
                 },
                 error: function error(res) {
-                    console.log(res);
+                    //console.log(res)
                 },
                 redirect: '/'
                 // etc...
