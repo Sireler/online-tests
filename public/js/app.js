@@ -30798,7 +30798,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.app-nav[data-v-7cd4f788] {\r\n    padding-top: 10px;\r\n    min-height: inherit;\r\n    background: #fff;\r\n    -webkit-box-shadow: 5px 0 5px -5px #cccccc;\r\n            box-shadow: 5px 0 5px -5px #cccccc;\n}\n@media screen and (max-width: 767px) {\n.app-nav[data-v-7cd4f788] {\r\n        min-height: 0;\r\n        -webkit-box-shadow: none;\r\n                box-shadow: none;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.app-nav[data-v-7cd4f788] {\r\n    padding-top: 10px;\r\n    min-height: inherit;\r\n    background: #eaf0f5;\r\n    -webkit-box-shadow: 5px 0 5px -5px #cccccc;\r\n            box-shadow: 5px 0 5px -5px #cccccc;\n}\n@media screen and (max-width: 767px) {\n.app-nav[data-v-7cd4f788] {\r\n        min-height: 10px;\r\n        -webkit-box-shadow: 2px 1px 5px 2px #ccc;\r\n                box-shadow: 2px 1px 5px 2px #ccc;\n}\n}\r\n", ""]);
 
 // exports
 

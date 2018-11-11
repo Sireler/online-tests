@@ -33,14 +33,14 @@ export default {
 .app-nav {
     padding-top: 10px;
     min-height: inherit;
-    background: #fff;
+    background: #eaf0f5;
     box-shadow: 5px 0 5px -5px #cccccc;
 }
 
 @media screen and (max-width: 767px) {
     .app-nav {
-        min-height: 0;
-        box-shadow: none;
+        min-height: 10px;
+        box-shadow: 2px 1px 5px 2px #ccc;
     }
 }
 </style>
