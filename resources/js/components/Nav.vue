@@ -5,14 +5,25 @@
             <router-link class="nav-link" to="/home" activeClass="active">Home</router-link>
             <router-link class="nav-link" to="/tests" activeClass="active">Tests</router-link>
             <router-link v-if="!$auth.check()" class="nav-link" to="/auth" activeClass="active">Login</router-link>
-            <router-link v-if="$auth.check()" class="nav-link" to="/auth" activeClass="active">Logout</router-link>
+            <a href="" @click.prevent="logout" v-if="$auth.check()" class="nav-link" >Logout</a>
         </div>
     </nav>
 </template>
 
 <script>
 export default {
-
+    methods: {
+        logout() {
+            this.$auth.logout({
+                makeRequest: false,
+                //data: {},
+                //success: function () {},
+                //error: function () {},
+                redirect: '/',
+                // etc...
+            });
+        }
+    }
 }
 </script>
 

@@ -30810,7 +30810,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    methods: {
+        logout: function logout() {
+            this.$auth.logout({
+                makeRequest: false,
+                //data: {},
+                //success: function () {},
+                //error: function () {},
+                redirect: '/'
+                // etc...
+            });
+        }
+    }
+});
 
 /***/ }),
 /* 50 */
@@ -30873,10 +30886,16 @@ var render = function() {
           _vm._v(" "),
           _vm.$auth.check()
             ? _c(
-                "router-link",
+                "a",
                 {
                   staticClass: "nav-link",
-                  attrs: { to: "/auth", activeClass: "active" }
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.logout($event)
+                    }
+                  }
                 },
                 [_vm._v("Logout")]
               )
