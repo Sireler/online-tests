@@ -30631,7 +30631,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n* {\n    margin: 0;\n    padding: 0;\n}\n#app {\n    background-color: #eee;\n    min-height: 100vh;\n}\n.app-container {\n    min-height: 100vh;\n    margin: 0;\n}\n.container {\n    margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, "\n* {\n    margin: 0;\n    padding: 0;\n}\n#app {\n    background-color: #eee;\n    min-height: 100vh;\n}\n.app-container {\n    min-height: 100vh;\n    margin: 0;\n}\n.container {\n    margin-top: 10px;\n}\n.lds-ripple {\n    display: inline-block;\n    position: relative;\n    width: 256px;\n    height: 256px;\n    left: 50%;\n    margin-left: -128px;\n    margin-top: 35%;\n}\n.lds-ripple div {\n    position: absolute;\n    border: 4px solid #3490DC;\n    opacity: 1;\n    border-radius: 50%;\n    -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\n            animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\n}\n.lds-ripple div:nth-child(2) {\n    -webkit-animation-delay: -0.5s;\n            animation-delay: -0.5s;\n}\n@-webkit-keyframes lds-ripple {\n0% {\n        top: 45%;\n        left: 45%;\n        width: 0;\n        height: 0;\n        opacity: 1;\n}\n100% {\n        top: -1px;\n        left: -1px;\n        width: 95%;\n        height: 95%;\n        opacity: 0;\n}\n}\n@keyframes lds-ripple {\n0% {\n        top: 45%;\n        left: 45%;\n        width: 0;\n        height: 0;\n        opacity: 1;\n}\n100% {\n        top: -1px;\n        left: -1px;\n        width: 95%;\n        height: 95%;\n        opacity: 0;\n}\n}\n", ""]);
 
 // exports
 
@@ -30677,6 +30677,8 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Nav__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Nav___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Nav__);
+//
+//
 //
 //
 //
@@ -30920,11 +30922,20 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     !_vm.$auth.ready()
-      ? _c("div", [_vm._v("\n        Loading ...\n    ")])
+      ? _c("div", { staticClass: "container-fluid" }, [_vm._m(0)])
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-6 m-auto" }, [
+      _c("div", { staticClass: "lds-ripple" }, [_c("div"), _c("div")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
