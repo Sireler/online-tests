@@ -22,7 +22,12 @@ import {router} from './routes.js';
 //vue-toasted
 import Toasted from 'vue-toasted';
 
-Vue.use(Toasted);
+Vue.use(Toasted, {
+    fullWidth: true,
+    duration: 3000,
+    position: 'bottom-left',
+    theme: 'bubble'
+});
 //--
 
 /**

@@ -22826,7 +22826,12 @@ window.Vue = __webpack_require__(13);
 //vue-toasted
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_toasted___default.a);
+Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_toasted___default.a, {
+    fullWidth: true,
+    duration: 3000,
+    position: 'bottom-left',
+    theme: 'bubble'
+});
 //--
 
 /**
@@ -34341,20 +34346,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit('changeView', 'register');
         },
         login: function login() {
-            this.$auth.login({
-                data: {
-                    email: this.inputEmail,
-                    password: this.inputPassword
-                },
-                redirect: '/home',
-                fetchUser: true,
-                success: function success(res) {
-                    //localStorage.setItem('token', res.data.access_token);
-                },
-                rememberMe: true
-            }).catch(function (res) {
-                //TODO::handle error
-            });
+            var _this = this;
+
+            if (this.checkInputs()) {
+                this.$auth.login({
+                    data: {
+                        email: this.inputEmail,
+                        password: this.inputPassword
+                    },
+                    redirect: '/home',
+                    fetchUser: true,
+                    success: function success(res) {
+                        //localStorage.setItem('token', res.data.access_token);
+                    },
+                    rememberMe: true
+                }).catch(function (res) {
+                    _this.$toasted.show('Email or password incorrect');
+
+                    _this.clearInputs();
+                });
+            } else {
+                this.$toasted.show('All input fields must be filled');
+            }
+        },
+        clearInputs: function clearInputs() {
+            this.inputEmail = '';
+            this.inputPassword = '';
+        },
+        checkInputs: function checkInputs() {
+            return this.inputEmail.length > 0 && this.inputPassword.length > 0;
         }
     }
 });
