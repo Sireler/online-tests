@@ -34423,7 +34423,12 @@ var render = function() {
                 {
                   staticClass: "btn-register form-btn",
                   attrs: { href: "#", value: "Login" },
-                  on: { click: _vm.showRegForm }
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.showRegForm($event)
+                    }
+                  }
                 },
                 [_vm._v("Register")]
               )
@@ -34614,7 +34619,12 @@ var render = function() {
               {
                 staticClass: "ForgetPwd",
                 attrs: { href: "#" },
-                on: { click: _vm.showLoginForm }
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.showLoginForm($event)
+                  }
+                }
               },
               [_vm._v("Login")]
             )

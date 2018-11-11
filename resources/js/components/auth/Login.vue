@@ -20,7 +20,7 @@
                         <a class="btn-register form-btn"
                            href="#"
                            value="Login"
-                           @click="showRegForm">Register</a>
+                           @click.prevent="showRegForm">Register</a>
                     </div>
                 </form>
             </div>
