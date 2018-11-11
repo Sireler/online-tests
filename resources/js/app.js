@@ -19,6 +19,15 @@ import App from './components/App';
 
 import {router} from './routes.js';
 
+//vue-toasted
+import Toasted from 'vue-toasted';
+
+Vue.use(Toasted);
+//--
+
+/**
+ * Vue-auth lib for authentication with jwt token
+ */
 let axios = window.axios;
 import VueAxios from 'vue-axios';
 
@@ -26,7 +35,6 @@ Vue.use(VueAxios, axios);
 Vue.axios.defaults.baseURL = 'http://ttt/api';
 Vue.router = router;
 
-// vue-auth lib
 Vue.use(require('@websanova/vue-auth'), {
     auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
     http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
