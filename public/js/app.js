@@ -30840,10 +30840,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     methods: {
         logout: function logout() {
+            var _this = this;
+
             this.$auth.logout({
                 makeRequest: true,
                 success: function success(res) {
-                    //console.log(res)
+                    _this.$toasted.show('You have been logged out');
                 },
                 error: function error(res) {
                     //console.log(res)
@@ -34357,7 +34359,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     redirect: '/home',
                     fetchUser: true,
                     success: function success(res) {
-                        //localStorage.setItem('token', res.data.access_token);
+                        _this.$toasted.show('You are logged in');
                     },
                     rememberMe: true
                 }).catch(function (res) {

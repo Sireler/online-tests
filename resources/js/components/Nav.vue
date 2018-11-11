@@ -16,8 +16,8 @@ export default {
         logout() {
             this.$auth.logout({
                 makeRequest: true,
-                success: function (res) {
-                    //console.log(res)
+                success: (res) => {
+                    this.$toasted.show('You have been logged out');
                 },
                 error: function (res) {
                     //console.log(res)

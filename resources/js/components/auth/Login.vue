@@ -50,8 +50,8 @@ export default {
                     },
                     redirect: '/home',
                     fetchUser: true,
-                    success: function(res) {
-                        //localStorage.setItem('token', res.data.access_token);
+                    success: (res) => {
+                        this.$toasted.show('You are logged in');
                     },
                     rememberMe: true
                 }).catch((res) => {
