@@ -25,6 +25,13 @@ export default {
         changeView(view) {
             this.view = view;
         }
+    },
+    beforeRouteEnter(to, from, next) {
+        if (!Vue.auth.check()) {
+            next();
+        } else {
+            Vue.router.push({ path: '/home' });
+        }
     }
 }
 </script>

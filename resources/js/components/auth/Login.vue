@@ -54,7 +54,7 @@ export default {
                 },
                 rememberMe: true
             }).catch(function(res) {
-                // TODO::handle error
+                //TODO::handle error
             });
 
         }

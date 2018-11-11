@@ -34166,6 +34166,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         changeView: function changeView(view) {
             this.view = view;
         }
+    },
+    beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+        if (!Vue.auth.check()) {
+            next();
+        } else {
+            Vue.router.push({ path: '/home' });
+        }
     }
 });
 
@@ -34322,7 +34329,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 rememberMe: true
             }).catch(function (res) {
-                // TODO::handle error
+                //TODO::handle error
             });
         }
     }
