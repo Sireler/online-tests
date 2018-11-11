@@ -19,6 +19,31 @@ import App from './components/App';
 
 import {router} from './routes.js';
 
+let axios = window.axios;
+import VueAxios from 'vue-axios';
+
+Vue.use(VueAxios, axios);
+Vue.axios.defaults.baseURL = 'http://ttt/api';
+Vue.router = router;
+
+// vue-auth lib
+Vue.use(require('@websanova/vue-auth'), {
+    auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
+    http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
+    router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js')
+});
+
+// Navigation guard
+router.beforeEach((to, from, next) => {
+    if (Vue.auth.check()) {
+        next();
+    } else if (to.path === '/auth' || to.path === '/') {
+        next();
+    } else {
+        router.push( {path: '/auth'} );
+    }
+});
+
 const app = new Vue({
     el: '#app',
     router,

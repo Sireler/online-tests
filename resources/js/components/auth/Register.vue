@@ -15,7 +15,7 @@
                     </div>
                     <div class="form-group">
                         <a href="#" class="ForgetPwd"
-                           @click="showLoginForm">Login</a>
+                           @click.prevent="showLoginForm">Login</a>
                     </div>
                 </form>
             </div>
