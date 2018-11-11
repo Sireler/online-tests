@@ -34324,10 +34324,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (res) {
                 // TODO::handle error
             });
-
-            console.log(this.$auth.user());
-
-            console.log(localStorage.length);
         }
     }
 });

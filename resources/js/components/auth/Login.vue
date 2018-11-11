@@ -57,9 +57,6 @@ export default {
                 // TODO::handle error
             });
 
-            console.log(this.$auth.user());
-
-            console.log(localStorage.length);
         }
     }
 }
