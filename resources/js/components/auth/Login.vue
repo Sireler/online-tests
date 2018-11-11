@@ -42,21 +42,34 @@ export default {
         },
 
         login() {
-            this.$auth.login({
-                data: {
-                    email: this.inputEmail,
-                    password: this.inputPassword
-                },
-                redirect: '/home',
-                fetchUser: true,
-                success: function(res) {
-                    //localStorage.setItem('token', res.data.access_token);
-                },
-                rememberMe: true
-            }).catch(function(res) {
-                //TODO::handle error
-            });
+            if (this.checkInputs()) {
+                this.$auth.login({
+                    data: {
+                        email: this.inputEmail,
+                        password: this.inputPassword
+                    },
+                    redirect: '/home',
+                    fetchUser: true,
+                    success: function(res) {
+                        //localStorage.setItem('token', res.data.access_token);
+                    },
+                    rememberMe: true
+                }).catch((res) => {
+                    this.$toasted.show('Email or password incorrect');
 
+                    this.clearInputs();
+                });
+            } else {
+                this.$toasted.show('All input fields must be filled');
+            }
+        },
+
+        clearInputs() {
+            this.inputEmail = '';
+            this.inputPassword = '';
+        },
+        checkInputs() {
+            return this.inputEmail.length > 0 && this.inputPassword.length > 0;
         }
     }
 }
