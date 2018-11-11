@@ -15,10 +15,13 @@ export default {
     methods: {
         logout() {
             this.$auth.logout({
-                makeRequest: false,
-                //data: {},
-                //success: function () {},
-                //error: function () {},
+                makeRequest: true,
+                success: function (res) {
+                    console.log(res)
+                },
+                error: function (res) {
+                    console.log(res)
+                },
                 redirect: '/',
                 // etc...
             });

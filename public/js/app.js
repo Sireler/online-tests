@@ -30826,10 +30826,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         logout: function logout() {
             this.$auth.logout({
-                makeRequest: false,
-                //data: {},
-                //success: function () {},
-                //error: function () {},
+                makeRequest: true,
+                success: function success(res) {
+                    console.log(res);
+                },
+                error: function error(res) {
+                    console.log(res);
+                },
                 redirect: '/'
                 // etc...
             });
