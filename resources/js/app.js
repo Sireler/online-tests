@@ -23,7 +23,7 @@ let axios = window.axios;
 import VueAxios from 'vue-axios';
 
 Vue.use(VueAxios, axios);
-Vue.axios.defaults.baseURL = 'http://ttt/api';
+Vue.axios.defaults.baseURL = process.env.MIX_API_ENDPOINT;
 Vue.router = router;
 
 // vue-auth lib

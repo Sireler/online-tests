@@ -22786,7 +22786,7 @@ module.exports = (function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(112);
+module.exports = __webpack_require__(113);
 
 
 /***/ }),
@@ -22798,7 +22798,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_App__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_App__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes_js__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_axios__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_axios__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_axios__);
 
 /**
@@ -22825,14 +22825,14 @@ var axios = window.axios;
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_axios___default.a, axios);
-Vue.axios.defaults.baseURL = 'http://ttt/api';
+Vue.axios.defaults.baseURL = "http://ttt/api";
 Vue.router = __WEBPACK_IMPORTED_MODULE_1__routes_js__["a" /* router */];
 
 // vue-auth lib
-Vue.use(__webpack_require__(105), {
-    auth: __webpack_require__(109),
-    http: __webpack_require__(110),
-    router: __webpack_require__(111)
+Vue.use(__webpack_require__(106), {
+    auth: __webpack_require__(110),
+    http: __webpack_require__(111),
+    router: __webpack_require__(112)
 });
 
 // Navigation guard
@@ -36135,7 +36135,8 @@ if (false) {
 }
 
 /***/ }),
-/* 104 */
+/* 104 */,
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36143,10 +36144,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="fun
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):window.Vue&&window.axios&&Vue.use(o,window.axios)}();
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Auth = __webpack_require__(106)();
+var Auth = __webpack_require__(107)();
 
 module.exports = (function () {
 
@@ -36187,11 +36188,11 @@ module.exports = (function () {
 })();
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __utils  = __webpack_require__(107),
-    __token  = __webpack_require__(108),
+var __utils  = __webpack_require__(108),
+    __token  = __webpack_require__(109),
     __cookie = __webpack_require__(14)
 
 module.exports = function () {
@@ -36901,7 +36902,7 @@ module.exports = function () {
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports) {
 
 module.exports = (function (){
@@ -36983,7 +36984,7 @@ module.exports = (function (){
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __cookie = __webpack_require__(14);
@@ -37063,7 +37064,7 @@ module.exports = (function () {
 })();
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -37085,7 +37086,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -37151,7 +37152,7 @@ module.exports = {
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -37219,7 +37220,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
