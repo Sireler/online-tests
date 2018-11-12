@@ -14,16 +14,22 @@ use Illuminate\Routing\Router;
 |
 */
 
-Route::group([
 
-    'middleware' => 'api',
-    'prefix' => 'auth'
 
-], function () {
 
-    Route::post('login', 'AuthController@login')->name('api.login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
+Route::namespace('Api')->group(function () {
+    Route::group([
 
+        'middleware' => 'api',
+        'prefix' => 'auth'
+
+    ], function () {
+
+        Route::post('login', 'Auth\AuthController@login')->name('api.login');
+        Route::post('logout', 'Auth\AuthController@logout');
+        Route::post('refresh', 'Auth\AuthController@refresh');
+        Route::post('me', 'Auth\AuthController@me');
+
+    });
 });
+
