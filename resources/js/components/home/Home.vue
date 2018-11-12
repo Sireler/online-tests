@@ -1,26 +1,26 @@
 <template>
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-4">Опросы</h1>
-            <p class="lead">Lead</p>
+            <h1 class="display-4">Surveys</h1>
+            <p class="lead">List of surveys</p>
             <hr class="my-4">
             <div class="cards">
                 <div class="row cards-row">
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Название карточки</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Количество вопросов:</h6>
-                                <router-link class="card-link" to="/tests/start/1">Начать</router-link>
+                                <h5 class="card-title">Name</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">count</h6>
+                                <router-link class="card-link" to="/tests/start/1">Start</router-link>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Название карточки</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Количество вопросов:</h6>
-                                <a href="#" class="card-link">Пройти тест</a>
+                                <h5 class="card-title">Name</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">count</h6>
+                                <a href="#" class="card-link">Start</a>
                             </div>
                         </div>
                     </div>

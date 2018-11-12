@@ -30901,7 +30901,7 @@ var render = function() {
               staticClass: "nav-link",
               attrs: { to: "/tests", activeClass: "active" }
             },
-            [_vm._v("Tests")]
+            [_vm._v("Surveys")]
           ),
           _vm._v(" "),
           !_vm.$auth.check()
@@ -33819,7 +33819,7 @@ var render = function() {
       _c("h1", { staticClass: "display-4" }, [_vm._v("Surveys")]),
       _vm._v(" "),
       _c("p", { staticClass: "lead" }, [
-        _vm._v("Зарегистрируйтесь и создайте свой первый опрос!")
+        _vm._v("Register and create survey or test!")
       ]),
       _vm._v(" "),
       _c("hr", { staticClass: "my-4" }),
@@ -33833,7 +33833,7 @@ var render = function() {
                 staticClass: "btn btn-block btn-outline-primary",
                 on: { click: _vm.toAuth }
               },
-              [_vm._v("Вход")]
+              [_vm._v("Login")]
             )
           ])
         ])
@@ -33993,9 +33993,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "jumbotron" }, [
-      _c("h1", { staticClass: "display-4" }, [_vm._v("Опросы")]),
+      _c("h1", { staticClass: "display-4" }, [_vm._v("Surveys")]),
       _vm._v(" "),
-      _c("p", { staticClass: "lead" }, [_vm._v("Lead")]),
+      _c("p", { staticClass: "lead" }, [_vm._v("List of surveys")]),
       _vm._v(" "),
       _c("hr", { staticClass: "my-4" }),
       _vm._v(" "),
@@ -34007,12 +34007,10 @@ var render = function() {
                 "div",
                 { staticClass: "card-body" },
                 [
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v("Название карточки")
-                  ]),
+                  _c("h5", { staticClass: "card-title" }, [_vm._v("Name")]),
                   _vm._v(" "),
                   _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-                    _vm._v("Количество вопросов:")
+                    _vm._v("count")
                   ]),
                   _vm._v(" "),
                   _c(
@@ -34021,7 +34019,7 @@ var render = function() {
                       staticClass: "card-link",
                       attrs: { to: "/tests/start/1" }
                     },
-                    [_vm._v("Начать")]
+                    [_vm._v("Start")]
                   )
                 ],
                 1
@@ -34043,16 +34041,14 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-md-6" }, [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body" }, [
-          _c("h5", { staticClass: "card-title" }, [
-            _vm._v("Название карточки")
-          ]),
+          _c("h5", { staticClass: "card-title" }, [_vm._v("Name")]),
           _vm._v(" "),
           _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-            _vm._v("Количество вопросов:")
+            _vm._v("count")
           ]),
           _vm._v(" "),
           _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
-            _vm._v("Пройти тест")
+            _vm._v("Start")
           ])
         ])
       ])
@@ -34907,19 +34903,19 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(85)
+  __webpack_require__(117)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(87)
 /* template */
-var __vue_template__ = __webpack_require__(88)
+var __vue_template__ = __webpack_require__(119)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-eca353d0"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -34952,46 +34948,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(86);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("c277f7b2", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-eca353d0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tests.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-eca353d0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tests.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 85 */,
+/* 86 */,
 /* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -35006,49 +34964,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "btn-group", attrs: { role: "group" } },
-      [
-        _c(
-          "router-link",
-          { staticClass: "btn btn-secondary", attrs: { to: "tests/create" } },
-          [_vm._v("Create test")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          { staticClass: "btn btn-secondary", attrs: { to: "tests/create" } },
-          [_vm._v("My tests")]
-        )
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-eca353d0", module.exports)
-  }
-}
-
-/***/ }),
+/* 88 */,
 /* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37261,6 +37200,115 @@ module.exports = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(118);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("7c276408", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-eca353d0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tests.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-eca353d0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tests.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\n    background-color: #3490DC;\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {\n    background-color: #fff;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "btn-group", attrs: { role: "group" } },
+        [
+          _c(
+            "router-link",
+            { staticClass: "btn btn-secondary", attrs: { to: "tests/create" } },
+            [_vm._v("Create")]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("table", { staticClass: "table table-bordered" }, [
+        _c("thead", [
+          _c("tr", { staticClass: "table-thead" }, [
+            _c("th", [_vm._v("TITLE")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("CREATED")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("RESPONSES")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tbody", [
+          _c("tr", [
+            _c("td", [_vm._v("test")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("test222")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("test344")])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-eca353d0", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -2,12 +2,12 @@
     <div class="container">
         <div class="jumbotron">
             <h1 class="display-4">Surveys</h1>
-            <p class="lead">Зарегистрируйтесь и создайте свой первый опрос!</p>
+            <p class="lead">Register and create survey or test!</p>
             <hr class="my-4">
             <div class="cards">
                 <div class="row cards-row">
                     <div class="col-md-12">
-                        <button @click="toAuth" class="btn btn-block btn-outline-primary">Вход</button>
+                        <button @click="toAuth" class="btn btn-block btn-outline-primary">Login</button>
                     </div>
                 </div>
             </div>

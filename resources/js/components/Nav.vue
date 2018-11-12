@@ -3,7 +3,7 @@
         <div class="nav flex-column nav-pills" id="v-pills-tab">
             <router-link v-if="!$auth.check()" class="nav-link" to="/" exact-active-class="active">Main</router-link>
             <router-link class="nav-link" to="/home" activeClass="active">Home</router-link>
-            <router-link class="nav-link" to="/tests" activeClass="active">Tests</router-link>
+            <router-link class="nav-link" to="/tests" activeClass="active">Surveys</router-link>
             <router-link v-if="!$auth.check()" class="nav-link" to="/auth" activeClass="active">Login</router-link>
             <a href="" @click.prevent="logout" v-if="$auth.check()" class="nav-link" >Logout</a>
         </div>
