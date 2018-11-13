@@ -34597,7 +34597,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.register-container[data-v-d4f9cbe2] {\r\n    margin-top: 5%;\r\n    margin-bottom: 5%;\n}\n.register-form[data-v-d4f9cbe2] {\r\n    padding: 5%;\r\n    -webkit-box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);\r\n            box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);\r\n    background: #fff;\n}\n.register-form h3[data-v-d4f9cbe2] {\r\n    text-align: center;\r\n    color: #333;\n}\n.register-container form[data-v-d4f9cbe2] {\r\n    padding: 10%;\n}\n.btnSubmit[data-v-d4f9cbe2] {\r\n    width: 50%;\r\n    border-radius: 1rem;\r\n    padding: 1.5%;\r\n    border: none;\r\n    cursor: pointer;\n}\n.register-form .btnSubmit[data-v-d4f9cbe2] {\r\n    font-weight: 600;\n}\n.register-form .ForgetPwd[data-v-d4f9cbe2] {\r\n    color: #0062cc;\r\n    font-weight: 600;\r\n    text-decoration: none;\n}\r\n", ""]);
+exports.push([module.i, "\n.register-container[data-v-d4f9cbe2] {\r\n    margin-top: 5%;\r\n    margin-bottom: 5%;\n}\n.register-form[data-v-d4f9cbe2] {\r\n    padding: 5%;\r\n    -webkit-box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);\r\n            box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);\r\n    background: #a976c3;\n}\n.register-form h3[data-v-d4f9cbe2] {\r\n    text-align: center;\r\n    color: #fff;\n}\n.register-container form[data-v-d4f9cbe2] {\r\n    padding: 10%;\n}\n.btnSubmit[data-v-d4f9cbe2] {\r\n    width: 50%;\r\n    border-radius: 1rem;\r\n    padding: 1.5%;\r\n    border: none;\r\n    cursor: pointer;\n}\ninput[data-v-d4f9cbe2]:focus {\r\n    -webkit-box-shadow: none;\r\n            box-shadow: none;\n}\n.register-form .btnSubmit[data-v-d4f9cbe2] {\r\n    font-weight: 600;\r\n    background-color: transparent;\r\n    color: #fff;\r\n    border: 3px solid #fff;\r\n    outline: none;\n}\n.register-form .btnSubmit[data-v-d4f9cbe2]:hover {\r\n    background-color: #fff;\r\n    color: #a976c3;\n}\n.register-form .ForgetPwd[data-v-d4f9cbe2] {\r\n    color: #fff;\r\n    font-weight: 600;\r\n    text-decoration: none;\n}\r\n", ""]);
 
 // exports
 
@@ -34712,7 +34712,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("input", {
-        staticClass: "btnSubmit btn-primary",
+        staticClass: "btnSubmit",
         attrs: { type: "submit", value: "Register" }
       })
     ])

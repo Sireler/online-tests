@@ -11,7 +11,7 @@
                         <input type="password" class="form-control" placeholder="Your Password *" value="" />
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btnSubmit btn-primary" value="Register" />
+                        <input type="submit" class="btnSubmit" value="Register" />
                     </div>
                     <div class="form-group">
                         <a href="#" class="ForgetPwd"
@@ -41,11 +41,11 @@ export default {
 .register-form {
     padding: 5%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
-    background: #fff;
+    background: #a976c3;
 }
 .register-form h3 {
     text-align: center;
-    color: #333;
+    color: #fff;
 }
 .register-container form {
     padding: 10%;
@@ -57,11 +57,22 @@ export default {
     border: none;
     cursor: pointer;
 }
+input:focus {
+    box-shadow: none;
+}
 .register-form .btnSubmit {
     font-weight: 600;
+    background-color: transparent;
+    color: #fff;
+    border: 3px solid #fff;
+    outline: none;
+}
+.register-form .btnSubmit:hover {
+    background-color: #fff;
+    color: #a976c3;
 }
 .register-form .ForgetPwd {
-    color: #0062cc;
+    color: #fff;
     font-weight: 600;
     text-decoration: none;
 }
