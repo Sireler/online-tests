@@ -9,6 +9,7 @@
                 <div class="lds-ripple"><div></div><div></div></div>
             </div>
         </div>
+        <footer>Footer &copy; 2018</footer>
     </div>
 </template>
 
@@ -62,6 +63,20 @@ export default {
 .lds-ripple div:nth-child(2) {
     animation-delay: -0.5s;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #5f2a62;
+    text-align: center;
+    color: #a976c3;
+}
+
+.toasted.bubble {
+    background-color: #5f2a62;
+}
+
 @keyframes lds-ripple {
     0% {
         top: 45%;

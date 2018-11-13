@@ -6,8 +6,8 @@
             <hr class="my-4">
             <div class="cards">
                 <div class="row cards-row">
-                    <div class="col-md-12">
-                        <button @click="toAuth" class="btn btn-block btn-outline-primary">Login</button>
+                    <div class="col-md-6">
+                        <button @click="toAuth" class="btn btn-block btn-outline-primary">Continue</button>
                     </div>
                 </div>
             </div>
@@ -29,4 +29,7 @@
 .jumbotron {
     background-color: #fff;
 }
+</style>
+<style>
+
 </style>

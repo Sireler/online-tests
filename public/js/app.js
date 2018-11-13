@@ -30658,7 +30658,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n* {\r\n    margin: 0;\r\n    padding: 0;\n}\n#app {\r\n    background-color: #eee;\r\n    min-height: 100vh;\n}\n.app-container {\r\n    min-height: 100vh;\r\n    margin: 0;\n}\n.container {\r\n    margin-top: 10px;\n}\n.lds-ripple {\r\n    display: inline-block;\r\n    position: relative;\r\n    width: 256px;\r\n    height: 256px;\r\n    left: 50%;\r\n    margin-left: -128px;\r\n    margin-top: 35%;\n}\n.lds-ripple div {\r\n    position: absolute;\r\n    border: 4px solid #3490DC;\r\n    opacity: 1;\r\n    border-radius: 50%;\r\n    -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\r\n            animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\n}\n.lds-ripple div:nth-child(2) {\r\n    -webkit-animation-delay: -0.5s;\r\n            animation-delay: -0.5s;\n}\n@-webkit-keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\n@keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n* {\r\n    margin: 0;\r\n    padding: 0;\n}\n#app {\r\n    background-color: #eee;\r\n    min-height: 100vh;\n}\n.app-container {\r\n    min-height: 100vh;\r\n    margin: 0;\n}\n.container {\r\n    margin-top: 10px;\n}\n.lds-ripple {\r\n    display: inline-block;\r\n    position: relative;\r\n    width: 256px;\r\n    height: 256px;\r\n    left: 50%;\r\n    margin-left: -128px;\r\n    margin-top: 35%;\n}\n.lds-ripple div {\r\n    position: absolute;\r\n    border: 4px solid #3490DC;\r\n    opacity: 1;\r\n    border-radius: 50%;\r\n    -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\r\n            animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\n}\n.lds-ripple div:nth-child(2) {\r\n    -webkit-animation-delay: -0.5s;\r\n            animation-delay: -0.5s;\n}\nfooter {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    background-color: #5f2a62;\r\n    text-align: center;\r\n    color: #a976c3;\n}\n.toasted.bubble {\r\n    background-color: #5f2a62;\n}\n@-webkit-keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\n@keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -30704,6 +30704,7 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Nav__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Nav___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Nav__);
+//
 //
 //
 //
@@ -30973,7 +30974,9 @@ var render = function() {
     _vm._v(" "),
     !_vm.$auth.ready()
       ? _c("div", { staticClass: "container-fluid" }, [_vm._m(0)])
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c("footer", [_vm._v("Footer © 2018")])
   ])
 }
 var staticRenderFns = [
@@ -33691,6 +33694,7 @@ var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(55)
+  __webpack_require__(117)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
@@ -33826,14 +33830,14 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "cards" }, [
         _c("div", { staticClass: "row cards-row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "col-md-6" }, [
             _c(
               "button",
               {
                 staticClass: "btn btn-block btn-outline-primary",
                 on: { click: _vm.toAuth }
               },
-              [_vm._v("Login")]
+              [_vm._v("Continue")]
             )
           ])
         ])
@@ -37303,6 +37307,49 @@ module.exports = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(118);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("50f7b25c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b9c20fb8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./Main.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b9c20fb8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./Main.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
