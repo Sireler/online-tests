@@ -35025,8 +35025,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            surveysTable: {}
+        };
+    },
+
+    methods: {
+        getUserSurveys: function getUserSurveys() {
+            var _this = this;
+
+            this.axios.get('/survey/index').then(function (res) {
+                _this.surveysTable = res.data.surveys;
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.getUserSurveys();
+    }
+});
 
 /***/ }),
 /* 88 */
@@ -35037,7 +35058,26 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "row" }, [
+      _c("table", { staticClass: "table table-bordered" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.surveysTable, function(survey) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(survey.title))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(survey.created_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("0")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("@")])
+            ])
+          })
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c(
@@ -35060,27 +35100,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("table", { staticClass: "table table-bordered" }, [
-        _c("thead", [
-          _c("tr", { staticClass: "table-thead" }, [
-            _c("th", [_vm._v("TITLE")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("CREATED")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("RESPONSES")])
-          ])
-        ]),
+    return _c("thead", [
+      _c("tr", { staticClass: "table-thead" }, [
+        _c("th", [_vm._v("TITLE")]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("test")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("test222")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("test344")])
-          ])
-        ])
+        _c("th", [_vm._v("CREATED")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("RESPONSES")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MANAGE")])
       ])
     ])
   }

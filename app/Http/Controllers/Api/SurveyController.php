@@ -14,6 +14,15 @@ class SurveyController extends Controller
         $this->middleware('auth:api');
     }
 
+    public function index()
+    {
+        $user = $this->guard()->user();
+
+        return response()->json([
+            'surveys' => $user->surveys
+        ]);
+    }
+
     /**
      * Store a new survey
      *
@@ -42,6 +51,11 @@ class SurveyController extends Controller
         ], 201);
     }
 
+    /**
+     * Current guard
+     *
+     * @return mixed
+     */
     public function guard()
     {
         return Auth::guard();

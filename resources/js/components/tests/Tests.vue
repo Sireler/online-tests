@@ -7,13 +7,15 @@
                         <th>TITLE</th>
                         <th>CREATED</th>
                         <th>RESPONSES</th>
+                        <th>MANAGE</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>test</td>
-                        <td>test222</td>
-                        <td>test344</td>
+                    <tr v-for="survey in surveysTable">
+                        <td>{{ survey.title }}</td>
+                        <td>{{ survey.created_at }}</td>
+                        <td>0</td>
+                        <td>@</td>
                     </tr>
                 </tbody>
             </table>
@@ -28,7 +30,22 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            surveysTable: {}
+        }
+    },
+    methods: {
+        getUserSurveys() {
+            this.axios.get('/survey/index')
+                .then((res) => {
+                    this.surveysTable = res.data.surveys;
+                });
+        }
+    },
+    mounted() {
+        this.getUserSurveys();
+    }
 }
 </script>
 

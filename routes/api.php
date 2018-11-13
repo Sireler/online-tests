@@ -40,6 +40,7 @@ Route::namespace('Api')->group(function () {
     ], function () {
 
         Route::post('create', 'SurveyController@store');
+        Route::get('index', 'SurveyController@index');
 
     });
 });
