@@ -82,7 +82,7 @@ export default {
 }
 .login-form {
     padding: 5%;
-    background: #3490DC;
+    background: #5f2a62;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 .login-form h3{
@@ -92,12 +92,16 @@ export default {
 .login-container form {
     padding: 10%;
 }
+input:focus {
+    box-shadow: none;
+}
 .btnSubmit {
     width: 50%;
     border-radius: 1rem;
     padding: 1.5%;
     border: none;
     cursor: pointer;
+    outline: none;
 }
 .login-form .btnSubmit {
     font-weight: 600;
