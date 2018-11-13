@@ -77,6 +77,14 @@ footer {
     background-color: #5f2a62;
 }
 
+.api-loading {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    z-index: 999;
+}
+
 @keyframes lds-ripple {
     0% {
         top: 45%;
