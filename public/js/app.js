@@ -34986,7 +34986,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\n    background-color: #3490DC;\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {\n    background-color: #fff;\n}\n", ""]);
+exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\n    background-color: #5f2a62;\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {\n    background-color: #fff;\n}\n", ""]);
 
 // exports
 

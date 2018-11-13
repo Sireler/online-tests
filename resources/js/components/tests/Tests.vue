@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 .table-thead {
-    background-color: #3490DC;
+    background-color: #5f2a62;
     color: #fff;
 }
 .table tbody tr {
