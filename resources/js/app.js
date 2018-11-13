@@ -53,8 +53,18 @@ router.beforeEach((to, from, next) => {
     } else if (to.path === '/auth' || to.path === '/') {
         next();
     } else {
-        router.push( {path: '/auth'} );
+        router.push({path: '/auth'});
     }
+});
+
+// Handle 401 error
+axios.interceptors.response.use(response => {
+    return response;
+}, error => {
+    if (error.response.status === 401) {
+        router.push({path: '/'});
+    }
+    return error;
 });
 
 const app = new Vue({

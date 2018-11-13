@@ -22861,6 +22861,16 @@ __WEBPACK_IMPORTED_MODULE_1__routes_js__["a" /* router */].beforeEach(function (
     }
 });
 
+// Handle 401 error
+axios.interceptors.response.use(function (response) {
+    return response;
+}, function (error) {
+    if (error.response.status === 401) {
+        __WEBPACK_IMPORTED_MODULE_1__routes_js__["a" /* router */].push({ path: '/' });
+    }
+    return error;
+});
+
 var app = new Vue({
     el: '#app',
     router: __WEBPACK_IMPORTED_MODULE_1__routes_js__["a" /* router */],
