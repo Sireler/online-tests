@@ -31,5 +31,16 @@ Route::namespace('Api')->group(function () {
         Route::post('me', 'Auth\AuthController@me');
 
     });
+
+    Route::group([
+
+        'middleware' => 'api',
+        'prefix' => 'survey'
+
+    ], function () {
+
+        Route::post('create', 'SurveyController@store');
+
+    });
 });
 
