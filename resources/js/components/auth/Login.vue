@@ -51,13 +51,14 @@ export default {
                     redirect: '/home',
                     fetchUser: true,
                     success: (res) => {
-                        this.$toasted.show('You are logged in');
+                        if (res.response.status === 401) {
+                            this.$toasted.show('Email or password incorrect');
+                            this.clearInputs();
+                        } else {
+                            this.$toasted.show('You are logged in');
+                        }
                     },
                     rememberMe: true
-                }).catch((res) => {
-                    this.$toasted.show('Email or password incorrect');
-
-                    this.clearInputs();
                 });
             } else {
                 this.$toasted.show('All input fields must be filled');

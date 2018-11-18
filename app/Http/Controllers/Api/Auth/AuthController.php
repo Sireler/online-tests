@@ -27,7 +27,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request, Response $response)
+    public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
@@ -35,7 +35,10 @@ class AuthController extends Controller
             return response()->json(['token' => $token])->header('Authorization', "Bearer {$token}");
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json([
+            'error' => 'Unauthorized',
+            'message' => 'Email or password incorrect'
+        ], 401);
     }
 
     /**

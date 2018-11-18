@@ -22865,7 +22865,7 @@ __WEBPACK_IMPORTED_MODULE_1__routes_js__["a" /* router */].beforeEach(function (
 axios.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
-    if (error.response.status === 401) {
+    if (error.request.responseURL.indexOf('/auth/login') > 0) {} else if (error.response.status === 401) {
         __WEBPACK_IMPORTED_MODULE_1__routes_js__["a" /* router */].push({ path: '/' });
     }
     return error;
@@ -34409,13 +34409,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     redirect: '/home',
                     fetchUser: true,
                     success: function success(res) {
-                        _this.$toasted.show('You are logged in');
+                        if (res.response.status === 401) {
+                            _this.$toasted.show('Email or password incorrect');
+                            _this.clearInputs();
+                        } else {
+                            _this.$toasted.show('You are logged in');
+                        }
                     },
                     rememberMe: true
-                }).catch(function (res) {
-                    _this.$toasted.show('Email or password incorrect');
-
-                    _this.clearInputs();
                 });
             } else {
                 this.$toasted.show('All input fields must be filled');

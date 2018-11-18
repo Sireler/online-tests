@@ -61,7 +61,9 @@ router.beforeEach((to, from, next) => {
 axios.interceptors.response.use(response => {
     return response;
 }, error => {
-    if (error.response.status === 401) {
+    if (error.request.responseURL.indexOf('/auth/login') > 0) {
+
+    } else if (error.response.status === 401) {
         router.push({path: '/'});
     }
     return error;
