@@ -16,7 +16,9 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api')->except(['login', 'register']);
+
+        $this->middleware('guest')->only('register');
     }
 
     /**
@@ -39,6 +41,33 @@ class AuthController extends Controller
             'error' => 'Unauthorized',
             'message' => 'Email or password incorrect'
         ], 401);
+    }
+
+    /**
+     * Registration
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function register(Request $request)
+    {
+        $credentials = $request->only('name', 'email', 'password');
+
+        $rules = [
+            'name' => 'required|max:255',
+            'password' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users'
+        ];
+        $validator = $this->validate($request, $rules);
+
+        $user = User::create([
+            'name' => $credentials['name'],
+            'email' => $credentials['email'],
+            'password' => Hash::make($credentials['password']),
+        ]);
+
+        return response()->json(['success'=> true, 'message'=> 'Thanks for signing up! Please check your email to complete your registration.']);
     }
 
     /**
