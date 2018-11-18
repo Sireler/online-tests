@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -59,15 +61,19 @@ class AuthController extends Controller
             'password' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users'
         ];
-        $validator = $this->validate($request, $rules);
 
-        $user = User::create([
+        $this->validate($request, $rules);
+
+        User::create([
             'name' => $credentials['name'],
             'email' => $credentials['email'],
             'password' => Hash::make($credentials['password']),
         ]);
 
-        return response()->json(['success'=> true, 'message'=> 'Thanks for signing up! Please check your email to complete your registration.']);
+        return response()->json([
+            'status'=> true,
+            'message'=> 'Successful registration'
+        ]);
     }
 
     /**
