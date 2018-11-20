@@ -22868,7 +22868,8 @@ axios.interceptors.response.use(function (response) {
     if (error.request.responseURL.indexOf('/auth/login') > 0) {} else if (error.response.status === 401) {
         __WEBPACK_IMPORTED_MODULE_1__routes_js__["a" /* router */].push({ path: '/' });
     }
-    return error;
+
+    return Promise.reject(error);
 });
 
 var app = new Vue({
@@ -34684,11 +34685,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            name: '',
+            email: '',
+            password: ''
+        };
+    },
+
     methods: {
         showLoginForm: function showLoginForm() {
             this.$emit('changeView', 'login');
+        },
+        register: function register() {
+            var _this = this;
+
+            if (this.checkInputs()) {
+                this.$auth.register({
+                    data: {
+                        name: this.name,
+                        email: this.email,
+                        password: this.password
+                    },
+                    success: function success(res) {
+                        _this.$toasted.show(res.data.message);
+                        _this.clearInputs();
+                        _this.showLoginForm();
+                    },
+                    error: function error(res) {
+                        for (var key in res.response.data.message) {
+                            _this.$toasted.show(res.response.data.message[key]);
+                        }
+                    },
+                    rememberMe: true,
+                    redirect: '/auth'
+                });
+            } else {
+                this.$toasted.show('All input fields must be filled');
+            }
+        },
+        clearInputs: function clearInputs() {
+            this.name = '';
+            this.email = '';
+            this.password = '';
+        },
+        checkInputs: function checkInputs() {
+            return this.name.length > 0 && this.password.length > 0 && this.email.length > 0;
         }
     }
 });
@@ -34706,69 +34754,129 @@ var render = function() {
       _c("div", { staticClass: "col-md-10 offset-md-1 register-form" }, [
         _c("h3", [_vm._v("Register")]),
         _vm._v(" "),
-        _c("form", [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c(
-              "a",
-              {
-                staticClass: "ForgetPwd",
-                attrs: { href: "#" },
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.register($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.name,
+                    expression: "name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Your Name *", value: "" },
+                domProps: { value: _vm.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.name = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.email,
+                    expression: "email"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Your Email *", value: "" },
+                domProps: { value: _vm.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.email = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.password,
+                    expression: "password"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "password",
+                  placeholder: "Your Password *",
+                  value: ""
+                },
+                domProps: { value: _vm.password },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.password = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                staticClass: "btnSubmit",
+                attrs: { type: "submit", value: "Register" },
                 on: {
                   click: function($event) {
                     $event.preventDefault()
-                    return _vm.showLoginForm($event)
+                    return _vm.register($event)
                   }
                 }
-              },
-              [_vm._v("Login")]
-            )
-          ])
-        ])
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "ForgetPwd",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.showLoginForm($event)
+                    }
+                  }
+                },
+                [_vm._v("Login")]
+              )
+            ])
+          ]
+        )
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Your Email *", value: "" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "password", placeholder: "Your Password *", value: "" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "btnSubmit",
-        attrs: { type: "submit", value: "Register" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

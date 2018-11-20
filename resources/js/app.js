@@ -66,7 +66,8 @@ axios.interceptors.response.use(response => {
     } else if (error.response.status === 401) {
         router.push({path: '/'});
     }
-    return error;
+
+    return Promise.reject(error);
 });
 
 const app = new Vue({
