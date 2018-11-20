@@ -35204,8 +35204,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.surveysTable = res.data.surveys;
             });
         },
-        deleteSurvey: function deleteSurvey(id) {
-            //TODO::DELETE SURVEY
+        deleteSurvey: function deleteSurvey(id, index) {
+            var _this2 = this;
+
+            this.axios.delete('/survey/delete/' + id).then(function (res) {
+                _this2.surveysTable.splice(index, 1);
+                _this2.$toasted.show(res.data.message);
+            }).catch(function (err) {
+                _this2.$toasted.show('Forbidden');
+            });
         }
     },
     mounted: function mounted() {
@@ -35228,7 +35235,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.surveysTable, function(survey) {
+          _vm._l(_vm.surveysTable, function(survey, index) {
             return _c("tr", [
               _c("td", [_vm._v(_vm._s(survey.title))]),
               _vm._v(" "),
@@ -35242,7 +35249,7 @@ var render = function() {
                   {
                     on: {
                       click: function($event) {
-                        _vm.deleteSurvey(survey.id)
+                        _vm.deleteSurvey(survey.id, index)
                       }
                     }
                   },

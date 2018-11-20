@@ -11,12 +11,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="survey in surveysTable">
+                    <tr v-for="(survey, index) in surveysTable">
                         <td>{{ survey.title }}</td>
                         <td>{{ survey.created_at }}</td>
                         <td>0</td>
                         <td>
-                            <span @click="deleteSurvey(survey.id)"
+                            <span @click="deleteSurvey(survey.id, index)"
                                 >Delete</span>
                         </td>
                     </tr>
@@ -45,8 +45,15 @@ export default {
                     this.surveysTable = res.data.surveys;
                 });
         },
-        deleteSurvey(id) {
-            //TODO::DELETE SURVEY
+        deleteSurvey(id, index) {
+            this.axios.delete(`/survey/delete/${id}`)
+                .then((res) => {
+                    this.surveysTable.splice(index, 1);
+                    this.$toasted.show(res.data.message);
+                })
+                .catch((err) => {
+                    this.$toasted.show('Forbidden');
+                });
         }
     },
     mounted() {
