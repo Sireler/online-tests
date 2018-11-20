@@ -35524,11 +35524,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //     this.answers = [];
         // },
         createSurvey: function createSurvey() {
+            var _this = this;
+
             if (this.checkSurveyName()) {
                 this.axios.post('/survey/create', {
                     'title': this.surveyName
                 }).then(function (res) {
-                    console.log(res);
+                    _this.$toasted.show(res.data.message);
                 }).catch(function (err) {
                     console.log(err);
                 });

@@ -121,7 +121,7 @@ export default {
                 this.axios.post('/survey/create', {
                     'title': this.surveyName
                 }).then((res) => {
-                    console.log(res);
+                    this.$toasted.show(res.data.message);
                 }).catch((err) => {
                     console.log(err);
                 });

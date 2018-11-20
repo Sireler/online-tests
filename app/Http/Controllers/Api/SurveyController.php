@@ -43,11 +43,12 @@ class SurveyController extends Controller
         ]);
 
         return response()->json([
-            'status' => 'Survey created',
+            'status' => true,
             'data' => [
                 'id' => $created->id,
                 'title' => $created->title
-            ]
+            ],
+            'message' => 'Survey created'
         ], 201);
     }
 
