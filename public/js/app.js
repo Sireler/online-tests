@@ -35144,7 +35144,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\r\n    background-color: #5f2a62;\r\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {\r\n    background-color: #fff;\n}\nspan[data-v-eca353d0] {\r\n    cursor: pointer;\r\n    color: #5f2a62;\n}\r\n", ""]);
+exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\r\n    background-color: #5f2a62;\r\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {\r\n    background-color: #fff;\n}\nspan[data-v-eca353d0] {\r\n    cursor: pointer;\r\n    color: #5f2a62;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -35192,7 +35192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            surveysTable: {}
+            surveysTable: null
         };
     },
 
@@ -35230,36 +35230,38 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
-      _c("table", { staticClass: "table table-bordered" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.surveysTable, function(survey, index) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(survey.title))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(survey.created_at))]),
-              _vm._v(" "),
-              _c("td", [_vm._v("0")]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "span",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.deleteSurvey(survey.id, index)
-                      }
-                    }
-                  },
-                  [_vm._v("Delete")]
-                )
-              ])
-            ])
-          })
-        )
-      ])
+      _vm.surveysTable !== null
+        ? _c("table", { staticClass: "table table-bordered" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.surveysTable, function(survey, index) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(survey.title))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(survey.created_at))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("0")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "span",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.deleteSurvey(survey.id, index)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  ])
+                ])
+              })
+            )
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [

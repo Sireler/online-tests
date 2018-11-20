@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <table class="table table-bordered">
+            <table v-if="surveysTable !== null" class="table table-bordered">
                 <thead>
                     <tr class="table-thead">
                         <th>TITLE</th>
@@ -35,7 +35,7 @@
 export default {
     data() {
         return {
-            surveysTable: {}
+            surveysTable: null
         }
     },
     methods: {
@@ -75,4 +75,5 @@ span {
     cursor: pointer;
     color: #5f2a62;
 }
+
 </style>
