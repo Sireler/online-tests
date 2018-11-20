@@ -34410,12 +34410,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     redirect: '/home',
                     fetchUser: true,
                     success: function success(res) {
-                        if (res.response.status === 401) {
-                            _this.$toasted.show('Email or password incorrect');
-                            _this.clearInputs();
-                        } else {
-                            _this.$toasted.show('You are logged in');
-                        }
+                        _this.$toasted.show('You are logged in');
+                    },
+                    error: function error(res) {
+                        _this.$toasted.show('Email or password incorrect');
+                        _this.clearInputs();
                     },
                     rememberMe: true
                 });
