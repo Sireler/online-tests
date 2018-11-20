@@ -15,7 +15,10 @@
                         <td>{{ survey.title }}</td>
                         <td>{{ survey.created_at }}</td>
                         <td>0</td>
-                        <td>@</td>
+                        <td>
+                            <span @click="deleteSurvey(survey.id)"
+                                >Delete</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -41,6 +44,9 @@ export default {
                 .then((res) => {
                     this.surveysTable = res.data.surveys;
                 });
+        },
+        deleteSurvey(id) {
+            //TODO::DELETE SURVEY
         }
     },
     mounted() {
@@ -56,5 +62,10 @@ export default {
 }
 .table tbody tr {
     background-color: #fff;
+}
+    
+span {
+    cursor: pointer;
+    color: #5f2a62;
 }
 </style>

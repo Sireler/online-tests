@@ -35144,7 +35144,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\r\n    background-color: #5f2a62;\r\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {\r\n    background-color: #fff;\n}\r\n", ""]);
+exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\r\n    background-color: #5f2a62;\r\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {\r\n    background-color: #fff;\n}\nspan[data-v-eca353d0] {\r\n    cursor: pointer;\r\n    color: #5f2a62;\n}\r\n", ""]);
 
 // exports
 
@@ -35155,6 +35155,9 @@ exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\r\n    background-col
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -35200,6 +35203,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.axios.get('/survey/index').then(function (res) {
                 _this.surveysTable = res.data.surveys;
             });
+        },
+        deleteSurvey: function deleteSurvey(id) {
+            //TODO::DELETE SURVEY
         }
     },
     mounted: function mounted() {
@@ -35230,7 +35236,19 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v("0")]),
               _vm._v(" "),
-              _c("td", [_vm._v("@")])
+              _c("td", [
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.deleteSurvey(survey.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Delete")]
+                )
+              ])
             ])
           })
         )
@@ -35461,19 +35479,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -35483,51 +35488,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            numQuestions: 2,
-            currQuestion: 0,
-            testTitle: '',
-            state: 'ask',
-            questions: [],
-            question: {},
-            answers: [],
-            correct: 0
+            surveyName: ''
         };
     },
 
     methods: {
-        startCreate: function startCreate() {
-            this.state = 'creating';
-        },
-        startQuestions: function startQuestions() {
-            this.state = 'questions';
-        },
-        nextQuestion: function nextQuestion() {
-
-            this.questions.push({
-                title: this.questions.title,
-                answers: {
-                    0: this.answers[0],
-                    1: this.answers[1],
-                    2: this.answers[2],
-                    3: this.answers[3]
-                },
-                correctIndex: this.correct
-            });
-
-            // next screen if last question
-            if (this.lastQuestion) {
-                this.state = 'result';
-                return;
+        // startCreate() {
+        //     this.state = 'creating';
+        // },
+        // startQuestions() {
+        //     this.state = 'questions';
+        // },
+        // nextQuestion() {
+        //
+        //     this.questions.push({
+        //         title: this.questions.title,
+        //         answers: {
+        //             0: this.answers[0],
+        //             1: this.answers[1],
+        //             2: this.answers[2],
+        //             3: this.answers[3]
+        //         },
+        //         correctIndex: this.correct
+        //     });
+        //
+        //     this.currQuestion++;
+        //     this.questions.title = '';
+        //     this.answers = [];
+        // },
+        createSurvey: function createSurvey() {
+            if (this.checkSurveyName()) {
+                this.axios.post('/survey/create', {
+                    'title': this.surveyName
+                }).then(function (res) {
+                    console.log(res);
+                }).catch(function (err) {
+                    console.log(err);
+                });
             }
-
-            this.currQuestion++;
-            this.questions.title = '';
-            this.answers = [];
-        }
-    },
-    computed: {
-        lastQuestion: function lastQuestion() {
-            return this.currQuestion + 1 === this.numQuestions;
+        },
+        checkSurveyName: function checkSurveyName() {
+            return this.surveyName.length > 0;
         }
     }
 });
@@ -35748,367 +35749,43 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h2", [_vm._v("Создание теста")]),
+    _c("h2", [_vm._v("New survey")]),
     _vm._v(" "),
-    _vm.state === "ask"
-      ? _c("div", [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "questions" } }, [
-              _vm._v("Number of questions")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.numQuestions,
-                  expression: "numQuestions"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "questions", type: "number" },
-              domProps: { value: _vm.numQuestions },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.numQuestions = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-secondary",
-                on: { click: _vm.startCreate }
-              },
-              [_vm._v("\n                Next\n            ")]
-            )
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.state === "creating"
-      ? _c("div", [
-          _c("h5", [_vm._v("Question " + _vm._s(_vm.currQuestion + 1))]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group questions-start" }, [
-            _c("label", { attrs: { for: "test-title" } }, [
-              _vm._v("Test title")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.testTitle,
-                  expression: "testTitle"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "test-title", type: "text" },
-              domProps: { value: _vm.testTitle },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.testTitle = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
+    _c("div", [
+      _c("div", { staticClass: "form-group questions-start" }, [
+        _c("label", { attrs: { for: "test-title" } }, [
+          _vm._v("Name your survey")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
             {
-              staticClass: "btn btn-secondary",
-              on: { click: _vm.startQuestions }
-            },
-            [_vm._v("\n            Next\n        ")]
-          )
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.state === "questions"
-      ? _c("div", [
-          _c("div", { staticClass: "alert alert-info" }, [
-            _c("h5", [_vm._v("Test: " + _vm._s(_vm.testTitle))]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(
-              "\n            Question " +
-                _vm._s(_vm.currQuestion + 1) +
-                " / " +
-                _vm._s(_vm.numQuestions) +
-                "\n        "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Question")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.questions.title,
-                  expression: "questions.title"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text" },
-              domProps: { value: _vm.questions.title },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.questions, "title", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "form-group col-md-10" }, [
-              _c("label", [_vm._v("(A)")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.answers[0],
-                    expression: "answers[0]"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.answers[0] },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.answers, 0, $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "col-md-2" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.correct,
-                    expression: "correct"
-                  }
-                ],
-                staticClass: "form-check",
-                attrs: { value: "0", type: "radio", checked: "" },
-                domProps: { checked: _vm._q(_vm.correct, "0") },
-                on: {
-                  change: function($event) {
-                    _vm.correct = "0"
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "oi oi-check" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "form-group col-md-10" }, [
-              _c("label", [_vm._v("(B)")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.answers[1],
-                    expression: "answers[1]"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.answers[1] },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.answers, 1, $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "col-md-2" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.correct,
-                    expression: "correct"
-                  }
-                ],
-                staticClass: "form-check",
-                attrs: { value: "1", type: "radio" },
-                domProps: { checked: _vm._q(_vm.correct, "1") },
-                on: {
-                  change: function($event) {
-                    _vm.correct = "1"
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "oi oi-check" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "form-group col-md-10" }, [
-              _c("label", [_vm._v("(C)")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.answers[2],
-                    expression: "answers[2]"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.answers[2] },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.answers, 2, $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "col-md-2" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.correct,
-                    expression: "correct"
-                  }
-                ],
-                staticClass: "form-check",
-                attrs: { value: "2", type: "radio" },
-                domProps: { checked: _vm._q(_vm.correct, "2") },
-                on: {
-                  change: function($event) {
-                    _vm.correct = "2"
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "oi oi-check" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "form-group col-md-10" }, [
-              _c("label", [_vm._v("(D)")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.answers[3],
-                    expression: "answers[3]"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.answers[3] },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.answers, 3, $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "col-md-2" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.correct,
-                    expression: "correct"
-                  }
-                ],
-                staticClass: "form-check",
-                attrs: { value: "3", type: "radio" },
-                domProps: { checked: _vm._q(_vm.correct, "3") },
-                on: {
-                  change: function($event) {
-                    _vm.correct = "3"
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "oi oi-check" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-secondary",
-                  on: { click: _vm.nextQuestion }
-                },
-                [_vm._v("\n                    Next\n                ")]
-              )
-            ])
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.state === "result"
-      ? _c(
-          "div",
-          [
-            _c("result-table", {
-              attrs: { testTitle: _vm.testTitle, questions: _vm.questions }
-            })
+              name: "model",
+              rawName: "v-model",
+              value: _vm.surveyName,
+              expression: "surveyName"
+            }
           ],
-          1
-        )
-      : _vm._e()
+          staticClass: "form-control",
+          attrs: { id: "test-title", type: "text" },
+          domProps: { value: _vm.surveyName },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.surveyName = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-secondary", on: { click: _vm.createSurvey } },
+        [_vm._v("\n            Create survey\n        ")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
