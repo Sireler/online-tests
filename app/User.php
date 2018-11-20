@@ -53,4 +53,17 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\Survey');
     }
+
+    public function hasSurvey($id)
+    {
+        $surveys = $this->surveys;
+
+        foreach ($surveys as $survey) {
+            if ($survey->id == $id) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -52,6 +52,32 @@ class SurveyController extends Controller
     }
 
     /**
+     * Delete survey
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Request $request, int $id)
+    {
+        $user = $this->guard()->user();
+
+        if ($user->hasSurvey($id)) {
+            Survey::destroy($id);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Survey deleted'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Forbidden'
+            ], 403);
+        }
+    }
+
+    /**
      * Current guard
      *
      * @return mixed
