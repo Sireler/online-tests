@@ -35420,72 +35420,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -35500,29 +35434,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        // startCreate() {
-        //     this.state = 'creating';
-        // },
-        // startQuestions() {
-        //     this.state = 'questions';
-        // },
-        // nextQuestion() {
-        //
-        //     this.questions.push({
-        //         title: this.questions.title,
-        //         answers: {
-        //             0: this.answers[0],
-        //             1: this.answers[1],
-        //             2: this.answers[2],
-        //             3: this.answers[3]
-        //         },
-        //         correctIndex: this.correct
-        //     });
-        //
-        //     this.currQuestion++;
-        //     this.questions.title = '';
-        //     this.answers = [];
-        // },
         createSurvey: function createSurvey() {
             var _this = this;
 
@@ -35531,13 +35442,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'title': this.surveyName
                 }).then(function (res) {
                     _this.$toasted.show(res.data.message);
+                    _this.$router.push({ path: '/tests' });
                 }).catch(function (err) {
-                    console.log(err);
+                    // err
                 });
+            } else {
+                this.$toasted.show('Survey name must be of minimum 6 characters length');
             }
         },
         checkSurveyName: function checkSurveyName() {
-            return this.surveyName.length > 0;
+            return this.surveyName.length > 5;
         }
     }
 });
