@@ -72,7 +72,7 @@ export default {
     background-color: #5f2a62;
     color: #fff;
 }
-.table tbody tr {
+.table tbody tr {git
     background-color: #fff;
 }
     
@@ -80,6 +80,7 @@ span {
     cursor: pointer;
     color: #5f2a62;
     user-select: none;
+    margin-left: 10px;
 }
 
 </style>

@@ -35147,7 +35147,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\r\n    background-color: #5f2a62;\r\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {\r\n    background-color: #fff;\n}\nspan[data-v-eca353d0] {\r\n    cursor: pointer;\r\n    color: #5f2a62;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\r\n    background-color: #5f2a62;\r\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {git\r\n    background-color: #fff;\n}\nspan[data-v-eca353d0] {\r\n    cursor: pointer;\r\n    color: #5f2a62;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\r\n    margin-left: 10px;\n}\r\n\r\n", ""]);
 
 // exports
 
