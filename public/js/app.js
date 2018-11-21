@@ -31032,6 +31032,8 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_tests_Create___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_tests_Create__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_tests_Start__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_tests_Start___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_tests_Start__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_tests_Edit__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_tests_Edit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_tests_Edit__);
 
 
 
@@ -31049,6 +31051,7 @@ if (false) {
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_Main___default.a }, { path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_3__components_home_Home___default.a },
@@ -31060,7 +31063,7 @@ var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_Ma
 { path: '*', component: __WEBPACK_IMPORTED_MODULE_5__components_NotFound___default.a },
 
 // Tests
-{ path: '/tests', component: __WEBPACK_IMPORTED_MODULE_6__components_tests_Tests___default.a }, { path: '/tests/create', component: __WEBPACK_IMPORTED_MODULE_7__components_tests_Create___default.a }, { path: '/tests/start/:id', component: __WEBPACK_IMPORTED_MODULE_8__components_tests_Start___default.a, props: true }];
+{ path: '/tests', component: __WEBPACK_IMPORTED_MODULE_6__components_tests_Tests___default.a }, { path: '/tests/create', component: __WEBPACK_IMPORTED_MODULE_7__components_tests_Create___default.a }, { path: '/tests/start/:id', component: __WEBPACK_IMPORTED_MODULE_8__components_tests_Start___default.a, props: true }, { path: '/tests/edit/:id', component: __WEBPACK_IMPORTED_MODULE_9__components_tests_Edit___default.a, props: true }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     mode: 'history',
@@ -35144,7 +35147,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\r\n    background-color: #5f2a62;\r\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {\r\n    background-color: #fff;\n}\nspan[data-v-eca353d0] {\r\n    cursor: pointer;\r\n    color: #5f2a62;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\r\n    background-color: #5f2a62;\r\n    color: #fff;\n}\n.table tbody tr[data-v-eca353d0] {\r\n    background-color: #fff;\n}\nspan[data-v-eca353d0] {\r\n    cursor: pointer;\r\n    color: #5f2a62;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -35155,6 +35158,8 @@ exports.push([module.i, "\n.table-thead[data-v-eca353d0] {\r\n    background-col
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -35213,6 +35218,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 _this2.$toasted.show('Forbidden');
             });
+        },
+        editSurvey: function editSurvey(id) {
+            this.$router.push({ path: '/tests/edit/' + id });
         }
     },
     mounted: function mounted() {
@@ -35255,6 +35263,18 @@ var render = function() {
                         }
                       },
                       [_vm._v("Delete")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.editSurvey(survey.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Edit")]
                     )
                   ])
                 ])
@@ -37095,6 +37115,137 @@ module.exports = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(120)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(122)
+/* template */
+var __vue_template__ = __webpack_require__(123)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-7ee005e3"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/tests/Edit.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7ee005e3", Component.options)
+  } else {
+    hotAPI.reload("data-v-7ee005e3", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(121);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("232b3d2c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7ee005e3\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Edit.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7ee005e3\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Edit.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 122 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "Edit"
+});
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7ee005e3", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

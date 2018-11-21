@@ -18,6 +18,8 @@
                         <td>
                             <span @click="deleteSurvey(survey.id, index)"
                                 >Delete</span>
+                            <span @click="editSurvey(survey.id)"
+                            >Edit</span>
                         </td>
                     </tr>
                 </tbody>
@@ -54,6 +56,9 @@ export default {
                 .catch((err) => {
                     this.$toasted.show('Forbidden');
                 });
+        },
+        editSurvey(id) {
+            this.$router.push({ path: `/tests/edit/${id}` });
         }
     },
     mounted() {
@@ -74,6 +79,7 @@ export default {
 span {
     cursor: pointer;
     color: #5f2a62;
+    user-select: none;
 }
 
 </style>
