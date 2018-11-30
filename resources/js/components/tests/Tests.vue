@@ -42,9 +42,14 @@ export default {
     },
     methods: {
         getUserSurveys() {
+            this.$parent.showLoading();
             this.axios.get('/survey/index')
                 .then((res) => {
                     this.surveysTable = res.data.surveys;
+                    this.$parent.hideLoading();
+                })
+                .catch((err) => {
+                    this.$router.push({ path: `/` });
                 });
         },
         deleteSurvey(id, index) {
@@ -72,15 +77,13 @@ export default {
     background-color: #5f2a62;
     color: #fff;
 }
-.table tbody tr {git
+.table tbody tr {
     background-color: #fff;
 }
-    
 span {
     cursor: pointer;
     color: #5f2a62;
     user-select: none;
     margin-left: 10px;
 }
-
 </style>

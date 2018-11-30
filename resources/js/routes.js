@@ -36,7 +36,9 @@ const routes = [
     { path: '/tests/edit/:id', component: EditTest, props: true }
 ];
 
-export const router = new VueRouter({
+const router = new VueRouter({
     mode: 'history',
     routes
 });
+
+export {router};

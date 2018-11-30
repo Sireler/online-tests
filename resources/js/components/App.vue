@@ -4,21 +4,32 @@
             <app-nav v-if="$route.path !== '/' && $auth.check()"></app-nav>
             <router-view class="col-md-8"></router-view>
         </div>
-        <div v-if="!$auth.ready()" class="container-fluid">
-            <div class="col-6 m-auto">
-                <div class="lds-ripple"><div></div><div></div></div>
-            </div>
-        </div>
+        <app-loader ref="appload" v-if="loading"></app-loader>
         <footer>Footer &copy; 2018</footer>
     </div>
 </template>
 
 <script>
 import AppNav from './Nav';
+import AppLoader from './Loader';
 
 export default {
     components: {
-        AppNav
+        AppNav,
+        AppLoader
+    },
+    data() {
+        return {
+            loading: false
+        }
+    },
+    methods: {
+        showLoading() {
+            this.loading = true;
+        },
+        hideLoading() {
+            this.loading = false;
+        }
     }
 }
 </script>
@@ -41,27 +52,6 @@ export default {
 
 .container {
     margin-top: 10px;
-}
-
-.lds-ripple {
-    display: inline-block;
-    position: relative;
-    width: 256px;
-    height: 256px;
-    left: 50%;
-    margin-left: -128px;
-    margin-top: 35%;
-
-}
-.lds-ripple div {
-    position: absolute;
-    border: 4px solid #3490DC;
-    opacity: 1;
-    border-radius: 50%;
-    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-.lds-ripple div:nth-child(2) {
-    animation-delay: -0.5s;
 }
 
 footer {
