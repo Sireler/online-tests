@@ -35362,6 +35362,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 _this.$router.push({ path: '/' });
                 _this.$toasted.show('Request error');
+                window.location.reload();
             });
         },
         deleteSurvey: function deleteSurvey(id, index) {
