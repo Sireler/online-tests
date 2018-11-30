@@ -50,6 +50,7 @@ export default {
                 })
                 .catch((err) => {
                     this.$router.push({ path: `/` });
+                    this.$toasted.show('Request error');
                 });
         },
         deleteSurvey(id, index) {

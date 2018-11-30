@@ -35361,6 +35361,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.$parent.hideLoading();
             }).catch(function (err) {
                 _this.$router.push({ path: '/' });
+                _this.$toasted.show('Request error');
             });
         },
         deleteSurvey: function deleteSurvey(id, index) {
