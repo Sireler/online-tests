@@ -79,6 +79,31 @@ class SurveyController extends Controller
     }
 
     /**
+     * Check access and return survey
+     *
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function get(int $id)
+    {
+        $user = $this->guard()->user();
+
+        if ($user->hasSurvey($id)) {
+            $survey = Survey::where('id', '=', $id)->get(['title', 'created_at']);
+
+            return response()->json([
+                'status' => true,
+                'survey' => $survey
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Forbidden'
+            ], 403);
+        }
+    }
+
+    /**
      * Current guard
      *
      * @return mixed

@@ -36262,7 +36262,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\r\n", ""]);
 
 // exports
 
@@ -36279,9 +36279,67 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "Edit"
+    data: function data() {
+        return {
+            title: '',
+            editFields: false
+        };
+    },
+
+    methods: {
+        edit: function edit() {
+            this.editFields = true;
+        },
+        cancelEdit: function cancelEdit() {
+            this.editFields = false;
+        }
+    },
+    beforeCreate: function beforeCreate() {
+        var _this = this;
+
+        var id = this.$route.params.id;
+
+        this.axios.get('/survey/get/' + id).then(function (res) {
+            _this.title = res.data.survey[0].title;
+        }).catch(function (err) {
+            _this.$toasted.show('Forbidden');
+            _this.$router.push({ path: '/tests' });
+        });
+    }
 });
 
 /***/ }),
@@ -36292,7 +36350,111 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" })
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "jumbotron" }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-8" }, [
+                _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "title",
+                    type: "text",
+                    disabled: !_vm.editFields
+                  },
+                  domProps: { value: _vm.title }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.editFields,
+                      expression: "!editFields"
+                    }
+                  ],
+                  staticClass: "col-md-4"
+                },
+                [
+                  _c("label", [_vm._v("Manage")]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      on: { click: _vm.edit }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Edit\n                        "
+                      )
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.editFields,
+                      expression: "editFields"
+                    }
+                  ],
+                  staticClass: "col-md-8 text-md-right"
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "edit-link",
+                      attrs: { href: "" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.cancelEdit($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  ),
+                  _vm._v(" "),
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("Save")
+                  ])
+                ]
+              )
+            ])
+          ])
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
