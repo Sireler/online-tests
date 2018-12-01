@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <!-- Edit info -->
         <div class="jumbotron">
             <form @submit.prevent>
                 <div class="form-group">
@@ -10,7 +11,7 @@
                                    :disabled="!editFields"
                                    :value="title">
                         </div>
-                        <div class="col-md-2"
+                        <div class="col-md-2 mt-3 mt-md-0"
                              v-show="!editFields">
                             <button class="btn btn-secondary btn-block"
                                     @click="edit">
@@ -31,6 +32,10 @@
             </form>
         </div>
 
+        <div class="jumbotron">
+            <h3>Questions</h3>
+
+        </div>
     </div>
 </template>
 
