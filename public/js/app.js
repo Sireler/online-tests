@@ -36262,7 +36262,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\r\n", ""]);
+exports.push([module.i, "\n.jumbotron[data-v-7ee005e3] {\r\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\r\n", ""]);
 
 // exports
 
@@ -36273,8 +36273,6 @@ exports.push([module.i, "\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -36364,7 +36362,7 @@ var render = function() {
         [
           _c("div", { staticClass: "form-group" }, [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-8" }, [
+              _c("div", { staticClass: "col-md-10" }, [
                 _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
                 _vm._v(" "),
                 _c("input", {
@@ -36389,17 +36387,13 @@ var render = function() {
                       expression: "!editFields"
                     }
                   ],
-                  staticClass: "col-md-4"
+                  staticClass: "col-md-2"
                 },
                 [
-                  _c("label", [_vm._v("Manage")]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-secondary",
+                      staticClass: "btn btn-secondary btn-block",
                       on: { click: _vm.edit }
                     },
                     [
@@ -36426,7 +36420,7 @@ var render = function() {
                       expression: "editFields"
                     }
                   ],
-                  staticClass: "col-md-8 text-md-right"
+                  staticClass: "col-md-10 text-right"
                 },
                 [
                   _c(
