@@ -34,7 +34,18 @@
 
         <div class="jumbotron">
             <h3>Questions</h3>
-
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <button class="btn btn-success">New question</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="create-question">
+                        <!--question-->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -77,5 +88,10 @@ export default {
 .edit-link {
     color: #0f070f;
     margin: 0 25px;
+}
+.create-question {
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    padding: 15px;
 }
 </style>
