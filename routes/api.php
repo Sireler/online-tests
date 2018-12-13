@@ -44,6 +44,7 @@ Route::namespace('Api')->group(function () {
         Route::get('index', 'SurveyController@index');
         Route::delete('delete/{id}', 'SurveyController@delete');
         Route::get('get/{id}', 'SurveyController@get');
+        Route::patch('update/{id}', 'SurveyController@update');
 
     });
 });

@@ -36325,11 +36325,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             title: '',
+            stTitle: '',
             editFields: false
         };
     },
@@ -36340,18 +36342,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         cancelEdit: function cancelEdit() {
             this.editFields = false;
+            this.title = this.stTitle;
+        },
+        save: function save() {
+            var _this = this;
+
+            var id = this.$route.params.id;
+
+            // Update survey fields
+            this.axios.patch('/survey/update/' + id, {
+                'title': this.title
+            }).then(function (res) {
+                _this.$toasted.show(res.data.message);
+                _this.stTitle = _this.title;
+                _this.cancelEdit();
+            }).catch(function (err) {
+                _this.$toasted.show('Error');
+            });
         }
     },
     beforeCreate: function beforeCreate() {
-        var _this = this;
+        var _this2 = this;
 
         var id = this.$route.params.id;
 
+        // Get info about survey
         this.axios.get('/survey/get/' + id).then(function (res) {
-            _this.title = res.data.survey[0].title;
+            _this2.title = _this2.stTitle = res.data.survey[0].title;
         }).catch(function (err) {
-            _this.$toasted.show('Forbidden');
-            _this.$router.push({ path: '/tests' });
+            _this2.$toasted.show('Forbidden');
+            _this2.$router.push({ path: '/tests' });
         });
     }
 });
@@ -36382,13 +36402,29 @@ var render = function() {
                 _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
                 _vm._v(" "),
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.title,
+                      expression: "title"
+                    }
+                  ],
                   staticClass: "form-control",
                   attrs: {
                     id: "title",
                     type: "text",
                     disabled: !_vm.editFields
                   },
-                  domProps: { value: _vm.title }
+                  domProps: { value: _vm.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.title = $event.target.value
+                    }
+                  }
                 })
               ]),
               _vm._v(" "),
@@ -36454,9 +36490,11 @@ var render = function() {
                     [_vm._v("Cancel")]
                   ),
                   _vm._v(" "),
-                  _c("button", { staticClass: "btn btn-success" }, [
-                    _vm._v("Save")
-                  ])
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-success", on: { click: _vm.save } },
+                    [_vm._v("Save")]
+                  )
                 ]
               )
             ])

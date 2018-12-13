@@ -96,10 +96,34 @@ class SurveyController extends Controller
                 'survey' => $survey
             ], 200);
         } else {
+            return $this->forbiddenResponse();
+        }
+    }
+
+    /**
+     * Update model fields
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, int $id)
+    {
+        $user = $this->guard()->user();
+
+        if ($user->hasSurvey($id)) {
+            $fields = $request->all();
+
+            $survey = Survey::find($id);
+
+            $survey->fill($fields)->save();
+
             return response()->json([
-                'status' => false,
-                'message' => 'Forbidden'
-            ], 403);
+                'status' => true,
+                'message' => 'Survey updated'
+            ], 202);
+        } else {
+            return $this->forbiddenResponse();
         }
     }
 
@@ -111,5 +135,13 @@ class SurveyController extends Controller
     public function guard()
     {
         return Auth::guard();
+    }
+
+    private function forbiddenResponse()
+    {
+        return response()->json([
+            'status' => false,
+            'message' => 'Forbidden'
+        ], 403);
     }
 }

@@ -9,7 +9,7 @@
                             <label for="title">Title</label>
                             <input id="title" type="text" class="form-control"
                                    :disabled="!editFields"
-                                   :value="title">
+                                   v-model="title">
                         </div>
                         <div class="col-md-2 mt-3 mt-md-0"
                              v-show="!editFields">
@@ -25,7 +25,8 @@
                         <div class="col-md-10 text-right"
                              v-show="editFields">
                             <a @click.prevent="cancelEdit" class="edit-link" href="">Cancel</a>
-                            <button class="btn btn-success">Save</button>
+                            <button class="btn btn-success"
+                                    @click="save">Save</button>
                         </div>
                     </div>
                 </div>
@@ -55,6 +56,7 @@ export default {
     data() {
         return {
             title: '',
+            stTitle: '',
             editFields: false
         }
     },
@@ -64,14 +66,30 @@ export default {
         },
         cancelEdit() {
             this.editFields = false;
+            this.title = this.stTitle;
+        },
+        save() {
+            let id = this.$route.params.id;
+
+            // Update survey fields
+            this.axios.patch(`/survey/update/${id}`, {
+                'title': this.title
+            }).then((res) => {
+                this.$toasted.show(res.data.message);
+                this.stTitle = this.title;
+                this.cancelEdit();
+            }).catch((err) => {
+                this.$toasted.show('Error');
+            });
         }
     },
     beforeCreate() {
         let id = this.$route.params.id;
 
+        // Get info about survey
         this.axios.get(`/survey/get/${id}`)
             .then((res) => {
-                this.title = res.data.survey[0].title;
+                this.title = this.stTitle = res.data.survey[0].title;
             })
             .catch((err) => {
                 this.$toasted.show('Forbidden');
