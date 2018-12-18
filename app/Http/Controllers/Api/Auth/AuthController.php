@@ -36,7 +36,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if ($token = $this->guard()->attempt($credentials)) {
-            return response()->json(['token' => $token])->header('Authorization', "Bearer {$token}");
+            return $this->respondWithToken($token);
         }
 
         return response()->json([
@@ -99,7 +99,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Refresh a token.
+     * Refresh a token
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -117,11 +117,13 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => $this->guard()->factory()->getTTL() * 60
-        ]);
+        return response()->json(['token' => $token])->header('Authorization', "Bearer {$token}");
+
+//        return response()->json([
+//            'access_token' => $token,
+//            'token_type' => 'bearer',
+//            'expires_in' => $this->guard()->factory()->getTTL() * 60
+//        ]);
     }
 
     /**
