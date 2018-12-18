@@ -8,4 +8,8 @@ class Survey extends Model
 {
     protected $fillable = ['title', 'user_id'];
 
+    public function questions()
+    {
+        return $this->hasMany('App\SurveyQuestion');
+    }
 }
