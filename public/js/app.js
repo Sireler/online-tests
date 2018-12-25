@@ -36262,7 +36262,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.jumbotron[data-v-7ee005e3] {\r\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\n.create-question[data-v-7ee005e3] {\r\n    border-top: 2px solid #fff;\r\n    border-bottom: 2px solid #fff;\r\n    padding: 15px;\n}\r\n", ""]);
+exports.push([module.i, "\n.jumbotron[data-v-7ee005e3] {\r\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\n.create-question[data-v-7ee005e3] {\r\n    border-top: 2px solid #fff;\r\n    border-bottom: 2px solid #fff;\r\n    padding: 15px;\r\n    margin: 10px 0;\n}\n.input-group-text[data-v-7ee005e3] {\r\n    background-color: #A976C3;\n}\r\n", ""]);
 
 // exports
 
@@ -36326,13 +36326,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             title: '',
             stTitle: '',
-            editFields: false
+            editFields: false,
+
+            type: ''
         };
     },
 
@@ -36359,6 +36399,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 _this.$toasted.show('Error');
             });
+        },
+        generateByType: function generateByType(e) {
+            var type = e.target.value;
+
+            switch (type) {
+                case 'Multiple choice':
+                    console.log(1);
+                    break;
+                case 'Checkboxes':
+                    console.log(2);
+                    break;
+            }
         }
     },
     beforeCreate: function beforeCreate() {
@@ -36503,7 +36555,45 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _c("div", { staticClass: "jumbotron" }, [
+      _c("h3", [_vm._v("Create question")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "create-question" }, [
+            _c("div", { staticClass: "row" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group inline" }, [
+                  _c("label", { attrs: { for: "type" } }, [_vm._v("Type:")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "form-control",
+                      attrs: { id: "type" },
+                      on: { change: _vm.generateByType }
+                    },
+                    [
+                      _c("option", [_vm._v("Multiple choice")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Checkboxes")])
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2)
+    ]),
+    _vm._v(" "),
+    _vm._m(3)
   ])
 }
 var staticRenderFns = [
@@ -36511,23 +36601,75 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "jumbotron" }, [
-      _c("h3", [_vm._v("Questions")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12 mb-3" }, [
-          _c("button", { staticClass: "btn btn-success" }, [
-            _vm._v("New question")
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "create-question" })
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "question-title" } }, [_vm._v("Title:")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            id: "question-title",
+            type: "text",
+            placeholder: "Question title"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "input-group" }, [
+          _c("div", { staticClass: "input-group-prepend" }, [
+            _c("div", { staticClass: "input-group-text" }, [
+              _c("input", { attrs: { disabled: "", type: "radio" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 mb-3" }, [
+        _c("button", { staticClass: "btn btn-success right" }, [_vm._v("Save")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "card border-primary mb-3",
+        staticStyle: { "max-width": "18rem" }
+      },
+      [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Header")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body text-primary" }, [
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Primary card title")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v(
+              "Some quick example text to build on the card title and make up the bulk of the card's content."
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
