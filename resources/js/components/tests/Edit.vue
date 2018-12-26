@@ -42,7 +42,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="question-title">Title:</label>
-                                    <input id="question-title" type="text" class="form-control" placeholder="Question title">
+                                    <input id="question-title" type="text" class="form-control" placeholder="Question title"
+                                           v-model="questionTitle">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -75,7 +76,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <button class="btn btn-success right">Save</button>
+                    <button @click="storeAll" class="btn btn-success right">Save</button>
                     <button @click="addAnswer" class="btn btn-secondary">+</button>
                     <button @click="removeAnswer" class="btn btn-danger">-</button>
                 </div>
@@ -100,12 +101,13 @@ export default {
             stTitle: '',
             editFields: false,
 
+            questionTitle: '',
+
             type: 'Multiple choice',
             inputsType: 'radio',
             answers: [
                 {
-                    text: '',
-                    type: 'radio'
+                    text: ''
                 }
             ],
             maxAnswers: 10
@@ -142,9 +144,7 @@ export default {
         },
         addAnswer() {
             if (this.answers.length < this.maxAnswers) {
-                this.answers.push({
-                    text: '',
-                });
+                this.answers.push({text: ''});
             } else {
                 this.$toasted.show(`Maximum number of answers: ${this.maxAnswers}`);
             }
@@ -153,6 +153,21 @@ export default {
             if (this.answers.length > 1) {
                 this.answers.pop();
             }
+        },
+
+        storeAll() {
+            this.axios.post(`/survey/questions/create`, {
+                'survey_id': this.$route.params.id,
+                'question': {
+                    title: this.questionTitle,
+                    type: this.inputsType
+                },
+                'answers': this.answers
+            }).then((res) => {
+                this.$toasted.show(res.data.message);
+            }).catch((err) => {
+                this.$toasted.show('Error');
+            });
         }
     },
     beforeCreate() {

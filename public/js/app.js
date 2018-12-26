@@ -36367,6 +36367,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -36375,11 +36376,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             stTitle: '',
             editFields: false,
 
+            questionTitle: '',
+
             type: 'Multiple choice',
             inputsType: 'radio',
             answers: [{
-                text: '',
-                type: 'radio'
+                text: ''
             }],
             maxAnswers: 10
         };
@@ -36417,9 +36419,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         addAnswer: function addAnswer() {
             if (this.answers.length < this.maxAnswers) {
-                this.answers.push({
-                    text: ''
-                });
+                this.answers.push({ text: '' });
             } else {
                 this.$toasted.show('Maximum number of answers: ' + this.maxAnswers);
             }
@@ -36428,19 +36428,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.answers.length > 1) {
                 this.answers.pop();
             }
+        },
+        storeAll: function storeAll() {
+            var _this2 = this;
+
+            this.axios.post('/survey/questions/create', {
+                'survey_id': this.$route.params.id,
+                'question': {
+                    title: this.questionTitle,
+                    type: this.inputsType
+                },
+                'answers': this.answers
+            }).then(function (res) {
+                _this2.$toasted.show(res.data.message);
+            }).catch(function (err) {
+                _this2.$toasted.show('Error');
+            });
         }
     },
     beforeCreate: function beforeCreate() {
-        var _this2 = this;
+        var _this3 = this;
 
         var id = this.$route.params.id;
 
         // Get info about survey
         this.axios.get('/survey/get/' + id).then(function (res) {
-            _this2.title = _this2.stTitle = res.data.survey[0].title;
+            _this3.title = _this3.stTitle = res.data.survey[0].title;
         }).catch(function (err) {
-            _this2.$toasted.show('Forbidden');
-            _this2.$router.push({ path: '/tests' });
+            _this3.$toasted.show('Forbidden');
+            _this3.$router.push({ path: '/tests' });
         });
     }
 });
@@ -36579,7 +36595,39 @@ var render = function() {
         _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "create-question" }, [
             _c("div", { staticClass: "row" }, [
-              _vm._m(0),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "question-title" } }, [
+                    _vm._v("Title:")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.questionTitle,
+                        expression: "questionTitle"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "question-title",
+                      type: "text",
+                      placeholder: "Question title"
+                    },
+                    domProps: { value: _vm.questionTitle },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.questionTitle = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
                 _c("div", { staticClass: "form-group inline" }, [
@@ -36649,9 +36697,14 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12 mb-3" }, [
-          _c("button", { staticClass: "btn btn-success right" }, [
-            _vm._v("Save")
-          ]),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success right",
+              on: { click: _vm.storeAll }
+            },
+            [_vm._v("Save")]
+          ),
           _vm._v(" "),
           _c(
             "button",
@@ -36668,29 +36721,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(1)
+    _vm._m(0)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "question-title" } }, [_vm._v("Title:")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            id: "question-title",
-            type: "text",
-            placeholder: "Question title"
-          }
-        })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

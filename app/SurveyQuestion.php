@@ -14,4 +14,9 @@ class SurveyQuestion extends Model
     {
         return $this->belongsTo('App\Survey');
     }
+
+    public function answers()
+    {
+        return $this->hasMany('App\SurveyAnswer');
+    }
 }

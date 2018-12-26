@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Survey;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -19,6 +21,27 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        // todo::store
+        $data = $request->all();
+        $user = $request->user();
+
+        $survey = Survey::findOrFail($data['survey_id']);
+
+        if ($user->hasSurvey($data['survey_id'])) {
+            $question = $survey->questions()->create($data['question']);
+
+            $answers = $data['answers'];
+
+            $question->answers()->createMany($answers);
+        } else {
+            return $this->forbiddenResponse();
+        }
+    }
+
+    private function forbiddenResponse()
+    {
+        return response()->json([
+            'status' => false,
+            'message' => 'Forbidden'
+        ], 403);
     }
 }
