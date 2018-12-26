@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Survey;
 use Illuminate\Http\Request;
+use App\Traits\Responses as JsonResponses;
 
 class QuestionController extends Controller
 {
+    use JsonResponses;
+
     public function __construct()
     {
         $this->middleware('auth:api');
@@ -34,7 +37,7 @@ class QuestionController extends Controller
 
                 $question->answers()->createMany($answers);
             } catch (\Exception $e) {
-                return $this->errorRequest();
+                return $this->errorResponse();
             }
 
         } else {
@@ -42,19 +45,4 @@ class QuestionController extends Controller
         }
     }
 
-    private function forbiddenResponse()
-    {
-        return response()->json([
-            'status' => false,
-            'message' => 'Forbidden'
-        ], 403);
-    }
-
-    private function errorRequest()
-    {
-        return response()->json([
-            'status' => false,
-            'message' => 'Unprocessable Entity'
-        ], 422);
-    }
 }
