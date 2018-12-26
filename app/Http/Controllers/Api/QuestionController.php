@@ -36,10 +36,14 @@ class QuestionController extends Controller
                 $answers = $data['answers'];
 
                 $question->answers()->createMany($answers);
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Successful creation'
+                ], 201);
             } catch (\Exception $e) {
                 return $this->errorResponse();
             }
-
         } else {
             return $this->forbiddenResponse();
         }
