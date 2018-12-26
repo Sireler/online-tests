@@ -27,11 +27,16 @@ class QuestionController extends Controller
         $survey = Survey::findOrFail($data['survey_id']);
 
         if ($user->hasSurvey($data['survey_id'])) {
-            $question = $survey->questions()->create($data['question']);
+            try {
+                $question = $survey->questions()->create($data['question']);
 
-            $answers = $data['answers'];
+                $answers = $data['answers'];
 
-            $question->answers()->createMany($answers);
+                $question->answers()->createMany($answers);
+            } catch (\Exception $e) {
+                return $this->errorRequest();
+            }
+
         } else {
             return $this->forbiddenResponse();
         }
@@ -43,5 +48,13 @@ class QuestionController extends Controller
             'status' => false,
             'message' => 'Forbidden'
         ], 403);
+    }
+
+    private function errorRequest()
+    {
+        return response()->json([
+            'status' => false,
+            'message' => 'Unprocessable Entity'
+        ], 422);
     }
 }
