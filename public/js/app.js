@@ -36262,7 +36262,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.jumbotron[data-v-7ee005e3] {\r\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\n.create-question[data-v-7ee005e3] {\r\n    border-top: 2px solid #fff;\r\n    border-bottom: 2px solid #fff;\r\n    padding: 15px;\r\n    margin: 10px 0;\n}\n.input-group-text[data-v-7ee005e3] {\r\n    background-color: #A976C3;\n}\r\n", ""]);
+exports.push([module.i, "\n.jumbotron[data-v-7ee005e3] {\r\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\n.create-question[data-v-7ee005e3] {\r\n    border-top: 2px solid #fff;\r\n    border-bottom: 2px solid #fff;\r\n    padding: 15px;\r\n    margin: 10px 0;\n}\n.input-group-text[data-v-7ee005e3] {\r\n    background-color: #A976C3;\n}\n.answers[data-v-7ee005e3] {\r\n    margin: 10px 0;\n}\r\n", ""]);
 
 // exports
 
@@ -36364,6 +36364,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -36372,7 +36375,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             stTitle: '',
             editFields: false,
 
-            type: ''
+            type: 'Multiple choice',
+            answers: [{
+                text: ''
+            }]
         };
     },
 
@@ -36401,15 +36407,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         generateByType: function generateByType(e) {
-            var type = e.target.value;
-
-            switch (type) {
-                case 'Multiple choice':
-                    console.log(1);
-                    break;
-                case 'Checkboxes':
-                    console.log(2);
-                    break;
+            this.type = e.target.value;
+        },
+        addAnswer: function addAnswer() {
+            this.answers.push({
+                text: ''
+            });
+        },
+        removeAnswer: function removeAnswer() {
+            if (this.answers.length > 1) {
+                this.answers.pop();
             }
         }
     },
@@ -36588,12 +36595,64 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _vm.type == "Multiple choice"
+        ? _c(
+            "div",
+            { staticClass: "row answers" },
+            _vm._l(_vm.answers, function(answer) {
+              return _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _vm._m(1, true),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: answer.text,
+                        expression: "answer.text"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Enter an answer" },
+                    domProps: { value: answer.text },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(answer, "text", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ])
+            })
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _vm._m(2)
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12 mb-3" }, [
+          _c("button", { staticClass: "btn btn-success right" }, [
+            _vm._v("Save")
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-secondary", on: { click: _vm.addAnswer } },
+            [_vm._v("+")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-danger", on: { click: _vm.removeAnswer } },
+            [_vm._v("-")]
+          )
+        ])
+      ])
     ]),
     _vm._v(" "),
-    _vm._m(3)
+    _vm._m(2)
   ])
 }
 var staticRenderFns = [
@@ -36620,27 +36679,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "input-group" }, [
-          _c("div", { staticClass: "input-group-prepend" }, [
-            _c("div", { staticClass: "input-group-text" }, [
-              _c("input", { attrs: { disabled: "", type: "radio" } })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 mb-3" }, [
-        _c("button", { staticClass: "btn btn-success right" }, [_vm._v("Save")])
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _c("input", { attrs: { disabled: "", type: "radio" } })
       ])
     ])
   },

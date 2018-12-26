@@ -60,21 +60,24 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
+            <div v-if="type == 'Multiple choice'" class="row answers">
+                <div class="col-md-12"
+                     v-for="answer in answers">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
                                 <input disabled type="radio">
                             </div>
                         </div>
-                        <input type="text" class="form-control">
+                        <input v-model="answer.text" type="text" class="form-control" placeholder="Enter an answer">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <button class="btn btn-success right">Save</button>
+                    <button @click="addAnswer" class="btn btn-secondary">+</button>
+                    <button @click="removeAnswer" class="btn btn-danger">-</button>
                 </div>
             </div>
         </div>
@@ -97,7 +100,12 @@ export default {
             stTitle: '',
             editFields: false,
 
-            type: ''
+            type: 'Multiple choice',
+            answers: [
+                {
+                    text: ''
+                }
+            ]
         }
     },
     methods: {
@@ -123,17 +131,21 @@ export default {
             });
         },
         generateByType(e) {
-            let type = e.target.value;
-
-            switch(type) {
-                case 'Multiple choice':
-                    console.log(1);
-                    break;
-                case 'Checkboxes':
-                    console.log(2);
-                    break;
+            this.type = e.target.value;
+        },
+        addAnswer() {
+            this.answers.push(
+                {
+                    text: ''
+                }
+            )
+        },
+        removeAnswer() {
+            if (this.answers.length > 1) {
+                this.answers.pop();
             }
         }
+
     },
     beforeCreate() {
         let id = this.$route.params.id;
@@ -167,5 +179,8 @@ export default {
 }
 .input-group-text {
     background-color: #A976C3;
+}
+.answers {
+    margin: 10px 0;
 }
 </style>
