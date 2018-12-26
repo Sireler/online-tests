@@ -49,8 +49,8 @@
                                 <div class="form-group inline">
                                     <label for="type">Type:</label>
                                     <select @change="generateByType" class="form-control" id="type">
-                                        <option>Multiple choice</option>
-                                        <option>Checkboxes</option>
+                                        <option value="radio">Multiple choice</option>
+                                        <option value="checkbox">Checkboxes</option>
                                     </select>
                                 </div>
                             </div>
@@ -60,13 +60,13 @@
                     </div>
                 </div>
             </div>
-            <div v-if="type == 'Multiple choice'" class="row answers">
-                <div class="col-md-12"
+            <div class="row answers">
+                <div class="col-md-12 answers-item"
                      v-for="answer in answers">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input disabled type="radio">
+                                <input disabled :type="inputsType">
                             </div>
                         </div>
                         <input v-model="answer.text" type="text" class="form-control" placeholder="Enter an answer">
@@ -101,11 +101,14 @@ export default {
             editFields: false,
 
             type: 'Multiple choice',
+            inputsType: 'radio',
             answers: [
                 {
-                    text: ''
+                    text: '',
+                    type: 'radio'
                 }
-            ]
+            ],
+            maxAnswers: 10
         }
     },
     methods: {
@@ -130,22 +133,27 @@ export default {
                 this.$toasted.show('Error');
             });
         },
+
         generateByType(e) {
-            this.type = e.target.value;
+            let select = e.target;
+
+            this.type = select.value;
+            this.inputsType = select.options[select.selectedIndex].value;
         },
         addAnswer() {
-            this.answers.push(
-                {
-                    text: ''
-                }
-            )
+            if (this.answers.length < this.maxAnswers) {
+                this.answers.push({
+                    text: '',
+                });
+            } else {
+                this.$toasted.show(`Maximum number of answers: ${this.maxAnswers}`);
+            }
         },
         removeAnswer() {
             if (this.answers.length > 1) {
                 this.answers.pop();
             }
         }
-
     },
     beforeCreate() {
         let id = this.$route.params.id;
@@ -182,5 +190,8 @@ export default {
 }
 .answers {
     margin: 10px 0;
+}
+.answers-item {
+    margin: 5px 0;
 }
 </style>

@@ -36262,7 +36262,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.jumbotron[data-v-7ee005e3] {\r\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\n.create-question[data-v-7ee005e3] {\r\n    border-top: 2px solid #fff;\r\n    border-bottom: 2px solid #fff;\r\n    padding: 15px;\r\n    margin: 10px 0;\n}\n.input-group-text[data-v-7ee005e3] {\r\n    background-color: #A976C3;\n}\n.answers[data-v-7ee005e3] {\r\n    margin: 10px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.jumbotron[data-v-7ee005e3] {\r\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\n.create-question[data-v-7ee005e3] {\r\n    border-top: 2px solid #fff;\r\n    border-bottom: 2px solid #fff;\r\n    padding: 15px;\r\n    margin: 10px 0;\n}\n.input-group-text[data-v-7ee005e3] {\r\n    background-color: #A976C3;\n}\n.answers[data-v-7ee005e3] {\r\n    margin: 10px 0;\n}\n.answers-item[data-v-7ee005e3] {\r\n    margin: 5px 0;\n}\r\n", ""]);
 
 // exports
 
@@ -36376,9 +36376,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             editFields: false,
 
             type: 'Multiple choice',
+            inputsType: 'radio',
             answers: [{
-                text: ''
-            }]
+                text: '',
+                type: 'radio'
+            }],
+            maxAnswers: 10
         };
     },
 
@@ -36407,12 +36410,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         generateByType: function generateByType(e) {
-            this.type = e.target.value;
+            var select = e.target;
+
+            this.type = select.value;
+            this.inputsType = select.options[select.selectedIndex].value;
         },
         addAnswer: function addAnswer() {
-            this.answers.push({
-                text: ''
-            });
+            if (this.answers.length < this.maxAnswers) {
+                this.answers.push({
+                    text: ''
+                });
+            } else {
+                this.$toasted.show('Maximum number of answers: ' + this.maxAnswers);
+            }
         },
         removeAnswer: function removeAnswer() {
             if (this.answers.length > 1) {
@@ -36583,9 +36593,13 @@ var render = function() {
                       on: { change: _vm.generateByType }
                     },
                     [
-                      _c("option", [_vm._v("Multiple choice")]),
+                      _c("option", { attrs: { value: "radio" } }, [
+                        _vm._v("Multiple choice")
+                      ]),
                       _vm._v(" "),
-                      _c("option", [_vm._v("Checkboxes")])
+                      _c("option", { attrs: { value: "checkbox" } }, [
+                        _vm._v("Checkboxes")
+                      ])
                     ]
                   )
                 ])
@@ -36595,41 +36609,43 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm.type == "Multiple choice"
-        ? _c(
-            "div",
-            { staticClass: "row answers" },
-            _vm._l(_vm.answers, function(answer) {
-              return _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "input-group" }, [
-                  _vm._m(1, true),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: answer.text,
-                        expression: "answer.text"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Enter an answer" },
-                    domProps: { value: answer.text },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(answer, "text", $event.target.value)
-                      }
-                    }
-                  })
+      _c(
+        "div",
+        { staticClass: "row answers" },
+        _vm._l(_vm.answers, function(answer) {
+          return _c("div", { staticClass: "col-md-12 answers-item" }, [
+            _c("div", { staticClass: "input-group" }, [
+              _c("div", { staticClass: "input-group-prepend" }, [
+                _c("div", { staticClass: "input-group-text" }, [
+                  _c("input", { attrs: { disabled: "", type: _vm.inputsType } })
                 ])
-              ])
-            })
-          )
-        : _vm._e(),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: answer.text,
+                    expression: "answer.text"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Enter an answer" },
+                domProps: { value: answer.text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(answer, "text", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ])
+        })
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12 mb-3" }, [
@@ -36652,7 +36668,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(2)
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
@@ -36672,16 +36688,6 @@ var staticRenderFns = [
             placeholder: "Question title"
           }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("div", { staticClass: "input-group-text" }, [
-        _c("input", { attrs: { disabled: "", type: "radio" } })
       ])
     ])
   },
