@@ -42,7 +42,7 @@ class QuestionController extends Controller
                     'message' => 'Successful creation'
                 ], 201);
             } catch (\Exception $e) {
-                return $this->errorResponse();
+                return $this->UEResponse();
             }
         } else {
             return $this->forbiddenResponse();
