@@ -33,63 +33,18 @@
             </form>
         </div>
 
-        <div class="jumbotron">
-            <h3>Create question</h3>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="create-question">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="question-title">Title:</label>
-                                    <input id="question-title" type="text" class="form-control" placeholder="Question title"
-                                           v-model="questionTitle">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group inline">
-                                    <label for="type">Type:</label>
-                                    <select @change="generateByType" class="form-control" id="type">
-                                        <option value="radio">Multiple choice</option>
-                                        <option value="checkbox">Checkboxes</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-
+        <div class="row mb-4">
+            <div class="col-md-6" v-for="question in questions">
+                <div class="card border-primary mb-3" >
+                    <div class="card-header">{{ question.title }}</div>
+                    <div class="card-body text-primary">
+                        <h5 class="card-title"><a href="#">Show answers</a></h5>
+                        <p class="card-text">Answers: {{ question.answers.length }}</p>
                     </div>
-                </div>
-            </div>
-            <div class="row answers">
-                <div class="col-md-12 answers-item"
-                     v-for="answer in answers">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input disabled :type="inputsType">
-                            </div>
-                        </div>
-                        <input v-model="answer.text" type="text" class="form-control" placeholder="Enter an answer">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <button @click="storeAll" class="btn btn-success right">Save</button>
-                    <button @click="addAnswer" class="btn btn-secondary">+</button>
-                    <button @click="removeAnswer" class="btn btn-danger">-</button>
                 </div>
             </div>
         </div>
 
-        <div class="card border-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body text-primary">
-                <h5 class="card-title">Primary card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -110,7 +65,13 @@
                         text: ''
                     }
                 ],
-                maxAnswers: 10
+                maxAnswers: 10,
+
+
+                // new component --no del
+                questions: [],
+
+
             }
         },
         methods: {
@@ -186,7 +147,7 @@
             // Get info about survey
             this.axios.get(`/survey/questions/get/${id}`)
                 .then((res) => {
-                    console.log(res.data);
+                    this.questions = res.data.questions;
                 })
                 .catch((err) => {
                     this.$toasted.show('Forbidden');
