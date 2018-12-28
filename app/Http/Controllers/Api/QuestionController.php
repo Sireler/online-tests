@@ -66,7 +66,9 @@ class QuestionController extends Controller
         $user = $request->user();
 
         if ($user->hasSurvey($id)) {
+            $survey = Survey::findOrFail($id)->with('questions.answers')->first();
 
+            return response()->json($survey);
         } else {
             return $this->forbiddenResponse();
         }
