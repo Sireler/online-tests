@@ -49,4 +49,15 @@ class QuestionController extends Controller
         }
     }
 
+    /**
+     * Get survey and answers
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(Request $request)
+    {
+
+    }
+
 }

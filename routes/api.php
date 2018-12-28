@@ -47,6 +47,7 @@ Route::namespace('Api')->group(function () {
         Route::patch('update/{id}', 'SurveyController@update');
 
         Route::post('questions/create', 'QuestionController@store');
+        Route::get('questions/index', 'QuestionController@index');
     });
 });
 
