@@ -49,15 +49,26 @@ class QuestionController extends Controller
         }
     }
 
+    public function index(Request $request)
+    {
+        // todo index
+    }
+
     /**
      * Get survey and answers
      *
      * @param Request $request
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function get(Request $request, int $id)
     {
+        $user = $request->user();
 
+        if ($user->hasSurvey($id)) {
+
+        } else {
+            return $this->forbiddenResponse();
+        }
     }
-
 }

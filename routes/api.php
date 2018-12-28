@@ -48,6 +48,7 @@ Route::namespace('Api')->group(function () {
 
         Route::post('questions/create', 'QuestionController@store');
         Route::get('questions/index', 'QuestionController@index');
+        Route::get('questions/get/{id}', 'QuestionController@get');
     });
 });
 
