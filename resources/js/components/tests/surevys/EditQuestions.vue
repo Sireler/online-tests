@@ -182,6 +182,16 @@
                     this.$toasted.show('Forbidden');
                     this.$router.push({ path: '/tests' });
                 });
+
+            // Get info about survey
+            this.axios.get(`/survey/questions/get/${id}`)
+                .then((res) => {
+                    console.log(res.data);
+                })
+                .catch((err) => {
+                    this.$toasted.show('Forbidden');
+                    this.$router.push({ path: '/tests' });
+                });
         }
     }
 </script>

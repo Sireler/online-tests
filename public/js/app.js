@@ -38108,6 +38108,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this3.$toasted.show('Forbidden');
             _this3.$router.push({ path: '/tests' });
         });
+
+        // Get info about survey
+        this.axios.get('/survey/questions/get/' + id).then(function (res) {
+            console.log(res.data);
+        }).catch(function (err) {
+            _this3.$toasted.show('Forbidden');
+            _this3.$router.push({ path: '/tests' });
+        });
     }
 });
 
