@@ -31182,6 +31182,8 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_tests_Start___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_tests_Start__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_tests_Edit__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_tests_Edit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_tests_Edit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_tests_surevys_EditQuestions__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_tests_surevys_EditQuestions___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_tests_surevys_EditQuestions__);
 
 
 
@@ -31200,6 +31202,7 @@ if (false) {
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_Main___default.a }, { path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_3__components_home_Home___default.a },
@@ -31211,7 +31214,7 @@ var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_Ma
 { path: '*', component: __WEBPACK_IMPORTED_MODULE_5__components_NotFound___default.a },
 
 // Tests
-{ path: '/tests', component: __WEBPACK_IMPORTED_MODULE_6__components_tests_Tests___default.a }, { path: '/tests/create', component: __WEBPACK_IMPORTED_MODULE_7__components_tests_Create___default.a }, { path: '/tests/start/:id', component: __WEBPACK_IMPORTED_MODULE_8__components_tests_Start___default.a, props: true }, { path: '/tests/edit/:id', component: __WEBPACK_IMPORTED_MODULE_9__components_tests_Edit___default.a, props: true }];
+{ path: '/tests', component: __WEBPACK_IMPORTED_MODULE_6__components_tests_Tests___default.a }, { path: '/tests/create', component: __WEBPACK_IMPORTED_MODULE_7__components_tests_Create___default.a }, { path: '/tests/start/:id', component: __WEBPACK_IMPORTED_MODULE_8__components_tests_Start___default.a, props: true }, { path: '/tests/edit/:id', component: __WEBPACK_IMPORTED_MODULE_9__components_tests_Edit___default.a, props: true }, { path: '/tests/edit/:id/questions', component: __WEBPACK_IMPORTED_MODULE_10__components_tests_surevys_EditQuestions___default.a, props: true }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     mode: 'history',
@@ -36360,14 +36363,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -36719,40 +36714,10 @@ var render = function() {
           )
         ])
       ])
-    ]),
-    _vm._v(" "),
-    _vm._m(0)
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "card border-primary mb-3",
-        staticStyle: { "max-width": "18rem" }
-      },
-      [
-        _c("div", { staticClass: "card-header" }, [_vm._v("Header")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body text-primary" }, [
-          _c("h5", { staticClass: "card-title" }, [
-            _vm._v("Primary card title")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "card-text" }, [
-            _vm._v(
-              "Some quick example text to build on the card title and make up the bulk of the card's content."
-            )
-          ])
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -37857,6 +37822,595 @@ module.exports = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(130)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(132)
+/* template */
+var __vue_template__ = __webpack_require__(133)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-a84fb7b4"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/tests/surevys/EditQuestions.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a84fb7b4", Component.options)
+  } else {
+    hotAPI.reload("data-v-a84fb7b4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(131);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("2582a89a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a84fb7b4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditQuestions.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a84fb7b4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditQuestions.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.jumbotron[data-v-a84fb7b4] {\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-a84fb7b4] {\n    color: #0f070f;\n    margin: 0 25px;\n}\n.create-question[data-v-a84fb7b4] {\n    border-top: 2px solid #fff;\n    border-bottom: 2px solid #fff;\n    padding: 15px;\n    margin: 10px 0;\n}\n.input-group-text[data-v-a84fb7b4] {\n    background-color: #A976C3;\n}\n.answers[data-v-a84fb7b4] {\n    margin: 10px 0;\n}\n.answers-item[data-v-a84fb7b4] {\n    margin: 5px 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 132 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            title: '',
+            stTitle: '',
+            editFields: false,
+
+            questionTitle: '',
+
+            type: 'Multiple choice',
+            inputsType: 'radio',
+            answers: [{
+                text: ''
+            }],
+            maxAnswers: 10
+        };
+    },
+
+    methods: {
+        edit: function edit() {
+            this.editFields = true;
+        },
+        cancelEdit: function cancelEdit() {
+            this.editFields = false;
+            this.title = this.stTitle;
+        },
+        save: function save() {
+            var _this = this;
+
+            var id = this.$route.params.id;
+
+            // Update survey fields
+            this.axios.patch('/survey/update/' + id, {
+                'title': this.title
+            }).then(function (res) {
+                _this.$toasted.show(res.data.message);
+                _this.stTitle = _this.title;
+                _this.cancelEdit();
+            }).catch(function (err) {
+                _this.$toasted.show('Error');
+            });
+        },
+        generateByType: function generateByType(e) {
+            var select = e.target;
+
+            this.type = select.value;
+            this.inputsType = select.options[select.selectedIndex].value;
+        },
+        addAnswer: function addAnswer() {
+            if (this.answers.length < this.maxAnswers) {
+                this.answers.push({ text: '' });
+            } else {
+                this.$toasted.show('Maximum number of answers: ' + this.maxAnswers);
+            }
+        },
+        removeAnswer: function removeAnswer() {
+            if (this.answers.length > 1) {
+                this.answers.pop();
+            }
+        },
+        storeAll: function storeAll() {
+            var _this2 = this;
+
+            this.axios.post('/survey/questions/create', {
+                'survey_id': this.$route.params.id,
+                'question': {
+                    title: this.questionTitle,
+                    type: this.inputsType
+                },
+                'answers': this.answers
+            }).then(function (res) {
+                _this2.$toasted.show(res.data.message);
+            }).catch(function (err) {
+                _this2.$toasted.show('Error');
+            });
+        }
+    },
+    beforeCreate: function beforeCreate() {
+        var _this3 = this;
+
+        var id = this.$route.params.id;
+
+        // Get info about survey
+        this.axios.get('/survey/get/' + id).then(function (res) {
+            _this3.title = _this3.stTitle = res.data.survey[0].title;
+        }).catch(function (err) {
+            _this3.$toasted.show('Forbidden');
+            _this3.$router.push({ path: '/tests' });
+        });
+    }
+});
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "jumbotron" }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-10" }, [
+                _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.title,
+                      expression: "title"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "title",
+                    type: "text",
+                    disabled: !_vm.editFields
+                  },
+                  domProps: { value: _vm.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.title = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.editFields,
+                      expression: "!editFields"
+                    }
+                  ],
+                  staticClass: "col-md-2 mt-3 mt-md-0"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary btn-block",
+                      on: { click: _vm.edit }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Edit\n                        "
+                      )
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.editFields,
+                      expression: "editFields"
+                    }
+                  ],
+                  staticClass: "col-md-10 text-right"
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "edit-link",
+                      attrs: { href: "" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.cancelEdit($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-success", on: { click: _vm.save } },
+                    [_vm._v("Save")]
+                  )
+                ]
+              )
+            ])
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "jumbotron" }, [
+      _c("h3", [_vm._v("Create question")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "create-question" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "question-title" } }, [
+                    _vm._v("Title:")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.questionTitle,
+                        expression: "questionTitle"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "question-title",
+                      type: "text",
+                      placeholder: "Question title"
+                    },
+                    domProps: { value: _vm.questionTitle },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.questionTitle = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group inline" }, [
+                  _c("label", { attrs: { for: "type" } }, [_vm._v("Type:")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "form-control",
+                      attrs: { id: "type" },
+                      on: { change: _vm.generateByType }
+                    },
+                    [
+                      _c("option", { attrs: { value: "radio" } }, [
+                        _vm._v("Multiple choice")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "checkbox" } }, [
+                        _vm._v("Checkboxes")
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row answers" },
+        _vm._l(_vm.answers, function(answer) {
+          return _c("div", { staticClass: "col-md-12 answers-item" }, [
+            _c("div", { staticClass: "input-group" }, [
+              _c("div", { staticClass: "input-group-prepend" }, [
+                _c("div", { staticClass: "input-group-text" }, [
+                  _c("input", { attrs: { disabled: "", type: _vm.inputsType } })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: answer.text,
+                    expression: "answer.text"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Enter an answer" },
+                domProps: { value: answer.text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(answer, "text", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12 mb-3" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success right",
+              on: { click: _vm.storeAll }
+            },
+            [_vm._v("Save")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-secondary", on: { click: _vm.addAnswer } },
+            [_vm._v("+")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-danger", on: { click: _vm.removeAnswer } },
+            [_vm._v("-")]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "card border-primary mb-3",
+        staticStyle: { "max-width": "18rem" }
+      },
+      [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Header")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body text-primary" }, [
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Primary card title")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v(
+              "Some quick example text to build on the card title and make up the bulk of the card's content."
+            )
+          ])
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a84fb7b4", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -82,123 +82,131 @@
                 </div>
             </div>
         </div>
+
+        <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-primary">
+                <h5 class="card-title">Primary card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            title: '',
-            stTitle: '',
-            editFields: false,
+    export default {
+        data() {
+            return {
+                title: '',
+                stTitle: '',
+                editFields: false,
 
-            questionTitle: '',
+                questionTitle: '',
 
-            type: 'Multiple choice',
-            inputsType: 'radio',
-            answers: [
-                {
-                    text: ''
+                type: 'Multiple choice',
+                inputsType: 'radio',
+                answers: [
+                    {
+                        text: ''
+                    }
+                ],
+                maxAnswers: 10
+            }
+        },
+        methods: {
+            edit() {
+                this.editFields = true;
+            },
+            cancelEdit() {
+                this.editFields = false;
+                this.title = this.stTitle;
+            },
+            save() {
+                let id = this.$route.params.id;
+
+                // Update survey fields
+                this.axios.patch(`/survey/update/${id}`, {
+                    'title': this.title
+                }).then((res) => {
+                    this.$toasted.show(res.data.message);
+                    this.stTitle = this.title;
+                    this.cancelEdit();
+                }).catch((err) => {
+                    this.$toasted.show('Error');
+                });
+            },
+
+            generateByType(e) {
+                let select = e.target;
+
+                this.type = select.value;
+                this.inputsType = select.options[select.selectedIndex].value;
+            },
+            addAnswer() {
+                if (this.answers.length < this.maxAnswers) {
+                    this.answers.push({text: ''});
+                } else {
+                    this.$toasted.show(`Maximum number of answers: ${this.maxAnswers}`);
                 }
-            ],
-            maxAnswers: 10
-        }
-    },
-    methods: {
-        edit() {
-            this.editFields = true;
+            },
+            removeAnswer() {
+                if (this.answers.length > 1) {
+                    this.answers.pop();
+                }
+            },
+
+            storeAll() {
+                this.axios.post(`/survey/questions/create`, {
+                    'survey_id': this.$route.params.id,
+                    'question': {
+                        title: this.questionTitle,
+                        type: this.inputsType
+                    },
+                    'answers': this.answers
+                }).then((res) => {
+                    this.$toasted.show(res.data.message);
+                }).catch((err) => {
+                    this.$toasted.show('Error');
+                });
+            }
         },
-        cancelEdit() {
-            this.editFields = false;
-            this.title = this.stTitle;
-        },
-        save() {
+        beforeCreate() {
             let id = this.$route.params.id;
 
-            // Update survey fields
-            this.axios.patch(`/survey/update/${id}`, {
-                'title': this.title
-            }).then((res) => {
-                this.$toasted.show(res.data.message);
-                this.stTitle = this.title;
-                this.cancelEdit();
-            }).catch((err) => {
-                this.$toasted.show('Error');
-            });
-        },
-
-        generateByType(e) {
-            let select = e.target;
-
-            this.type = select.value;
-            this.inputsType = select.options[select.selectedIndex].value;
-        },
-        addAnswer() {
-            if (this.answers.length < this.maxAnswers) {
-                this.answers.push({text: ''});
-            } else {
-                this.$toasted.show(`Maximum number of answers: ${this.maxAnswers}`);
-            }
-        },
-        removeAnswer() {
-            if (this.answers.length > 1) {
-                this.answers.pop();
-            }
-        },
-
-        storeAll() {
-            this.axios.post(`/survey/questions/create`, {
-                'survey_id': this.$route.params.id,
-                'question': {
-                    title: this.questionTitle,
-                    type: this.inputsType
-                },
-                'answers': this.answers
-            }).then((res) => {
-                this.$toasted.show(res.data.message);
-            }).catch((err) => {
-                this.$toasted.show('Error');
-            });
+            // Get info about survey
+            this.axios.get(`/survey/get/${id}`)
+                .then((res) => {
+                    this.title = this.stTitle = res.data.survey[0].title;
+                })
+                .catch((err) => {
+                    this.$toasted.show('Forbidden');
+                    this.$router.push({ path: '/tests' });
+                });
         }
-    },
-    beforeCreate() {
-        let id = this.$route.params.id;
-
-        // Get info about survey
-        this.axios.get(`/survey/get/${id}`)
-            .then((res) => {
-                this.title = this.stTitle = res.data.survey[0].title;
-            })
-            .catch((err) => {
-                this.$toasted.show('Forbidden');
-                this.$router.push({ path: '/tests' });
-            });
     }
-}
 </script>
 
 <style scoped>
-.jumbotron {
-    background-color: #EAF0F5;
-}
-.edit-link {
-    color: #0f070f;
-    margin: 0 25px;
-}
-.create-question {
-    border-top: 2px solid #fff;
-    border-bottom: 2px solid #fff;
-    padding: 15px;
-    margin: 10px 0;
-}
-.input-group-text {
-    background-color: #A976C3;
-}
-.answers {
-    margin: 10px 0;
-}
-.answers-item {
-    margin: 5px 0;
-}
+    .jumbotron {
+        background-color: #EAF0F5;
+    }
+    .edit-link {
+        color: #0f070f;
+        margin: 0 25px;
+    }
+    .create-question {
+        border-top: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        padding: 15px;
+        margin: 10px 0;
+    }
+    .input-group-text {
+        background-color: #A976C3;
+    }
+    .answers {
+        margin: 10px 0;
+    }
+    .answers-item {
+        margin: 5px 0;
+    }
 </style>
