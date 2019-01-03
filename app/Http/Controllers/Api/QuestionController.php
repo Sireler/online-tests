@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Survey;
+use App\SurveyQuestion;
 use Illuminate\Http\Request;
 use App\Traits\Responses as JsonResponses;
 
@@ -69,6 +70,31 @@ class QuestionController extends Controller
             $survey = Survey::findOrFail($id)->with('questions.answers')->first();
 
             return response()->json($survey);
+        } else {
+            return $this->forbiddenResponse();
+        }
+    }
+
+    /**
+     * Delete a question
+     *
+     * @param Request $request
+     * @param int $surveyId
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Request $request, int $surveyId, int $id)
+    {
+        $user = $request->user();
+
+        if ($user->hasSurvey($surveyId)) {
+            $question = SurveyQuestion::find($id);
+            $question->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Question deleted'
+            ]);
         } else {
             return $this->forbiddenResponse();
         }
