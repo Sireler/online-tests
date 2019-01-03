@@ -37,7 +37,8 @@
                             <tr v-for="(answer, i) in question.answers">
                                 <td>{{ i + 1 }}</td>
                                 <td>{{ answer.text }}</td>
-                                <td><span class="oi oi-delete f" title="delete" aria-hidden="true"></span></td>
+                                <td><span class="oi oi-delete f" title="delete answer" aria-hidden="true"
+                                     @click="answerDelete(answer.id)"></span></td>
                             </tr>
                         </table>
                     </div>
@@ -57,25 +58,26 @@
             }
         },
         methods: {
+            answerDelete(answerId) {
+                let surveyId = this.$route.params.id;
 
+                this.axios.delete(`/survey/answers/${surveyId}/${answerId}`)
+                    .then((res) => {
+                        this.$toasted.show(res.data.message);
+                    })
+                    .catch((err) => {
+                        this.$toasted.show('Forbidden');
+                    });
+            }
         },
         beforeCreate() {
             let id = this.$route.params.id;
 
             // Get info about survey
-            this.axios.get(`/survey/get/${id}`)
-                .then((res) => {
-                    this.surveyName = res.data.survey[0].title;
-                })
-                .catch((err) => {
-                    this.$toasted.show('Forbidden');
-                    this.$router.push({ path: '/tests' });
-                });
-
-            // Get info about survey
             this.axios.get(`/survey/questions/get/${id}`)
                 .then((res) => {
                     this.questions = res.data.questions;
+                    this.surveyName = res.data.title;
                 })
                 .catch((err) => {
                     this.$toasted.show('Forbidden');

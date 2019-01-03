@@ -36900,6 +36900,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -36909,26 +36910,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    methods: {},
+    methods: {
+        answerDelete: function answerDelete(answerId) {
+            var _this = this;
+
+            var surveyId = this.$route.params.id;
+
+            this.axios.delete('/survey/answers/' + surveyId + '/' + answerId).then(function (res) {
+                _this.$toasted.show(res.data.message);
+            }).catch(function (err) {
+                _this.$toasted.show('Forbidden');
+            });
+        }
+    },
     beforeCreate: function beforeCreate() {
-        var _this = this;
+        var _this2 = this;
 
         var id = this.$route.params.id;
 
         // Get info about survey
-        this.axios.get('/survey/get/' + id).then(function (res) {
-            _this.surveyName = res.data.survey[0].title;
-        }).catch(function (err) {
-            _this.$toasted.show('Forbidden');
-            _this.$router.push({ path: '/tests' });
-        });
-
-        // Get info about survey
         this.axios.get('/survey/questions/get/' + id).then(function (res) {
-            _this.questions = res.data.questions;
+            _this2.questions = res.data.questions;
+            _this2.surveyName = res.data.title;
         }).catch(function (err) {
-            _this.$toasted.show('Forbidden');
-            _this.$router.push({ path: '/tests' });
+            _this2.$toasted.show('Forbidden');
+            _this2.$router.push({ path: '/tests' });
         });
     }
 });
@@ -37021,7 +37027,20 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(answer.text))]),
                         _vm._v(" "),
-                        _vm._m(1, true)
+                        _c("td", [
+                          _c("span", {
+                            staticClass: "oi oi-delete f",
+                            attrs: {
+                              title: "delete answer",
+                              "aria-hidden": "true"
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.answerDelete(answer.id)
+                              }
+                            }
+                          })
+                        ])
                       ])
                     })
                   ],
@@ -37046,17 +37065,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Text")]),
       _vm._v(" "),
       _c("th", [_vm._v("Actions")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("span", {
-        staticClass: "oi oi-delete f",
-        attrs: { title: "delete", "aria-hidden": "true" }
-      })
     ])
   }
 ]

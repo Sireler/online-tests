@@ -19,15 +19,16 @@ class AnswerController extends Controller
     /**
      * Delete an answer
      * @param Request $request
-     * @param int $id
+     * @param int $surveyId
+     * @param int $answerId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Request $request, int $id)
+    public function delete(Request $request, int $surveyId, int $answerId)
     {
         $user = $request->user();
 
-        if ($user->hasSurvey($id)) {
-            $answer = SurveyAnswer::find($id);
+        if ($user->hasSurvey($surveyId)) {
+            $answer = SurveyAnswer::find($answerId);
             $answer->delete();
 
             return response()->json([
@@ -35,7 +36,7 @@ class AnswerController extends Controller
                 'message' => 'Answer deleted'
             ]);
         } else {
-            $this->forbiddenResponse();
+            return $this->forbiddenResponse();
         }
     }
 }
