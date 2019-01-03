@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\SurveyAnswer;
 use Illuminate\Http\Request;
 use App\Traits\Responses as JsonResponses;
 
@@ -17,14 +18,22 @@ class AnswerController extends Controller
 
     /**
      * Delete an answer
-     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Request $request, $id)
+    public function delete(Request $request, int $id)
     {
         $user = $request->user();
 
         if ($user->hasSurvey($id)) {
-            //todo
+            $answer = SurveyAnswer::find($id);
+            $answer->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Answer deleted'
+            ]);
         } else {
             $this->forbiddenResponse();
         }
