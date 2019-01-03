@@ -85,11 +85,19 @@
                 </div>
             </div>
         </div>
+
+        <edit-questions class="edit-questions"></edit-questions>
+
     </div>
 </template>
 
 <script>
+import EditQuestions from './surevys/EditQuestions';
+
 export default {
+    components : {
+        EditQuestions
+    },
     data() {
         return {
             id: this.$route.params.id,
@@ -204,5 +212,8 @@ export default {
 }
 .answers-item {
     margin: 5px 0;
+}
+.edit-questions {
+    margin-bottom: 75px;
 }
 </style>

@@ -36265,7 +36265,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.jumbotron[data-v-7ee005e3] {\r\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\n.create-question[data-v-7ee005e3] {\r\n    border-top: 2px solid #fff;\r\n    border-bottom: 2px solid #fff;\r\n    padding: 15px;\r\n    margin: 10px 0;\n}\n.input-group-text[data-v-7ee005e3] {\r\n    background-color: #A976C3;\n}\n.answers[data-v-7ee005e3] {\r\n    margin: 10px 0;\n}\n.answers-item[data-v-7ee005e3] {\r\n    margin: 5px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.jumbotron[data-v-7ee005e3] {\r\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-7ee005e3] {\r\n    color: #0f070f;\r\n    margin: 0 25px;\n}\n.create-question[data-v-7ee005e3] {\r\n    border-top: 2px solid #fff;\r\n    border-bottom: 2px solid #fff;\r\n    padding: 15px;\r\n    margin: 10px 0;\n}\n.input-group-text[data-v-7ee005e3] {\r\n    background-color: #A976C3;\n}\n.answers[data-v-7ee005e3] {\r\n    margin: 10px 0;\n}\n.answers-item[data-v-7ee005e3] {\r\n    margin: 5px 0;\n}\n.edit-questions[data-v-7ee005e3] {\r\n    margin-bottom: 75px;\n}\r\n", ""]);
 
 // exports
 
@@ -36276,6 +36276,11 @@ exports.push([module.i, "\n.jumbotron[data-v-7ee005e3] {\r\n    background-color
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__surevys_EditQuestions__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__surevys_EditQuestions___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__surevys_EditQuestions__);
+//
+//
+//
 //
 //
 //
@@ -36367,7 +36372,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        EditQuestions: __WEBPACK_IMPORTED_MODULE_0__surevys_EditQuestions___default.a
+    },
     data: function data() {
         return {
             id: this.$route.params.id,
@@ -36738,7 +36748,9 @@ var render = function() {
             )
           ])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c("edit-questions", { staticClass: "edit-questions" })
     ],
     1
   )
