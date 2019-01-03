@@ -33,9 +33,6 @@
             </form>
         </div>
 
-        <!-- temp link -->
-        <router-link :to="'/tests/edit/'+this.id+'/questions'">Questions</router-link>
-
         <div class="jumbotron">
             <h3>Create question</h3>
             <div class="row">

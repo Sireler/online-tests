@@ -36368,9 +36368,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -36602,12 +36599,6 @@ var render = function() {
           ]
         )
       ]),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        { attrs: { to: "/tests/edit/" + this.id + "/questions" } },
-        [_vm._v("Questions")]
-      ),
       _vm._v(" "),
       _c("div", { staticClass: "jumbotron" }, [
         _c("h3", [_vm._v("Create question")]),
