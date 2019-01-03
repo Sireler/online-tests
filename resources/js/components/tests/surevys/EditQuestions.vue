@@ -34,11 +34,11 @@
                                 <th>Text</th>
                                 <th>Actions</th>
                             </tr>
-                            <tr v-for="(answer, i) in question.answers">
-                                <td>{{ i + 1 }}</td>
+                            <tr v-for="(answer, ai) in question.answers">
+                                <td>{{ ai + 1 }}</td>
                                 <td>{{ answer.text }}</td>
                                 <td><span class="oi oi-delete f" title="delete answer" aria-hidden="true"
-                                     @click="answerDelete(answer.id)"></span></td>
+                                     @click="answerDelete(i, ai, answer.id)"></span></td>
                             </tr>
                         </table>
                     </div>
@@ -58,11 +58,14 @@
             }
         },
         methods: {
-            answerDelete(answerId) {
+            answerDelete(questionIndex, answerIndex, answerId) {
                 let surveyId = this.$route.params.id;
 
                 this.axios.delete(`/survey/answers/${surveyId}/${answerId}`)
                     .then((res) => {
+                        // delete answer from array
+                        this.questions[questionIndex].answers.splice(answerIndex, 1);
+
                         this.$toasted.show(res.data.message);
                     })
                     .catch((err) => {

@@ -36911,12 +36911,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        answerDelete: function answerDelete(answerId) {
+        answerDelete: function answerDelete(questionIndex, answerIndex, answerId) {
             var _this = this;
 
             var surveyId = this.$route.params.id;
 
             this.axios.delete('/survey/answers/' + surveyId + '/' + answerId).then(function (res) {
+                // delete answer from array
+                _this.questions[questionIndex].answers.splice(answerIndex, 1);
+
                 _this.$toasted.show(res.data.message);
             }).catch(function (err) {
                 _this.$toasted.show('Forbidden');
@@ -37021,9 +37024,9 @@ var render = function() {
                     _vm._v(" "),
                     _vm._m(0, true),
                     _vm._v(" "),
-                    _vm._l(question.answers, function(answer, i) {
+                    _vm._l(question.answers, function(answer, ai) {
                       return _c("tr", [
-                        _c("td", [_vm._v(_vm._s(i + 1))]),
+                        _c("td", [_vm._v(_vm._s(ai + 1))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(answer.text))]),
                         _vm._v(" "),
@@ -37036,7 +37039,7 @@ var render = function() {
                             },
                             on: {
                               click: function($event) {
-                                _vm.answerDelete(answer.id)
+                                _vm.answerDelete(i, ai, answer.id)
                               }
                             }
                           })
