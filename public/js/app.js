@@ -36839,7 +36839,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.jumbotron[data-v-a84fb7b4] {\n    background-color: #EAF0F5;\n}\n.edit-link[data-v-a84fb7b4] {\n    color: #0f070f;\n    margin: 0 25px;\n}\n.create-question[data-v-a84fb7b4] {\n    border-top: 2px solid #fff;\n    border-bottom: 2px solid #fff;\n    padding: 15px;\n    margin: 10px 0;\n}\n.input-group-text[data-v-a84fb7b4] {\n    background-color: #A976C3;\n}\n.answers[data-v-a84fb7b4] {\n    margin: 10px 0;\n}\n.answers-item[data-v-a84fb7b4] {\n    margin: 5px 0;\n}\n", ""]);
+exports.push([module.i, "\n.oi-delete[data-v-a84fb7b4] {\n    color: #ff0000;\n    font-size: 1.25em;\n}\n", ""]);
 
 // exports
 
@@ -37021,7 +37021,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(answer.text))]),
                         _vm._v(" "),
-                        _c("td")
+                        _vm._m(1, true)
                       ])
                     })
                   ],
@@ -37046,6 +37046,17 @@ var staticRenderFns = [
       _c("th", [_vm._v("Text")]),
       _vm._v(" "),
       _c("th", [_vm._v("Actions")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", {
+        staticClass: "oi oi-delete f",
+        attrs: { title: "delete", "aria-hidden": "true" }
+      })
     ])
   }
 ]

@@ -37,7 +37,7 @@
                             <tr v-for="(answer, i) in question.answers">
                                 <td>{{ i + 1 }}</td>
                                 <td>{{ answer.text }}</td>
-                                <td></td>
+                                <td><span class="oi oi-delete f" title="delete" aria-hidden="true"></span></td>
                             </tr>
                         </table>
                     </div>
@@ -86,26 +86,8 @@
 </script>
 
 <style scoped>
-    .jumbotron {
-        background-color: #EAF0F5;
-    }
-    .edit-link {
-        color: #0f070f;
-        margin: 0 25px;
-    }
-    .create-question {
-        border-top: 2px solid #fff;
-        border-bottom: 2px solid #fff;
-        padding: 15px;
-        margin: 10px 0;
-    }
-    .input-group-text {
-        background-color: #A976C3;
-    }
-    .answers {
-        margin: 10px 0;
-    }
-    .answers-item {
-        margin: 5px 0;
+    .oi-delete {
+        color: #ff0000;
+        font-size: 1.25em;
     }
 </style>
