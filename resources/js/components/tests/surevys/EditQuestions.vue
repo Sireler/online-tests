@@ -4,10 +4,10 @@
         <!--survey info-->
         <div class="row mb-4">
             <div class="col-md-12">
-                <div class="card border-primary mb-3" >
+                <div class="card bg-primary border-secondary mb-3 text-white" >
                     <div class="card-header">Survey: {{ surveyName }}</div>
-                    <div class="card-body text-primary">
-                        <p class="card-text">Questions: 2</p>
+                    <div class="card-body">
+                        <p class="card-text">Questions: {{ questions.length }}</p>
                     </div>
                 </div>
             </div>
@@ -27,11 +27,19 @@
 
                 <div :id="`collapse${i}`" class="collapse" :aria-labelledby="`heading${i}`" data-parent="#accordion">
                     <div class="card-body">
-                        <h4>Answers:</h4>
-                        <div v-for="answer in question.answers">
-                            {{ answer.text }}
-                        </div>
-
+                        <table class="table table-bordered">
+                            <caption>Answers</caption>
+                            <tr>
+                                <th>#</th>
+                                <th>Text</th>
+                                <th>Actions</th>
+                            </tr>
+                            <tr v-for="(answer, i) in question.answers">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ answer.text }}</td>
+                                <td></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -36892,6 +36892,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -36936,13 +36944,21 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row mb-4" }, [
       _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card border-primary mb-3" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Survey: " + _vm._s(_vm.surveyName))
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
-        ])
+        _c(
+          "div",
+          { staticClass: "card bg-primary border-secondary mb-3 text-white" },
+          [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Survey: " + _vm._s(_vm.surveyName))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v("Questions: " + _vm._s(_vm.questions.length))
+              ])
+            ])
+          ]
+        )
       ])
     ]),
     _vm._v(" "),
@@ -36990,24 +37006,28 @@ var render = function() {
               }
             },
             [
-              _c(
-                "div",
-                { staticClass: "card-body" },
-                [
-                  _c("h4", [_vm._v("Answers:")]),
-                  _vm._v(" "),
-                  _vm._l(question.answers, function(answer) {
-                    return _c("div", [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(answer.text) +
-                          "\n                    "
-                      )
-                    ])
-                  })
-                ],
-                2
-              )
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "table",
+                  { staticClass: "table table-bordered" },
+                  [
+                    _c("caption", [_vm._v("Answers")]),
+                    _vm._v(" "),
+                    _vm._m(0, true),
+                    _vm._v(" "),
+                    _vm._l(question.answers, function(answer, i) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(_vm._s(i + 1))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(answer.text))]),
+                        _vm._v(" "),
+                        _c("td")
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ])
             ]
           )
         ])
@@ -37020,8 +37040,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body text-primary" }, [
-      _c("p", { staticClass: "card-text" }, [_vm._v("Questions: 2")])
+    return _c("tr", [
+      _c("th", [_vm._v("#")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Text")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Actions")])
     ])
   }
 ]
