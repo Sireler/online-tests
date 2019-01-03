@@ -36901,6 +36901,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -36924,20 +36926,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 _this.$toasted.show('Forbidden');
             });
+        },
+        questionDelete: function questionDelete(questionIndex, questionId) {
+            var _this2 = this;
+
+            var surveyId = this.$route.params.id;
+
+            this.axios.delete('/survey/questions/delete/' + surveyId + '/' + questionId).then(function (res) {
+                // delete question from array
+                _this2.questions.splice(questionIndex, 1);
+
+                _this2.$toasted.show(res.data.message);
+            }).catch(function (err) {
+                _this2.$toasted.show('Forbidden');
+            });
         }
     },
     beforeCreate: function beforeCreate() {
-        var _this2 = this;
+        var _this3 = this;
 
         var id = this.$route.params.id;
 
         // Get info about survey
         this.axios.get('/survey/questions/get/' + id).then(function (res) {
-            _this2.questions = res.data.questions;
-            _this2.surveyName = res.data.title;
+            _this3.questions = res.data.questions;
+            _this3.surveyName = res.data.title;
         }).catch(function (err) {
-            _this2.$toasted.show('Forbidden');
-            _this2.$router.push({ path: '/tests' });
+            _this3.$toasted.show('Forbidden');
+            _this3.$router.push({ path: '/tests' });
         });
     }
 });
@@ -36999,7 +37015,17 @@ var render = function() {
                         "\n                    "
                     )
                   ]
-                )
+                ),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "oi oi-delete float-right",
+                  attrs: { title: "delete question", "aria-hidden": "true" },
+                  on: {
+                    click: function($event) {
+                      _vm.questionDelete(i, question.id)
+                    }
+                  }
+                })
               ])
             ]
           ),
@@ -37032,7 +37058,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _c("span", {
-                            staticClass: "oi oi-delete f",
+                            staticClass: "oi oi-delete",
                             attrs: {
                               title: "delete answer",
                               "aria-hidden": "true"

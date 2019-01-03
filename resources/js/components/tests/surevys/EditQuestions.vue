@@ -22,6 +22,8 @@
                         <button class="btn btn-link" data-toggle="collapse" :data-target="`#collapse${i}`" aria-expanded="true" :aria-controls="`collapse${i}`">
                             {{ question.title }}
                         </button>
+                        <span class="oi oi-delete float-right" title="delete question" aria-hidden="true"
+                              @click="questionDelete(i, question.id)"></span>
                     </h5>
                 </div>
 
@@ -37,7 +39,7 @@
                             <tr v-for="(answer, ai) in question.answers">
                                 <td>{{ ai + 1 }}</td>
                                 <td>{{ answer.text }}</td>
-                                <td><span class="oi oi-delete f" title="delete answer" aria-hidden="true"
+                                <td><span class="oi oi-delete" title="delete answer" aria-hidden="true"
                                      @click="answerDelete(i, ai, answer.id)"></span></td>
                             </tr>
                         </table>
@@ -65,6 +67,20 @@
                     .then((res) => {
                         // delete answer from array
                         this.questions[questionIndex].answers.splice(answerIndex, 1);
+
+                        this.$toasted.show(res.data.message);
+                    })
+                    .catch((err) => {
+                        this.$toasted.show('Forbidden');
+                    });
+            },
+            questionDelete(questionIndex, questionId) {
+                let surveyId = this.$route.params.id;
+
+                this.axios.delete(`/survey/questions/delete/${surveyId}/${questionId}`)
+                    .then((res) => {
+                        // delete question from array
+                        this.questions.splice(questionIndex, 1);
 
                         this.$toasted.show(res.data.message);
                     })
