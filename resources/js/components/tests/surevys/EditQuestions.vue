@@ -22,7 +22,7 @@
                         <button class="btn btn-link" data-toggle="collapse" :data-target="`#collapse${i}`" aria-expanded="true" :aria-controls="`collapse${i}`">
                             {{ question.title }}
                         </button>
-                        <span class="oi oi-delete float-right" title="delete question" aria-hidden="true"
+                        <span class="oi oi-circle-x float-right" title="delete question" aria-hidden="true"
                               @click="questionDelete(i, question.id)"></span>
                     </h5>
                 </div>
@@ -107,8 +107,13 @@
 </script>
 
 <style scoped>
-    .oi-delete {
-        color: #ff0000;
-        font-size: 1.25em;
-    }
+.oi {
+    font-size: 1.15em;
+}
+.oi-circle-x {
+    color: #ff0000;
+}
+.oi-wrench {
+    color: #29ab0f;
+}
 </style>

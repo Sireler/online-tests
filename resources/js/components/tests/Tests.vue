@@ -16,10 +16,10 @@
                         <td>{{ survey.created_at }}</td>
                         <td>0</td>
                         <td>
-                            <span @click="deleteSurvey(survey.id, index)"
-                                >Delete</span>
-                            <span @click="editSurvey(survey.id)"
-                            >Edit</span>
+                            <span class="oi oi-circle-x" title="Delete survey"
+                                  @click="deleteSurvey(survey.id, index)"></span>
+                            <span class="oi oi-wrench" title="Edit survey"
+                                  @click="editSurvey(survey.id)"></span>
                         </td>
                     </tr>
                 </tbody>
@@ -75,6 +75,16 @@ export default {
 </script>
 
 <style scoped>
+.oi {
+    font-size: 1.15em;
+}
+.oi-circle-x {
+    color: #ff0000;
+}
+.oi-wrench {
+    color: #29ab0f;
+}
+
 .table-thead {
     background-color: #5f2a62;
     color: #fff;
