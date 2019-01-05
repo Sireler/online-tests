@@ -30,6 +30,13 @@ Vue.use(Toasted, {
 });
 //--
 
+//v-slim-dialog   modal
+import 'v-slim-dialog/dist/v-slim-dialog.css';
+import SlimDialog from 'v-slim-dialog';
+
+Vue.use(SlimDialog);
+//--
+
 /**
  * Vue-auth lib for authentication with jwt token
  */

@@ -22,5 +22,8 @@
         "vue-axios": "^2.1.4",
         "vue-router": "^3.0.1",
         "vue-toasted": "^1.1.25"
+    },
+    "dependencies": {
+        "v-slim-dialog": "0.0.9"
     }
 }

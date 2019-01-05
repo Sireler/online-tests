@@ -22851,8 +22851,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes_js__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_toasted__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_toasted___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_toasted__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_axios__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_v_slim_dialog_dist_v_slim_dialog_css__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_v_slim_dialog_dist_v_slim_dialog_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_v_slim_dialog_dist_v_slim_dialog_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_v_slim_dialog__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_v_slim_dialog___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_v_slim_dialog__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_axios__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_axios__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -22885,13 +22889,20 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_toasted___default.a, {
 });
 //--
 
+//v-slim-dialog   modal
+
+
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_4_v_slim_dialog___default.a);
+//--
+
 /**
  * Vue-auth lib for authentication with jwt token
  */
 var axios = window.axios;
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_axios___default.a, axios);
+Vue.use(__WEBPACK_IMPORTED_MODULE_5_vue_axios___default.a, axios);
 Vue.axios.defaults.baseURL = "http://online-tests/api";
 Vue.router = __WEBPACK_IMPORTED_MODULE_1__routes_js__["a" /* router */];
 
@@ -38213,6 +38224,512 @@ module.exports = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 131 */,
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(selector) {
+		if (typeof memo[selector] === "undefined") {
+			memo[selector] = fn.call(this, selector);
+		}
+
+		return memo[selector]
+	};
+})(function (target) {
+	return document.querySelector(target)
+});
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(133);
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton) options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+	if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	options.attrs.type = "text/css";
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	options.attrs.type = "text/css";
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = options.transform(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports) {
+
+module.exports=function(t){var e={};function i(o){if(e[o])return e[o].exports;var n=e[o]={i:o,l:!1,exports:{}};return t[o].call(n.exports,n,n.exports,i),n.l=!0,n.exports}return i.m=t,i.c=e,i.d=function(t,e,o){i.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},i.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},i.t=function(t,e){if(1&e&&(t=i(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(i.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var n in t)i.d(o,n,function(e){return t[e]}.bind(null,n));return o},i.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return i.d(e,"a",e),e},i.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},i.p="/",i(i.s=4)}([function(t,e,i){},function(t,e,i){"use strict";i.r(e);function o(t,e,i,o,n,s,a,l){var r,c="function"==typeof t?t.options:t;if(e&&(c.render=e,c.staticRenderFns=i,c._compiled=!0),o&&(c.functional=!0),s&&(c._scopeId="data-v-"+s),a?(r=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(a)},c._ssrRegister=r):n&&(r=l?function(){n.call(this,this.$root.$options.shadowRoot)}:n),r)if(c.functional){c._injectStyles=r;var u=c.render;c.render=function(t,e){return r.call(e),u(t,e)}}else{var d=c.beforeCreate;c.beforeCreate=d?[].concat(d,r):[r]}return{exports:t,options:c}}var n=o({props:{value:[Number,String]},computed:{model:{get:function(){return this.value},set:function(t){this.$emit("input",t)}}},methods:{isValid:function(){return Boolean(String(this.model).trim())}},mounted:function(){this.$el.focus()}},function(){var t=this,e=t.$createElement;return(t._self._c||e)("input",{directives:[{name:"model",rawName:"v-model",value:t.model,expression:"model"}],domProps:{value:t.model},on:{input:function(e){e.target.composing||(t.model=e.target.value)}}})},[],!1,null,null,null).exports,s={props:{item:{type:Object,required:!0},show:{type:Boolean,default:!1}},data:function(){return{valid:this.isValid()}},methods:{isValid:function(){return!this.item.prompt||this.$refs.prompt&&this.$refs.prompt.isValid()},onPrompt:function(){var t=this;setTimeout(function(){t.valid=t.isValid()})},onClose:function(t){this.$emit("close",this.item,t)},onOk:function(){this.valid&&this.onClose(!0)}}},a=(i(3),o({components:{VDialog:o(s,function(){var t,e=this,i=e.$createElement,o=e._self._c||i;return o("div",{staticClass:"v-dialog",class:(t={active:e.show},t["v-dialog-"+e.item.size]=e.item.size,t)},[o("div",{staticClass:"v-dialog-overlay",on:{click:function(t){e.onClose()}}}),o("div",{staticClass:"v-dialog-container"},[o("div",{staticClass:"v-dialog-header"},[o("a",{staticClass:"v-dialog-btn v-dialog-btn-close",attrs:{"aria-label":"Fechar"},on:{click:function(t){e.onClose()}}}),e.item.title?o("div",{staticClass:"v-dialog-title"},[e._v(e._s(e.item.title))]):e._e()]),o("div",{staticClass:"v-dialog-body"},[o("div",{staticClass:"content"},[o("div",[e._v(e._s(e.item.message))]),e.item.prompt?o("form",{on:{submit:function(t){return t.preventDefault(),e.onOk(t)}}},[o(e.item.prompt.component,{ref:"prompt",tag:"div",staticClass:"v-dialog-input",on:{input:e.onPrompt},model:{value:e.item.prompt.value,callback:function(t){e.$set(e.item.prompt,"value",t)},expression:"item.prompt.value"}}),e.valid?e._e():o("div",{staticClass:"prompt-error-message"},[e._v(e._s(e.item.prompt.invalidMessage))])]):e._e()])]),o("div",{staticClass:"v-dialog-footer"},[e.item.cancelLabel?o("a",{staticClass:"v-dialog-btn v-dialog-btn-danger",on:{click:function(t){e.onClose(!1)}}},[e._v(e._s(e.item.cancelLabel))]):e._e(),o("a",{staticClass:"v-dialog-btn success",class:{disabled:!e.valid},attrs:{disabled:!e.valid},on:{click:e.onOk}},[e._v(e._s(e.item.okLabel))])])])])},[],!1,null,null,null).exports},data:function(){return{items:[]}},methods:{open:function(t,e){var i=this,o=e.title,n=e.cancelLabel,s=e.prompt,a=e.size,l=e.okLabel,r=void 0===l?"OK":l;return this.$parent||(this.$mount(),document.body.appendChild(this.$el)),new Promise(function(e){var l={key:"".concat(Date.now(),"-").concat(Math.random()),show:!0,message:t,title:o,cancelLabel:n,okLabel:r,prompt:s,size:a,resolve:e};i.items.push(l)})},alert:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},i=e.title,o=e.okLabel,n=void 0===o?"OK":o,s=e.size;return this.open(t,{title:i,okLabel:n,size:s})},confirm:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},i=e.title,o=e.cancelLabel,n=void 0===o?"Cancel":o,s=e.okLabel,a=void 0===s?"OK":s,l=e.size;return this.open(t,{title:i,cancelLabel:n,okLabel:a,size:l})},prompt:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},i=e.title,o=e.okLabel,s=void 0===o?"OK":o,a=e.size,l=e.prompt;return l=Object.assign({value:"",invalidMessage:"invalid!",component:n},l),this.open(t,{title:i,okLabel:s,prompt:l,size:a})},remove:function(t){var e=this.items.indexOf(t);e>=0&&this.items.splice(e,1)},onClose:function(t,e){var i={ok:e};t.prompt&&(i.value=t.prompt.value),t.resolve(i),t.show=!1,this.remove(t)},keyUp:function(t){"Escape"===t.key&&this.items.length>0&&this.onClose(this.items[this.items.length-1])}},created:function(){window.addEventListener("keyup",this.keyUp)}},function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{staticClass:"v-dialogs"},t._l(t.items,function(e){return i("v-dialog",{key:e.key,attrs:{show:e.show,item:e},on:{close:t.onClose}})}))},[],!1,null,null,null).exports);a.install=function(t,e){t.prototype.$dialogs=new(t.extend(a))({propsData:e}),t.dialogs=t.prototype.$dialogs};e.default=a},,function(t,e,i){"use strict";var o=i(0);i.n(o).a},function(t,e,i){t.exports=i(1)}]);
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(136);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(132)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../css-loader/index.js!./v-slim-dialog.css", function() {
+			var newContent = require("!!../../css-loader/index.js!./v-slim-dialog.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".v-dialog{font-weight:100;align-items:center;bottom:0;display:none;-ms-flex-align:center;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;overflow:hidden;padding:8px;position:fixed;right:0;top:0}.v-dialog.v-dialog-sm .v-dialog-container{max-width:320px;padding:0 8px}.v-dialog.v-dialog-lg .v-dialog-container{box-shadow:none;max-width:960px}.v-dialog.active,.v-dialog:target{display:flex;display:-ms-flexbox;opacity:1;z-index:400}.v-dialog.active .v-dialog-overlay,.v-dialog:target .v-dialog-overlay{background:rgba(248,249,250,.75);bottom:0;cursor:default;display:block;left:0;position:absolute;right:0;top:0}.v-dialog.active .v-dialog-container,.v-dialog:target .v-dialog-container{animation:slide-down .2s ease 1;z-index:1}.v-dialog-container{background:#fff;border-radius:2px;box-shadow:0 4px 10px rgba(69,77,93,.3);display:flex;display:-ms-flexbox;-ms-flex-direction:column;flex-direction:column;max-height:75vh;max-width:640px;padding:0 16px;width:100%;color:#50596c}.v-dialog-container.v-dialog-fullheight{max-height:100vh}.v-dialog-container .v-dialog-header{color:#454d5d;padding:16px}.v-dialog-container .v-dialog-header .v-dialog-title{font-size:110%;font-weight:400}.v-dialog-container .v-dialog-body{overflow-y:auto;padding:16px;position:relative}.v-dialog-container .v-dialog-body .v-dialog-input{display:block;width:100%}.v-dialog-container .v-dialog-body .prompt-error-message{color:#d9534f;font-size:14px}.v-dialog-container .v-dialog-footer{padding:16px;text-align:right}.v-dialog-container .v-dialog-btn{-webkit-appearance:none;-moz-appearance:none;appearance:none;background:transparent;border:none;color:#5cb85c;cursor:pointer;display:inline-block;font-size:16px;height:36px;line-height:20px;outline:none;padding:7px 8px;text-align:center;text-decoration:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;vertical-align:middle;white-space:nowrap}.v-dialog-container .v-dialog-btn.v-dialog-btn-danger{color:#d9534f}.v-dialog-container .v-dialog-btn.v-dialog-btn-close{height:16px;line-height:16px;margin-left:8px;margin-right:-15px;padding:0;width:16px;float:right;color:#50596c}.v-dialog-container .v-dialog-btn.v-dialog-btn-close:before{content:\"\\2715\"}.v-dialog-container .v-dialog-btn.disabled,.v-dialog-container .v-dialog-btn:disabled,.v-dialog-container .v-dialog-btn[disabled]{cursor:default;opacity:.5;pointer-events:none}", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
