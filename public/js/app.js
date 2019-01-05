@@ -30731,7 +30731,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n* {\r\n    margin: 0;\r\n    padding: 0;\n}\n#app {\r\n    background-color: #eee;\r\n    min-height: 100vh;\n}\n.app-container {\r\n    min-height: 100vh;\r\n    margin: 0;\n}\n.container {\r\n    margin-top: 10px;\n}\nfooter {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    background-color: #5f2a62;\r\n    text-align: center;\r\n    color: #a976c3;\n}\n.toasted.bubble {\r\n    background-color: #5f2a62;\n}\n.api-loading {\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: rgba(255, 255, 255, 0.9);\r\n    position: absolute;\r\n    z-index: 999;\n}\n@-webkit-keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\n@keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n* {\r\n    margin: 0;\r\n    padding: 0;\n}\n#app {\r\n    background-color: #eee;\r\n    min-height: 100vh;\n}\n.app-container {\r\n    min-height: 100vh;\r\n    margin: 0;\n}\n.container {\r\n    margin-top: 10px;\n}\nfooter {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    background-color: #5f2a62;\r\n    text-align: center;\r\n    color: #a976c3;\n}\n.toasted.bubble {\r\n    background-color: #5f2a62;\n}\n.api-loading {\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: rgba(255, 255, 255, 0.9);\r\n    position: absolute;\r\n    z-index: 999;\n}\r\n\r\n/*v-slim-dialog style*/\n.v-dialog-container {\r\n    background-color: #A976C3;\r\n    color: #fff;\n}\n.v-dialog-btn.success {\r\n    background-color: #F04747;\r\n    color: #fff;\r\n    border-radius: 5px;\n}\n.v-dialog-btn.success:hover {\r\n    background-color: #C73B3B;\n}\na.v-dialog-btn-danger,\r\n.v-dialog-btn-close,\r\n.v-dialog-title {\r\n    color: #fff !important;\n}\na.v-dialog-btn-danger:hover {\r\n    text-decoration: underline !important;\n}\r\n/*end v-slim-dialog style*/\n@-webkit-keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\n@keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -36646,29 +36646,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         answerDelete: function answerDelete(questionIndex, answerIndex, answerId) {
             var _this = this;
 
-            var surveyId = this.$route.params.id;
+            this.$dialogs.confirm('Are you sure you want to delete an answer?', {
+                title: 'Delete answer', okLabel: 'Delete'
+            }).then(function (res) {
+                if (res.ok) {
+                    var surveyId = _this.$route.params.id;
 
-            this.axios.delete('/survey/answers/' + surveyId + '/' + answerId).then(function (res) {
-                // delete answer from array
-                _this.questions[questionIndex].answers.splice(answerIndex, 1);
+                    _this.axios.delete('/survey/answers/' + surveyId + '/' + answerId).then(function (res) {
+                        // delete answer from array
+                        _this.questions[questionIndex].answers.splice(answerIndex, 1);
 
-                _this.$toasted.show(res.data.message);
-            }).catch(function (err) {
-                _this.$toasted.show('Forbidden');
+                        _this.$toasted.show(res.data.message);
+                    }).catch(function (err) {
+                        _this.$toasted.show('Forbidden');
+                    });
+                }
             });
         },
         questionDelete: function questionDelete(questionIndex, questionId) {
             var _this2 = this;
 
-            var surveyId = this.$route.params.id;
+            this.$dialogs.confirm('Are you sure you want to delete a question?', {
+                title: 'Delete question', okLabel: 'Delete'
+            }).then(function (res) {
+                if (res.ok) {
+                    var surveyId = _this2.$route.params.id;
 
-            this.axios.delete('/survey/questions/delete/' + surveyId + '/' + questionId).then(function (res) {
-                // delete question from array
-                _this2.questions.splice(questionIndex, 1);
+                    _this2.axios.delete('/survey/questions/delete/' + surveyId + '/' + questionId).then(function (res) {
+                        // delete question from array
+                        _this2.questions.splice(questionIndex, 1);
 
-                _this2.$toasted.show(res.data.message);
-            }).catch(function (err) {
-                _this2.$toasted.show('Forbidden');
+                        _this2.$toasted.show(res.data.message);
+                    }).catch(function (err) {
+                        _this2.$toasted.show('Forbidden');
+                    });
+                }
             });
         },
         addItem: function addItem(item) {

@@ -61,32 +61,44 @@
         },
         methods: {
             answerDelete(questionIndex, answerIndex, answerId) {
-                let surveyId = this.$route.params.id;
+                this.$dialogs.confirm('Are you sure you want to delete an answer?', {
+                    title: 'Delete answer', okLabel: 'Delete'
+                }).then(res => {
+                    if (res.ok) {
+                        let surveyId = this.$route.params.id;
 
-                this.axios.delete(`/survey/answers/${surveyId}/${answerId}`)
-                    .then((res) => {
-                        // delete answer from array
-                        this.questions[questionIndex].answers.splice(answerIndex, 1);
+                        this.axios.delete(`/survey/answers/${surveyId}/${answerId}`)
+                            .then((res) => {
+                                // delete answer from array
+                                this.questions[questionIndex].answers.splice(answerIndex, 1);
 
-                        this.$toasted.show(res.data.message);
-                    })
-                    .catch((err) => {
-                        this.$toasted.show('Forbidden');
-                    });
+                                this.$toasted.show(res.data.message);
+                            })
+                            .catch((err) => {
+                                this.$toasted.show('Forbidden');
+                            });
+                    }
+                });
             },
             questionDelete(questionIndex, questionId) {
-                let surveyId = this.$route.params.id;
+                this.$dialogs.confirm('Are you sure you want to delete a question?', {
+                    title: 'Delete question', okLabel: 'Delete'
+                }).then(res => {
+                    if (res.ok) {
+                        let surveyId = this.$route.params.id;
 
-                this.axios.delete(`/survey/questions/delete/${surveyId}/${questionId}`)
-                    .then((res) => {
-                        // delete question from array
-                        this.questions.splice(questionIndex, 1);
+                        this.axios.delete(`/survey/questions/delete/${surveyId}/${questionId}`)
+                            .then((res) => {
+                                // delete question from array
+                                this.questions.splice(questionIndex, 1);
 
-                        this.$toasted.show(res.data.message);
-                    })
-                    .catch((err) => {
-                        this.$toasted.show('Forbidden');
-                    });
+                                this.$toasted.show(res.data.message);
+                            })
+                            .catch((err) => {
+                                this.$toasted.show('Forbidden');
+                            });
+                    }
+                });
             },
             addItem(item) {
                 this.questions.push(item);
