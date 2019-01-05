@@ -36504,6 +36504,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.answers.pop();
             }
         },
+        clearInputs: function clearInputs() {
+            this.questionTitle = '';
+            this.answers = [{ text: '' }];
+        },
 
 
         // Store question and answers
@@ -36520,6 +36524,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (res) {
                 _this2.$toasted.show(res.data.message);
                 _this2.$refs.questions.addItem(res.data.question);
+                _this2.clearInputs();
             }).catch(function (err) {
                 _this2.$toasted.show('Error');
             });

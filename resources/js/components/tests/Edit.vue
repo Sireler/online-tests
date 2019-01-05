@@ -160,6 +160,10 @@ export default {
                 this.answers.pop();
             }
         },
+        clearInputs() {
+            this.questionTitle = '';
+            this.answers = [{text: ''}];
+        },
 
         // Store question and answers
         storeAll() {
@@ -173,6 +177,7 @@ export default {
             }).then((res) => {
                 this.$toasted.show(res.data.message);
                 this.$refs.questions.addItem(res.data.question);
+                this.clearInputs();
             }).catch((err) => {
                 this.$toasted.show('Error');
             });
