@@ -55,14 +55,20 @@ export default {
                 });
         },
         deleteSurvey(id, index) {
-            this.axios.delete(`/survey/delete/${id}`)
-                .then((res) => {
-                    this.surveysTable.splice(index, 1);
-                    this.$toasted.show(res.data.message);
-                })
-                .catch((err) => {
-                    this.$toasted.show('Forbidden');
-                });
+            this.$dialogs.confirm('Are you sure you want to delete a survey?', {
+                title: 'Delete survey', okLabel: 'Delete'
+            }).then(res => {
+                if (res.ok) {
+                    this.axios.delete(`/survey/delete/${id}`)
+                        .then((res) => {
+                            this.surveysTable.splice(index, 1);
+                            this.$toasted.show(res.data.message);
+                        })
+                        .catch((err) => {
+                            this.$toasted.show('Forbidden');
+                        });
+                }
+            });
         },
         editSurvey(id) {
             this.$router.push({ path: `/tests/edit/${id}` });

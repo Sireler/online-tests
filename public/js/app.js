@@ -35433,11 +35433,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteSurvey: function deleteSurvey(id, index) {
             var _this2 = this;
 
-            this.axios.delete('/survey/delete/' + id).then(function (res) {
-                _this2.surveysTable.splice(index, 1);
-                _this2.$toasted.show(res.data.message);
-            }).catch(function (err) {
-                _this2.$toasted.show('Forbidden');
+            this.$dialogs.confirm('Are you sure you want to delete a survey?', {
+                title: 'Delete survey', okLabel: 'Delete'
+            }).then(function (res) {
+                if (res.ok) {
+                    _this2.axios.delete('/survey/delete/' + id).then(function (res) {
+                        _this2.surveysTable.splice(index, 1);
+                        _this2.$toasted.show(res.data.message);
+                    }).catch(function (err) {
+                        _this2.$toasted.show('Forbidden');
+                    });
+                }
             });
         },
         editSurvey: function editSurvey(id) {
