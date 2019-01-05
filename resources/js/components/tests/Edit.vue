@@ -49,7 +49,8 @@
                             <div class="col-md-6">
                                 <div class="form-group inline">
                                     <label for="type">Type:</label>
-                                    <select @change="generateByType" class="form-control" id="type">
+                                    <select class="form-control" id="type"
+                                            @change="generateByType">
                                         <option value="radio">Multiple choice</option>
                                         <option value="checkbox">Checkboxes</option>
                                     </select>
@@ -127,6 +128,7 @@ export default {
             this.editFields = false;
             this.title = this.stTitle;
         },
+        // Update survey
         save() {
             let id = this.$route.params.id;
 
@@ -141,7 +143,7 @@ export default {
                 this.$toasted.show('Error');
             });
         },
-
+        // Change type of question
         generateByType(e) {
             let select = e.target;
 

@@ -19,7 +19,8 @@
                  v-for="(question, i) in questions">
                 <div class="card-header" :id="`heading${i}`">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" :data-target="`#collapse${i}`" aria-expanded="true" :aria-controls="`collapse${i}`">
+                        <button class="btn btn-link" data-toggle="collapse" :data-target="`#collapse${i}`"
+                                aria-expanded="true" :aria-controls="`collapse${i}`">
                             {{ question.title }}
                         </button>
                         <span class="oi oi-circle-x float-right" title="delete question" aria-hidden="true"
@@ -27,7 +28,8 @@
                     </h5>
                 </div>
 
-                <div :id="`collapse${i}`" :class="`collapse ${i === 0 ? 'show' : ''}`" :aria-labelledby="`heading${i}`" data-parent="#accordion">
+                <div :id="`collapse${i}`" :class="`collapse ${i === 0 ? 'show' : ''}`"
+                     :aria-labelledby="`heading${i}`" data-parent="#accordion">
                     <div class="card-body">
                         <table class="table table-bordered">
                             <caption>Answers</caption>

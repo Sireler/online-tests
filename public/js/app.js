@@ -36437,6 +36437,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -36470,6 +36471,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.editFields = false;
             this.title = this.stTitle;
         },
+
+        // Update survey
         save: function save() {
             var _this = this;
 
@@ -36486,6 +36489,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.$toasted.show('Error');
             });
         },
+
+        // Change type of question
         generateByType: function generateByType(e) {
             var select = e.target;
 
@@ -36591,6 +36596,8 @@ exports.push([module.i, "\n.oi[data-v-a84fb7b4] {\r\n    font-size: 1.15em;\n}\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
