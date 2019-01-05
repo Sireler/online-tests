@@ -92,9 +92,10 @@
                 </div>
             </div>
         </div>
-
+        <hr>
         <!--list of questions and answers-->
-        <edit-questions @editQuestion="setEditMode" class="edit-questions" ref="questions"></edit-questions>
+        <edit-questions @editQuestion="setEditMode" class="edit-questions" ref="questions"
+                        v-if="editModeText != 'Editing a question'"></edit-questions>
 
     </div>
 </template>
@@ -115,6 +116,7 @@ export default {
             editModeText: 'Create a question',
 
             questionTitle: '',
+            tempQuestion: {},
 
             inputsType: 'radio',
             answers: [{text: ''}],
@@ -123,6 +125,7 @@ export default {
     },
     methods: {
         setEditMode(question) {
+            this.tempQuestion = question;
             this.answers = question.answers;
             this.questionTitle = question.title;
             this.inputsType = question.type;
@@ -193,7 +196,15 @@ export default {
             });
         },
         updateQuestion() {
-            console.log(this.answers);
+            this.axios.post(`/survey/answers/update/${this.tempQuestion.id}`, {
+                'answers': this.answers
+            }).then((res) => {
+                this.$toasted.show(res.data.message);
+                this.cancelEditMode();
+                this.clearInputs();
+            }).catch((err) => {
+                this.$toasted.show('Error');
+            });
         }
     },
     beforeCreate() {

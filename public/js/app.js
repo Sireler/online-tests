@@ -36443,6 +36443,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -36459,6 +36460,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             editModeText: 'Create a question',
 
             questionTitle: '',
+            tempQuestion: {},
 
             inputsType: 'radio',
             answers: [{ text: '' }],
@@ -36468,6 +36470,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         setEditMode: function setEditMode(question) {
+            this.tempQuestion = question;
             this.answers = question.answers;
             this.questionTitle = question.title;
             this.inputsType = question.type;
@@ -36544,18 +36547,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         updateQuestion: function updateQuestion() {
-            console.log(this.answers);
+            var _this3 = this;
+
+            this.axios.post('/survey/answers/update/' + this.tempQuestion.id, {
+                'answers': this.answers
+            }).then(function (res) {
+                _this3.$toasted.show(res.data.message);
+                _this3.cancelEditMode();
+                _this3.clearInputs();
+            }).catch(function (err) {
+                _this3.$toasted.show('Error');
+            });
         }
     },
     beforeCreate: function beforeCreate() {
-        var _this3 = this;
+        var _this4 = this;
 
         // Get info about survey
         this.axios.get('/survey/get/' + this.$route.params.id).then(function (res) {
-            _this3.title = _this3.stTitle = res.data.survey[0].title;
+            _this4.title = _this4.stTitle = res.data.survey[0].title;
         }).catch(function (err) {
-            _this3.$toasted.show('Forbidden');
-            _this3.$router.push({ path: '/tests' });
+            _this4.$toasted.show('Forbidden');
+            _this4.$router.push({ path: '/tests' });
         });
     }
 });
@@ -37213,11 +37226,15 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("edit-questions", {
-        ref: "questions",
-        staticClass: "edit-questions",
-        on: { editQuestion: _vm.setEditMode }
-      })
+      _c("hr"),
+      _vm._v(" "),
+      _vm.editModeText != "Editing a question"
+        ? _c("edit-questions", {
+            ref: "questions",
+            staticClass: "edit-questions",
+            on: { editQuestion: _vm.setEditMode }
+          })
+        : _vm._e()
     ],
     1
   )
