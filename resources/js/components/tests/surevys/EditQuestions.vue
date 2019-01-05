@@ -22,9 +22,12 @@
                         <button class="btn btn-link" data-toggle="collapse" :data-target="`#collapse${i}`"
                                 aria-expanded="true" :aria-controls="`collapse${i}`">
                             {{ question.title }}
+                            <span class="oi oi-arrow-bottom ml-2"></span>
                         </button>
                         <span class="oi oi-circle-x float-right" title="delete question" aria-hidden="true"
                               @click="questionDelete(i, question.id)"></span>
+                        <span class="oi oi-wrench float-right mr-2" title="edit question" aria-hidden="true"
+                              @click="questionEdit(i, question)" ></span>
                     </h5>
                 </div>
 
@@ -41,8 +44,10 @@
                             <tr v-for="(answer, ai) in question.answers">
                                 <td>{{ ai + 1 }}</td>
                                 <td>{{ answer.text }}</td>
-                                <td><span class="oi oi-delete" title="delete answer" aria-hidden="true"
-                                     @click="answerDelete(i, ai, answer.id)"></span></td>
+                                <td>
+                                    <span class="oi oi-delete" title="delete answer" aria-hidden="true"
+                                     @click="answerDelete(i, ai, answer.id)"></span>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -102,6 +107,10 @@
                     }
                 });
             },
+            questionEdit(questionIndex, question) {
+                this.$emit('editQuestion', question);
+            },
+
             addItem(item) {
                 this.questions.push(item);
             }
@@ -132,5 +141,8 @@
 }
 .oi-wrench {
     color: #29ab0f;
+}
+.oi-arrow-bottom {
+    font-size: 0.9em;
 }
 </style>

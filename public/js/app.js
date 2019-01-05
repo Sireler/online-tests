@@ -36438,6 +36438,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -36451,19 +36456,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             title: '',
             stTitle: '',
             editFields: false,
+            editModeText: 'Create a question',
 
             questionTitle: '',
 
-            type: 'Multiple choice',
             inputsType: 'radio',
-            answers: [{
-                text: ''
-            }],
+            answers: [{ text: '' }],
             maxAnswers: 10
         };
     },
 
     methods: {
+        setEditMode: function setEditMode(question) {
+            this.answers = question.answers;
+            this.questionTitle = question.title;
+            this.inputsType = question.type;
+            this.editModeText = 'Editing a question';
+        },
+        cancelEditMode: function cancelEditMode() {
+            this.clearInputs();
+            this.editModeText = 'Create a question';
+        },
         edit: function edit() {
             this.editFields = true;
         },
@@ -36471,15 +36484,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.editFields = false;
             this.title = this.stTitle;
         },
+        handleSave: function handleSave() {
+            if (this.editModeText == 'Create a question') {
+                this.storeAll();
+            } else {
+                this.updateQuestion();
+            }
+        },
 
         // Update survey
         save: function save() {
             var _this = this;
 
-            var id = this.$route.params.id;
-
-            // Update survey fields
-            this.axios.patch('/survey/update/' + id, {
+            this.axios.patch('/survey/update/' + this.id, {
                 'title': this.title
             }).then(function (res) {
                 _this.$toasted.show(res.data.message);
@@ -36488,14 +36505,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 _this.$toasted.show('Error');
             });
-        },
-
-        // Change type of question
-        generateByType: function generateByType(e) {
-            var select = e.target;
-
-            this.type = select.value;
-            this.inputsType = select.options[select.selectedIndex].value;
         },
         addAnswer: function addAnswer() {
             if (this.answers.length < this.maxAnswers) {
@@ -36520,7 +36529,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             this.axios.post('/survey/questions/create', {
-                'survey_id': this.$route.params.id,
+                'survey_id': this.id,
                 'question': {
                     title: this.questionTitle,
                     type: this.inputsType
@@ -36533,15 +36542,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 _this2.$toasted.show('Error');
             });
+        },
+        updateQuestion: function updateQuestion() {
+            console.log(this.answers);
         }
     },
     beforeCreate: function beforeCreate() {
         var _this3 = this;
 
-        var id = this.$route.params.id;
-
         // Get info about survey
-        this.axios.get('/survey/get/' + id).then(function (res) {
+        this.axios.get('/survey/get/' + this.$route.params.id).then(function (res) {
             _this3.title = _this3.stTitle = res.data.survey[0].title;
         }).catch(function (err) {
             _this3.$toasted.show('Forbidden');
@@ -36585,7 +36595,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.oi[data-v-a84fb7b4] {\r\n    font-size: 1.15em;\n}\n.oi-circle-x[data-v-a84fb7b4] {\r\n    color: #ff0000;\n}\n.oi-wrench[data-v-a84fb7b4] {\r\n    color: #29ab0f;\n}\r\n", ""]);
+exports.push([module.i, "\n.oi[data-v-a84fb7b4] {\r\n    font-size: 1.15em;\n}\n.oi-circle-x[data-v-a84fb7b4] {\r\n    color: #ff0000;\n}\n.oi-wrench[data-v-a84fb7b4] {\r\n    color: #29ab0f;\n}\n.oi-arrow-bottom[data-v-a84fb7b4] {\r\n    font-size: 0.9em;\n}\r\n", ""]);
 
 // exports
 
@@ -36596,6 +36606,11 @@ exports.push([module.i, "\n.oi[data-v-a84fb7b4] {\r\n    font-size: 1.15em;\n}\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -36701,6 +36716,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
         },
+        questionEdit: function questionEdit(questionIndex, question) {
+            this.$emit('editQuestion', question);
+        },
         addItem: function addItem(item) {
             this.questions.push(item);
         }
@@ -36775,8 +36793,9 @@ var render = function() {
                     _vm._v(
                       "\n                        " +
                         _vm._s(question.title) +
-                        "\n                    "
-                    )
+                        "\n                        "
+                    ),
+                    _c("span", { staticClass: "oi oi-arrow-bottom ml-2" })
                   ]
                 ),
                 _vm._v(" "),
@@ -36786,6 +36805,16 @@ var render = function() {
                   on: {
                     click: function($event) {
                       _vm.questionDelete(i, question.id)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "oi oi-wrench float-right mr-2",
+                  attrs: { title: "edit question", "aria-hidden": "true" },
+                  on: {
+                    click: function($event) {
+                      _vm.questionEdit(i, question)
                     }
                   }
                 })
@@ -37003,7 +37032,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "jumbotron" }, [
-        _c("h3", [_vm._v("Create question")]),
+        _c("h3", [_vm._v(_vm._s(_vm.editModeText))]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
@@ -37050,9 +37079,31 @@ var render = function() {
                     _c(
                       "select",
                       {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.inputsType,
+                            expression: "inputsType"
+                          }
+                        ],
                         staticClass: "form-control",
                         attrs: { id: "type" },
-                        on: { change: _vm.generateByType }
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.inputsType = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
                       },
                       [
                         _c("option", { attrs: { value: "radio" } }, [
@@ -37114,11 +37165,29 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12 mb-3" }, [
             _c("div", { staticClass: "d-flex justify-content-between" }, [
-              _c(
-                "button",
-                { staticClass: "btn btn-success", on: { click: _vm.storeAll } },
-                [_vm._v("Save")]
-              ),
+              _c("div", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: { click: _vm.handleSave }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Save\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    on: { click: _vm.cancelEditMode }
+                  },
+                  [_vm._v("Cancel")]
+                )
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "btn-group" }, [
                 _c(
@@ -37144,7 +37213,11 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("edit-questions", { ref: "questions", staticClass: "edit-questions" })
+      _c("edit-questions", {
+        ref: "questions",
+        staticClass: "edit-questions",
+        on: { editQuestion: _vm.setEditMode }
+      })
     ],
     1
   )

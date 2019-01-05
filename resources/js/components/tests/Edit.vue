@@ -34,7 +34,7 @@
         </div>
 
         <div class="jumbotron">
-            <h3>Create question</h3>
+            <h3>{{ editModeText }}</h3>
             <div class="row">
                 <div class="col-md-12">
                     <div class="create-question">
@@ -50,7 +50,7 @@
                                 <div class="form-group inline">
                                     <label for="type">Type:</label>
                                     <select class="form-control" id="type"
-                                            @change="generateByType">
+                                            v-model="inputsType">
                                         <option value="radio">Multiple choice</option>
                                         <option value="checkbox">Checkboxes</option>
                                     </select>
@@ -78,7 +78,12 @@
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <div class="d-flex justify-content-between">
-                        <button @click="storeAll" class="btn btn-success">Save</button>
+                        <div>
+                            <button @click="handleSave" class="btn btn-success">
+                                Save
+                            </button>
+                            <button @click="cancelEditMode" class="btn btn-secondary">Cancel</button>
+                        </div>
                         <div class="btn-group">
                             <button @click="addAnswer" class="btn btn-success">+</button>
                             <button @click="removeAnswer" class="btn btn-danger">-</button>
@@ -89,7 +94,7 @@
         </div>
 
         <!--list of questions and answers-->
-        <edit-questions class="edit-questions" ref="questions"></edit-questions>
+        <edit-questions @editQuestion="setEditMode" class="edit-questions" ref="questions"></edit-questions>
 
     </div>
 </template>
@@ -107,20 +112,26 @@ export default {
             title: '',
             stTitle: '',
             editFields: false,
+            editModeText: 'Create a question',
 
             questionTitle: '',
 
-            type: 'Multiple choice',
             inputsType: 'radio',
-            answers: [
-                {
-                    text: ''
-                }
-            ],
+            answers: [{text: ''}],
             maxAnswers: 10
         }
     },
     methods: {
+        setEditMode(question) {
+            this.answers = question.answers;
+            this.questionTitle = question.title;
+            this.inputsType = question.type;
+            this.editModeText = 'Editing a question';
+        },
+        cancelEditMode() {
+            this.clearInputs();
+            this.editModeText = 'Create a question';
+        },
         edit() {
             this.editFields = true;
         },
@@ -128,12 +139,16 @@ export default {
             this.editFields = false;
             this.title = this.stTitle;
         },
+        handleSave() {
+            if (this.editModeText == 'Create a question') {
+                this.storeAll();
+            } else {
+                this.updateQuestion();
+            }
+        },
         // Update survey
         save() {
-            let id = this.$route.params.id;
-
-            // Update survey fields
-            this.axios.patch(`/survey/update/${id}`, {
+            this.axios.patch(`/survey/update/${this.id}`, {
                 'title': this.title
             }).then((res) => {
                 this.$toasted.show(res.data.message);
@@ -142,13 +157,6 @@ export default {
             }).catch((err) => {
                 this.$toasted.show('Error');
             });
-        },
-        // Change type of question
-        generateByType(e) {
-            let select = e.target;
-
-            this.type = select.value;
-            this.inputsType = select.options[select.selectedIndex].value;
         },
         addAnswer() {
             if (this.answers.length < this.maxAnswers) {
@@ -170,7 +178,7 @@ export default {
         // Store question and answers
         storeAll() {
             this.axios.post(`/survey/questions/create`, {
-                'survey_id': this.$route.params.id,
+                'survey_id': this.id,
                 'question': {
                     title: this.questionTitle,
                     type: this.inputsType
@@ -183,13 +191,14 @@ export default {
             }).catch((err) => {
                 this.$toasted.show('Error');
             });
+        },
+        updateQuestion() {
+            console.log(this.answers);
         }
     },
     beforeCreate() {
-        let id = this.$route.params.id;
-
         // Get info about survey
-        this.axios.get(`/survey/get/${id}`)
+        this.axios.get(`/survey/get/${this.$route.params.id}`)
             .then((res) => {
                 this.title = this.stTitle = res.data.survey[0].title;
             })
@@ -197,7 +206,7 @@ export default {
                 this.$toasted.show('Forbidden');
                 this.$router.push({ path: '/tests' });
             });
-    }
+    },
 }
 </script>
 
