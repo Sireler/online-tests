@@ -27,7 +27,7 @@
                     </h5>
                 </div>
 
-                <div :id="`collapse${i}`" class="collapse" :aria-labelledby="`heading${i}`" data-parent="#accordion">
+                <div :id="`collapse${i}`" :class="`collapse ${i === 0 ? 'show' : ''}`" :aria-labelledby="`heading${i}`" data-parent="#accordion">
                     <div class="card-body">
                         <table class="table table-bordered">
                             <caption>Answers</caption>

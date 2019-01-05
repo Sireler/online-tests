@@ -36789,7 +36789,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "collapse",
+              class: "collapse " + (i === 0 ? "show" : ""),
               attrs: {
                 id: "collapse" + i,
                 "aria-labelledby": "heading" + i,
