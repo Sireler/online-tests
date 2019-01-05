@@ -54,16 +54,48 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Survey');
     }
 
+    /**
+     * Check user access to survey
+     *
+     * @param $id
+     * @return bool
+     */
     public function hasSurvey($id)
     {
-        $surveys = $this->surveys;
+        $survey = $this->surveys()->where('id', '=', $id)->get();
 
-        foreach ($surveys as $survey) {
-            if ($survey->id == $id) {
-                return true;
-            }
-        }
+        return $survey->isNotEmpty();
+    }
 
-        return false;
+    /**
+     * Check user access to question
+     *
+     * @param $id
+     * @return bool
+     */
+    public function hasQuestion($id)
+    {
+        $question = $this->surveys()->whereHas('questions', function($query) use($id) {
+            $query->where('id', '=', $id);
+        })->get();
+
+        return $question->isNotEmpty();
+    }
+
+    /**
+     * Check user access to answer
+     *
+     * @param $id
+     * @return bool
+     */
+    public function hasAnswer($id)
+    {
+        $answer = $this->surveys()->whereHas('questions', function($query) use($id) {
+            $query->whereHas('answers', function($q) use ($id) {
+                $q->where('id', '=', $id);
+            });
+        })->get();
+
+        return $answer->isNotEmpty();
     }
 }
