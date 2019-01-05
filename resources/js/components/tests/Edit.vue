@@ -76,9 +76,13 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <button @click="storeAll" class="btn btn-success right">Save</button>
-                    <button @click="addAnswer" class="btn btn-secondary">+</button>
-                    <button @click="removeAnswer" class="btn btn-danger">-</button>
+                    <div class="d-flex justify-content-between">
+                        <button @click="storeAll" class="btn btn-success">Save</button>
+                        <div class="btn-group">
+                            <button @click="addAnswer" class="btn btn-success">+</button>
+                            <button @click="removeAnswer" class="btn btn-danger">-</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

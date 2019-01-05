@@ -36416,6 +36416,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -37068,32 +37072,33 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12 mb-3" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success right",
-                on: { click: _vm.storeAll }
-              },
-              [_vm._v("Save")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-secondary",
-                on: { click: _vm.addAnswer }
-              },
-              [_vm._v("+")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger",
-                on: { click: _vm.removeAnswer }
-              },
-              [_vm._v("-")]
-            )
+            _c("div", { staticClass: "d-flex justify-content-between" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-success", on: { click: _vm.storeAll } },
+                [_vm._v("Save")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "btn-group" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: { click: _vm.addAnswer }
+                  },
+                  [_vm._v("+")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: { click: _vm.removeAnswer }
+                  },
+                  [_vm._v("-")]
+                )
+              ])
+            ])
           ])
         ])
       ]),
