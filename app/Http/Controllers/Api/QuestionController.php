@@ -35,11 +35,13 @@ class QuestionController extends Controller
                 $question = $survey->questions()->create($data['question']);
 
                 $answers = $data['answers'];
-
                 $question->answers()->createMany($answers);
+
+                $question->load('answers');
 
                 return response()->json([
                     'status' => true,
+                    'question' => $question,
                     'message' => 'Successful creation'
                 ], 201);
             } catch (\Exception $e) {
@@ -67,7 +69,7 @@ class QuestionController extends Controller
         $user = $request->user();
 
         if ($user->hasSurvey($id)) {
-            $survey = Survey::findOrFail($id)->with('questions.answers')->first();
+            $survey = Survey::where('id', '=', $id)->with('questions.answers')->first();
 
             return response()->json($survey);
         } else {

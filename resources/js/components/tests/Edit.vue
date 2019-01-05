@@ -83,7 +83,8 @@
             </div>
         </div>
 
-        <edit-questions class="edit-questions"></edit-questions>
+        <!--list of questions and answers-->
+        <edit-questions class="edit-questions" ref="questions"></edit-questions>
 
     </div>
 </template>
@@ -156,6 +157,7 @@ export default {
             }
         },
 
+        // Store question and answers
         storeAll() {
             this.axios.post(`/survey/questions/create`, {
                 'survey_id': this.$route.params.id,
@@ -166,6 +168,7 @@ export default {
                 'answers': this.answers
             }).then((res) => {
                 this.$toasted.show(res.data.message);
+                this.$refs.questions.addItem(res.data.question);
             }).catch((err) => {
                 this.$toasted.show('Error');
             });

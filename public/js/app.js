@@ -36415,6 +36415,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -36482,6 +36483,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.answers.pop();
             }
         },
+
+
+        // Store question and answers
         storeAll: function storeAll() {
             var _this2 = this;
 
@@ -36494,6 +36498,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'answers': this.answers
             }).then(function (res) {
                 _this2.$toasted.show(res.data.message);
+                _this2.$refs.questions.addItem(res.data.question);
             }).catch(function (err) {
                 _this2.$toasted.show('Error');
             });
@@ -36650,6 +36655,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 _this2.$toasted.show('Forbidden');
             });
+        },
+        addItem: function addItem(item) {
+            this.questions.push(item);
         }
     },
     beforeCreate: function beforeCreate() {
@@ -37090,7 +37098,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("edit-questions", { staticClass: "edit-questions" })
+      _c("edit-questions", { ref: "questions", staticClass: "edit-questions" })
     ],
     1
   )

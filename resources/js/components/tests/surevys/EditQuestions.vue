@@ -87,6 +87,9 @@
                     .catch((err) => {
                         this.$toasted.show('Forbidden');
                     });
+            },
+            addItem(item) {
+                this.questions.push(item);
             }
         },
         beforeCreate() {
