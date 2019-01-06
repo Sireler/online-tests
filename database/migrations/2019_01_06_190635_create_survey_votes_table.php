@@ -17,11 +17,14 @@ class CreateSurveyVotesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('survey_id');
             $table->unsignedInteger('survey_question_id');
+            $table->unsignedInteger('survey_answer_id');
             $table->foreign('survey_id')
                 ->references('id')->on('surveys');
             $table->foreign('survey_question_id')
                 ->references('id')->on('survey_questions');
-            $table->ipAddress('visitor');
+            $table->foreign('survey_answer_id')
+                ->references('id')->on('survey_answers');
+            $table->ipAddress('ip');
             $table->string('userAgent');
             $table->timestamps();
         });
