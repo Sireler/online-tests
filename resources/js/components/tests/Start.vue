@@ -1,22 +1,22 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="survey != null">
         <div class="alert alert-info">
-            <h4>Test name: {{ test.title }}</h4>
+            <h4>Survey name: {{ survey.title }}</h4>
             <hr>
             <p>Question {{ current + 1 }} of {{ questionsCount }}</p>
         </div>
-        <div class="card card-info">
-            <div class="card-header">
-                {{ test.questions[current].title }}
+        <div class="card border-secondary ">
+            <div class="card-header bg-primary text-white">
+                Question: {{ survey.questions[current].title }}
             </div>
             <div class="card-body">
-                <div class="form-group" v-for="(answer, i) in test.questions[current].answers">
-                    <input :value="i"
+                <div class="form-group" v-for="(answer, i) in survey.questions[current].answers">
+                    <input :value="answer.id"
                            v-model="selectedAnswer"
                            type="radio"
                            :id="'a' + i">
                     <label :for="'a' + i">
-                        {{ letters[i] }}) {{ answer }}
+                        {{ i + 1 }}) {{ answer.text }}
                     </label>
                 </div>
             </div>
@@ -33,38 +33,29 @@ export default {
     props: ['id'],
     data() {
         return {
-            test: {
-                title: "Test 1",
-                questions: {
-                    0: {
-                        answers: {
-                            0: "answer 11",
-                            1: "answer 12",
-                            2: "answer 13",
-                            3: "answer 14"
-                        },
-                        correctIndex: 2,
-                        title: "Quest 1"
-                    },
-                    1: {
-                        answers: {
-                            0: "answer 21",
-                            1: "answer 22",
-                            2: "answer 23",
-                            3: "answer 24"
-                        },
-                        correctIndex: 1,
-                        title: "Quest 2"
-                    },
-                },
-            },
+            survey: null,
             current: 0,
             selectedAnswer: 0,
-            letters: ['A', 'B', 'C', 'D']
+            userAnswers: []
         }
     },
     methods: {
+        loadSurvey() {
+            this.$parent.showLoading();
+            this.axios.get(`/survey/start/${this.$route.params.id}`)
+                .then((res) => {
+                    this.$parent.hideLoading();
+                    this.survey = res.data.survey;
+                })
+                .catch((err) => {
+                    this.$router.push({ path: `/home` });
+                    this.hideLoading();
+                    this.$toasted.show('Request error');
+                });
+        },
         nextQuestion(e) {
+            this.userAnswers[this.current] = this.selectedAnswer;
+
             if (this.questionsCount == (this.current + 2)) {
                 e.target.innerHTML = 'Finish';
             }
@@ -73,17 +64,21 @@ export default {
                 this.submit();
                 return;
             }
+
             this.selectedAnswer = 0;
             this.current++;
         },
         submit() {
-            console.log('1');
-        }
+            console.log(this.userAnswers);
+        },
     },
     computed: {
         questionsCount() {
-            return Object.keys(this.test.questions).length;
+            return Object.keys(this.survey.questions).length;
         }
+    },
+    mounted() {
+        this.loadSurvey();
     }
 }
 </script>

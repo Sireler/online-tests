@@ -34210,7 +34210,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.cards .card[data-v-1f26c2f4] {\r\n    float: left;\r\n    width: 95%;\n}\n.cards .cards-row[data-v-1f26c2f4] {\r\n    margin-bottom: 20px;\n}\r\n", ""]);
+exports.push([module.i, "\n.cards .card[data-v-1f26c2f4] {\r\n    float: left;\r\n    width: 95%;\n}\n.cards .cards-row[data-v-1f26c2f4] {\r\n    margin-bottom: 20px;\r\n    color: #000;\n}\r\n", ""]);
 
 // exports
 
@@ -34285,7 +34285,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "jumbotron" }, [
+    _c("div", { staticClass: "jumbotron bg-primary text-white" }, [
       _c("h1", { staticClass: "display-4" }, [_vm._v("Surveys")]),
       _vm._v(" "),
       _c("p", { staticClass: "lead" }, [_vm._v("List of your surveys")]),
@@ -36121,39 +36121,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['id'],
     data: function data() {
         return {
-            test: {
-                title: "Test 1",
-                questions: {
-                    0: {
-                        answers: {
-                            0: "answer 11",
-                            1: "answer 12",
-                            2: "answer 13",
-                            3: "answer 14"
-                        },
-                        correctIndex: 2,
-                        title: "Quest 1"
-                    },
-                    1: {
-                        answers: {
-                            0: "answer 21",
-                            1: "answer 22",
-                            2: "answer 23",
-                            3: "answer 24"
-                        },
-                        correctIndex: 1,
-                        title: "Quest 2"
-                    }
-                }
-            },
+            survey: null,
             current: 0,
             selectedAnswer: 0,
-            letters: ['A', 'B', 'C', 'D']
+            userAnswers: []
         };
     },
 
     methods: {
+        loadSurvey: function loadSurvey() {
+            var _this = this;
+
+            this.$parent.showLoading();
+            this.axios.get('/survey/start/' + this.$route.params.id).then(function (res) {
+                _this.$parent.hideLoading();
+                _this.survey = res.data.survey;
+            }).catch(function (err) {
+                _this.$router.push({ path: '/home' });
+                _this.hideLoading();
+                _this.$toasted.show('Request error');
+            });
+        },
         nextQuestion: function nextQuestion(e) {
+            this.userAnswers[this.current] = this.selectedAnswer;
+
             if (this.questionsCount == this.current + 2) {
                 e.target.innerHTML = 'Finish';
             }
@@ -36162,17 +36153,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.submit();
                 return;
             }
+
             this.selectedAnswer = 0;
             this.current++;
         },
         submit: function submit() {
-            console.log('1');
+            console.log(this.userAnswers);
         }
     },
     computed: {
         questionsCount: function questionsCount() {
-            return Object.keys(this.test.questions).length;
+            return Object.keys(this.survey.questions).length;
         }
+    },
+    mounted: function mounted() {
+        this.loadSurvey();
     }
 });
 
@@ -36184,77 +36179,85 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "alert alert-info" }, [
-      _c("h4", [_vm._v("Test name: " + _vm._s(_vm.test.title))]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Question " +
-            _vm._s(_vm.current + 1) +
-            " of " +
-            _vm._s(_vm.questionsCount)
+  return _vm.survey != null
+    ? _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "alert alert-info" }, [
+          _c("h4", [_vm._v("Survey name: " + _vm._s(_vm.survey.title))]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Question " +
+                _vm._s(_vm.current + 1) +
+                " of " +
+                _vm._s(_vm.questionsCount)
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card border-secondary " }, [
+          _c("div", { staticClass: "card-header bg-primary text-white" }, [
+            _vm._v(
+              "\n            Question: " +
+                _vm._s(_vm.survey.questions[_vm.current].title) +
+                "\n        "
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            _vm._l(_vm.survey.questions[_vm.current].answers, function(
+              answer,
+              i
+            ) {
+              return _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectedAnswer,
+                      expression: "selectedAnswer"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "a" + i },
+                  domProps: {
+                    value: answer.id,
+                    checked: _vm._q(_vm.selectedAnswer, answer.id)
+                  },
+                  on: {
+                    change: function($event) {
+                      _vm.selectedAnswer = answer.id
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "a" + i } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(i + 1) +
+                      ") " +
+                      _vm._s(answer.text) +
+                      "\n                "
+                  )
+                ])
+              ])
+            })
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-next btn-outline-primary",
+            on: { click: _vm.nextQuestion }
+          },
+          [_vm._v("\n        Next\n    ")]
         )
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card card-info" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v(
-          "\n            " +
-            _vm._s(_vm.test.questions[_vm.current].title) +
-            "\n        "
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "card-body" },
-        _vm._l(_vm.test.questions[_vm.current].answers, function(answer, i) {
-          return _c("div", { staticClass: "form-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.selectedAnswer,
-                  expression: "selectedAnswer"
-                }
-              ],
-              attrs: { type: "radio", id: "a" + i },
-              domProps: { value: i, checked: _vm._q(_vm.selectedAnswer, i) },
-              on: {
-                change: function($event) {
-                  _vm.selectedAnswer = i
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "a" + i } }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.letters[i]) +
-                  ") " +
-                  _vm._s(answer) +
-                  "\n                "
-              )
-            ])
-          ])
-        })
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-next btn-outline-primary",
-        on: { click: _vm.nextQuestion }
-      },
-      [_vm._v("\n        Next\n    ")]
-    )
-  ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

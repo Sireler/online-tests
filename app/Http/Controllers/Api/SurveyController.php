@@ -11,7 +11,7 @@ class SurveyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('start');
     }
 
     public function index()
@@ -35,6 +35,29 @@ class SurveyController extends Controller
         return response()->json([
             'surveys' => $user->surveys()->has('questions')->get()
         ]);
+    }
+
+    /**
+     * Get survey with answers
+     *
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function start(int $id)
+    {
+        $survey = Survey::where('id', '=', $id)->with('questions.answers')->first();
+
+        if ($survey) {
+            return response()->json([
+                'status' => true,
+                'survey' => $survey
+            ]);
+        } else {
+            return response()->json([
+                 'status' => false,
+                'message' => 'Not found'
+            ], 404);
+        }
     }
 
     /**

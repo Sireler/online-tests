@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron bg-primary text-white">
             <h1 class="display-4">Surveys</h1>
             <p class="lead">List of your surveys</p>
             <hr class="my-4">
@@ -58,8 +58,8 @@ export default {
     float: left;
     width: 95%;
 }
-
 .cards .cards-row {
     margin-bottom: 20px;
+    color: #000;
 }
 </style>
