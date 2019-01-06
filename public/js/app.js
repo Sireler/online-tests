@@ -35408,6 +35408,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -35465,7 +35469,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
-      _vm.surveysTable !== null
+      _vm.surveysTable.length > 0
         ? _c("table", { staticClass: "table table-bordered" }, [
             _vm._m(0),
             _vm._v(" "),
@@ -35506,6 +35510,12 @@ var render = function() {
           ])
         : _vm._e()
     ]),
+    _vm._v(" "),
+    _vm.surveysTable.length <= 0
+      ? _c("div", { staticClass: "alert alert-info" }, [
+          _vm._v("\n        You have no surveys\n    ")
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c(

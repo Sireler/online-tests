@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <table v-if="surveysTable !== null" class="table table-bordered">
+            <table v-if="surveysTable.length > 0" class="table table-bordered">
                 <thead>
                     <tr class="table-thead">
                         <th>TITLE</th>
@@ -24,6 +24,10 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="alert alert-info"
+             v-if="surveysTable.length <= 0">
+            You have no surveys
         </div>
         <div class="row">
             <div class="btn-group" role="group">
