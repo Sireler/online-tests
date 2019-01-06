@@ -45,6 +45,7 @@ Route::namespace('Api')->group(function () {
         Route::delete('delete/{id}', 'SurveyController@delete');
         Route::get('get/{id}', 'SurveyController@get');
         Route::patch('update/{id}', 'SurveyController@update');
+        Route::get('home', 'SurveyController@home');
 
         Route::post('questions/create', 'QuestionController@store');
         Route::get('questions/index', 'QuestionController@index');

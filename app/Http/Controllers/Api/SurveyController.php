@@ -24,6 +24,20 @@ class SurveyController extends Controller
     }
 
     /**
+     * Surveys that have at least one question.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function home()
+    {
+        $user = $this->guard()->user();
+
+        return response()->json([
+            'surveys' => $user->surveys()->has('questions')->get()
+        ]);
+    }
+
+    /**
      * Store a new survey
      *
      * @param Request $request

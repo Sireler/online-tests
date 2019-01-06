@@ -34248,13 +34248,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            surveysTable: []
+        };
+    },
+
+    methods: {
+        loadSurveys: function loadSurveys() {
+            var _this = this;
+
+            this.$parent.showLoading();
+            this.axios.get('/survey/home').then(function (res) {
+                _this.surveysTable = res.data.surveys;
+                _this.$parent.hideLoading();
+            }).catch(function (err) {
+                _this.$router.push({ path: '/' });
+                _this.$toasted.show('Request error');
+                window.location.reload();
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.loadSurveys();
+    }
+});
 
 /***/ }),
 /* 71 */
@@ -34268,66 +34288,59 @@ var render = function() {
     _c("div", { staticClass: "jumbotron" }, [
       _c("h1", { staticClass: "display-4" }, [_vm._v("Surveys")]),
       _vm._v(" "),
-      _c("p", { staticClass: "lead" }, [_vm._v("List of surveys")]),
+      _c("p", { staticClass: "lead" }, [_vm._v("List of your surveys")]),
       _vm._v(" "),
       _c("hr", { staticClass: "my-4" }),
       _vm._v(" "),
       _c("div", { staticClass: "cards" }, [
-        _c("div", { staticClass: "row cards-row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "card" }, [
+        _vm.surveysTable !== null && _vm.surveysTable.length > 0
+          ? _c("div", { staticClass: "row cards-row" }, [
               _c(
                 "div",
-                { staticClass: "card-body" },
-                [
-                  _c("h5", { staticClass: "card-title" }, [_vm._v("Name")]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-                    _vm._v("count")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "card-link",
-                      attrs: { to: "/tests/start/1" }
-                    },
-                    [_vm._v("Start")]
-                  )
-                ],
-                1
+                { staticClass: "col-md-6" },
+                _vm._l(_vm.surveysTable, function(survey) {
+                  return _c("div", { staticClass: "card" }, [
+                    _c(
+                      "div",
+                      { staticClass: "card-body" },
+                      [
+                        _c("h5", { staticClass: "card-title" }, [
+                          _vm._v("Survey: " + _vm._s(survey.title))
+                        ]),
+                        _vm._v(" "),
+                        _c("h6", {
+                          staticClass: "card-subtitle mb-2 text-muted"
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "card-link",
+                            attrs: { to: "/tests/start/" + survey.id }
+                          },
+                          [_vm._v("Start")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                })
               )
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
-        ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.surveysTable == null || _vm.surveysTable.length <= 0
+          ? _c("div", { staticClass: "alert alert-info" }, [
+              _vm._v(
+                "\n                You don't have surveys ready\n            "
+              )
+            ])
+          : _vm._e()
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("h5", { staticClass: "card-title" }, [_vm._v("Name")]),
-          _vm._v(" "),
-          _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-            _vm._v("count")
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
-            _vm._v("Start")
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -35469,7 +35482,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
-      _vm.surveysTable.length > 0
+      _vm.surveysTable !== null && _vm.surveysTable.length > 0
         ? _c("table", { staticClass: "table table-bordered" }, [
             _vm._m(0),
             _vm._v(" "),
@@ -35511,7 +35524,7 @@ var render = function() {
         : _vm._e()
     ]),
     _vm._v(" "),
-    _vm.surveysTable.length <= 0
+    _vm.surveysTable == null || _vm.surveysTable.length <= 0
       ? _c("div", { staticClass: "alert alert-info" }, [
           _vm._v("\n        You have no surveys\n    ")
         ])
