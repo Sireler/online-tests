@@ -205,6 +205,17 @@ export default {
             }).catch((err) => {
                 this.$toasted.show('Error');
             });
+
+            this.axios.patch(`/survey/questions/update/${this.tempQuestion.id}`, {
+                'type': this.inputsType,
+                'title': this.questionTitle
+            }).then((res) => {
+                this.$toasted.show(res.data.message);
+                this.cancelEditMode();
+                this.clearInputs();
+            }).catch((err) => {
+                this.$toasted.show('Error');
+            });
         }
     },
     beforeCreate() {

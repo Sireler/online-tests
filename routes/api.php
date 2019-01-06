@@ -50,6 +50,7 @@ Route::namespace('Api')->group(function () {
         Route::get('questions/index', 'QuestionController@index');
         Route::get('questions/get/{id}', 'QuestionController@get');
         Route::delete('questions/delete/{surveyId}/{questionId}', 'QuestionController@delete');
+        Route::patch('questions/update/{id}', 'QuestionController@update');
 
         Route::delete('answers/{surveyId}/{answerId}', 'AnswerController@delete');
         Route::post('answers/update/{questionId}', 'AnswerController@update');

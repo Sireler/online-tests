@@ -52,9 +52,29 @@ class QuestionController extends Controller
         }
     }
 
-    public function index(Request $request)
+    /**
+     * Update
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, int $id)
     {
-        // todo index
+        $data = $request->all();
+        $user = $request->user();
+
+        if ($user->hasQuestion($id)) {
+            $question = SurveyQuestion::find($id);
+            $question->update($data);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Question updated'
+            ]);
+        } else {
+            return $this->forbiddenResponse();
+        }
     }
 
     /**
