@@ -36143,7 +36143,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         nextQuestion: function nextQuestion(e) {
-            this.userAnswers[this.current] = this.selectedAnswer;
+            this.userAnswers[this.current] = {
+                'survey_id': this.$route.params.id,
+                'survey_question_id': this.survey.questions[this.current].id,
+                'survey_answer_id': this.selectedAnswer
+            };
 
             if (this.questionsCount == this.current + 2) {
                 e.target.innerHTML = 'Finish';
@@ -36158,7 +36162,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.current++;
         },
         submit: function submit() {
-            console.log(this.userAnswers);
+            var _this2 = this;
+
+            this.axios.post('/survey/votes', {
+                'data': this.userAnswers
+            }).then(function (res) {
+                _this2.$toasted.show(res.data.message);
+            }).catch(function (err) {
+                _this2.$toasted.show('Save failed');
+            });
         }
     },
     computed: {

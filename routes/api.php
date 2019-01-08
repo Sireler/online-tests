@@ -56,6 +56,8 @@ Route::namespace('Api')->group(function () {
 
         Route::delete('answers/{surveyId}/{answerId}', 'AnswerController@delete');
         Route::post('answers/update/{questionId}', 'AnswerController@update');
+
+        Route::post('votes', 'VoteController@store');
     });
 });
 

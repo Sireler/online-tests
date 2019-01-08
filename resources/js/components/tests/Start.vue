@@ -54,7 +54,11 @@ export default {
                 });
         },
         nextQuestion(e) {
-            this.userAnswers[this.current] = this.selectedAnswer;
+            this.userAnswers[this.current] = {
+                'survey_id': this.$route.params.id,
+                'survey_question_id': this.survey.questions[this.current].id,
+                'survey_answer_id': this.selectedAnswer
+            };
 
             if (this.questionsCount == (this.current + 2)) {
                 e.target.innerHTML = 'Finish';
@@ -69,7 +73,13 @@ export default {
             this.current++;
         },
         submit() {
-            console.log(this.userAnswers);
+            this.axios.post(`/survey/votes`, {
+                'data': this.userAnswers
+            }).then((res) => {
+                this.$toasted.show(res.data.message);
+            }).catch((err) => {
+                this.$toasted.show('Save failed');
+            });
         },
     },
     computed: {
