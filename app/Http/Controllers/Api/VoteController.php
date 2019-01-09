@@ -12,6 +12,12 @@ class VoteController extends Controller
 {
     use JsonResponses;
 
+    /**
+     * Store result
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
         $data = $request->get('data');
@@ -46,10 +52,33 @@ class VoteController extends Controller
         } else {
             return response()->json([
                 'status' => false,
-                'message' => 'You have either already completed the survey'
+                'message' => 'You have already completed the survey'
             ], 403);
         }
+    }
 
+    /**
+     * Check availability for a specific user
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function check(Request $request, int $id)
+    {
+        $ip = $request->ip();
 
+        $voted = SurveyVote::where('survey_id', '=', $id)->where('ip', $ip)->first();
+
+        if (!$voted) {
+            return response()->json([
+                'status' => true,
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'You have already completed the survey'
+            ], 403);
+        }
     }
 }

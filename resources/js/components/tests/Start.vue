@@ -1,30 +1,44 @@
 <template>
-    <div class="container" v-if="survey != null">
-        <div class="alert alert-info">
-            <h4>Survey name: {{ survey.title }}</h4>
-            <hr>
-            <p>Question {{ current + 1 }} of {{ questionsCount }}</p>
-        </div>
-        <div class="card border-secondary ">
-            <div class="card-header bg-primary text-white">
-                Question: {{ survey.questions[current].title }}
-            </div>
-            <div class="card-body">
-                <div class="form-group" v-for="(answer, i) in survey.questions[current].answers">
-                    <input :value="answer.id"
-                           v-model="selectedAnswer"
-                           type="radio"
-                           :id="'a' + i">
-                    <label :for="'a' + i">
-                        {{ i + 1 }}) {{ answer.text }}
-                    </label>
+    <div class="container">
+        <div v-if="survey != null && status === true">
+            <div v-if="!finished">
+                <div class="alert alert-info">
+                    <h4>Survey name: {{ survey.title }}</h4>
+                    <hr>
+                    <p>Question {{ current + 1 }} of {{ questionsCount }}</p>
                 </div>
+                <div class="card border-secondary ">
+                    <div class="card-header bg-primary text-white">
+                        Question: {{ survey.questions[current].title }}
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group" v-for="(answer, i) in survey.questions[current].answers">
+                            <input :value="answer.id"
+                                   v-model="selectedAnswer"
+                                   type="radio"
+                                   :id="'a' + i">
+                            <label :for="'a' + i">
+                                {{ i + 1 }}) {{ answer.text }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-next btn-outline-primary"
+                        @click="nextQuestion">
+                    Next
+                </button>
             </div>
+            <div v-else class="text-center mt-5">
+                <h3>You have successfully completed the survey</h3>
+                <router-link to="/home">Home</router-link>
+            </div>
+
         </div>
-        <button class="btn btn-next btn-outline-primary"
-                @click="nextQuestion">
-            Next
-        </button>
+
+        <div class="full-message text-center mt-5" v-if="status === false">
+            <h3>You have already completed the survey</h3>
+            <router-link to="/home">Home</router-link>
+        </div>
     </div>
 </template>
 
@@ -36,22 +50,36 @@ export default {
             survey: null,
             current: 0,
             selectedAnswer: 0,
-            userAnswers: []
+            userAnswers: [],
+
+            status: false,
+            finished: false
         }
     },
     methods: {
         loadSurvey() {
             this.$parent.showLoading();
-            this.axios.get(`/survey/start/${this.$route.params.id}`)
+
+            this.axios.get(`/survey/votes/check/${this.$route.params.id}`)
                 .then((res) => {
-                    this.$parent.hideLoading();
-                    this.survey = res.data.survey;
+                    this.status = true;
+                    this.axios.get(`/survey/start/${this.$route.params.id}`)
+                        .then((res) => {
+                            this.$parent.hideLoading();
+                            this.survey = res.data.survey;
+                        })
+                        .catch((err) => {
+                            this.$router.push({ path: `/home` });
+                            this.$parent.hideLoading();
+                            this.$toasted.show('Request error');
+                        });
                 })
                 .catch((err) => {
-                    this.$router.push({ path: `/home` });
-                    this.hideLoading();
-                    this.$toasted.show('Request error');
+                    this.status = false;
+                    this.$parent.hideLoading();
                 });
+
+
         },
         nextQuestion(e) {
             this.userAnswers[this.current] = {
@@ -77,6 +105,7 @@ export default {
                 'data': this.userAnswers
             }).then((res) => {
                 this.$toasted.show(res.data.message);
+                this.finished = true;
             }).catch((err) => {
                 this.$toasted.show('Save failed');
             });

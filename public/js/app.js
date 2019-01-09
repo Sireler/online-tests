@@ -36116,6 +36116,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['id'],
@@ -36124,7 +36138,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             survey: null,
             current: 0,
             selectedAnswer: 0,
-            userAnswers: []
+            userAnswers: [],
+
+            status: false,
+            finished: false
         };
     },
 
@@ -36133,13 +36150,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.$parent.showLoading();
-            this.axios.get('/survey/start/' + this.$route.params.id).then(function (res) {
-                _this.$parent.hideLoading();
-                _this.survey = res.data.survey;
+
+            this.axios.get('/survey/votes/check/' + this.$route.params.id).then(function (res) {
+                _this.status = true;
+                _this.axios.get('/survey/start/' + _this.$route.params.id).then(function (res) {
+                    _this.$parent.hideLoading();
+                    _this.survey = res.data.survey;
+                }).catch(function (err) {
+                    _this.$router.push({ path: '/home' });
+                    _this.$parent.hideLoading();
+                    _this.$toasted.show('Request error');
+                });
             }).catch(function (err) {
-                _this.$router.push({ path: '/home' });
-                _this.hideLoading();
-                _this.$toasted.show('Request error');
+                _this.status = false;
+                _this.$parent.hideLoading();
             });
         },
         nextQuestion: function nextQuestion(e) {
@@ -36168,6 +36192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'data': this.userAnswers
             }).then(function (res) {
                 _this2.$toasted.show(res.data.message);
+                _this2.finished = true;
             }).catch(function (err) {
                 _this2.$toasted.show('Save failed');
             });
@@ -36191,85 +36216,123 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.survey != null
-    ? _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "alert alert-info" }, [
-          _c("h4", [_vm._v("Survey name: " + _vm._s(_vm.survey.title))]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Question " +
-                _vm._s(_vm.current + 1) +
-                " of " +
-                _vm._s(_vm.questionsCount)
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card border-secondary " }, [
-          _c("div", { staticClass: "card-header bg-primary text-white" }, [
-            _vm._v(
-              "\n            Question: " +
-                _vm._s(_vm.survey.questions[_vm.current].title) +
-                "\n        "
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body" },
-            _vm._l(_vm.survey.questions[_vm.current].answers, function(
-              answer,
-              i
-            ) {
-              return _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.selectedAnswer,
-                      expression: "selectedAnswer"
-                    }
-                  ],
-                  attrs: { type: "radio", id: "a" + i },
-                  domProps: {
-                    value: answer.id,
-                    checked: _vm._q(_vm.selectedAnswer, answer.id)
-                  },
-                  on: {
-                    change: function($event) {
-                      _vm.selectedAnswer = answer.id
-                    }
-                  }
-                }),
+  return _c("div", { staticClass: "container" }, [
+    _vm.survey != null && _vm.status === true
+      ? _c("div", [
+          !_vm.finished
+            ? _c("div", [
+                _c("div", { staticClass: "alert alert-info" }, [
+                  _c("h4", [
+                    _vm._v("Survey name: " + _vm._s(_vm.survey.title))
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Question " +
+                        _vm._s(_vm.current + 1) +
+                        " of " +
+                        _vm._s(_vm.questionsCount)
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("label", { attrs: { for: "a" + i } }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(i + 1) +
-                      ") " +
-                      _vm._s(answer.text) +
-                      "\n                "
+                _c("div", { staticClass: "card border-secondary " }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-header bg-primary text-white" },
+                    [
+                      _vm._v(
+                        "\n                    Question: " +
+                          _vm._s(_vm.survey.questions[_vm.current].title) +
+                          "\n                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "card-body" },
+                    _vm._l(_vm.survey.questions[_vm.current].answers, function(
+                      answer,
+                      i
+                    ) {
+                      return _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selectedAnswer,
+                              expression: "selectedAnswer"
+                            }
+                          ],
+                          attrs: { type: "radio", id: "a" + i },
+                          domProps: {
+                            value: answer.id,
+                            checked: _vm._q(_vm.selectedAnswer, answer.id)
+                          },
+                          on: {
+                            change: function($event) {
+                              _vm.selectedAnswer = answer.id
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "a" + i } }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(i + 1) +
+                              ") " +
+                              _vm._s(answer.text) +
+                              "\n                        "
+                          )
+                        ])
+                      ])
+                    })
                   )
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-next btn-outline-primary",
+                    on: { click: _vm.nextQuestion }
+                  },
+                  [_vm._v("\n                Next\n            ")]
+                )
               ])
-            })
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-next btn-outline-primary",
-            on: { click: _vm.nextQuestion }
-          },
-          [_vm._v("\n        Next\n    ")]
+            : _c(
+                "div",
+                { staticClass: "text-center mt-5" },
+                [
+                  _c("h3", [
+                    _vm._v("You have successfully completed the survey")
+                  ]),
+                  _vm._v(" "),
+                  _c("router-link", { attrs: { to: "/home" } }, [
+                    _vm._v("Home")
+                  ])
+                ],
+                1
+              )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.status === false
+      ? _c(
+          "div",
+          { staticClass: "full-message text-center mt-5" },
+          [
+            _c("h3", [_vm._v("You have already completed the survey")]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { to: "/home" } }, [_vm._v("Home")])
+          ],
+          1
         )
-      ])
-    : _vm._e()
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
