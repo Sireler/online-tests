@@ -5,7 +5,7 @@
             <router-view class="col-md-8"></router-view>
         </div>
         <app-loader ref="appload" v-if="loading"></app-loader>
-        <footer>Footer &copy; 2018</footer>
+        <footer class="bg-primary text-white">Surveys &copy; 2018</footer>
     </div>
 </template>
 
@@ -58,9 +58,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #5f2a62;
     text-align: center;
-    color: #a976c3;
 }
 
 .toasted.bubble {

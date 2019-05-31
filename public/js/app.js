@@ -22903,7 +22903,7 @@ var axios = window.axios;
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_5_vue_axios___default.a, axios);
-Vue.axios.defaults.baseURL = "http://online-tests/api";
+Vue.axios.defaults.baseURL = "http://localhost/api";
 Vue.router = __WEBPACK_IMPORTED_MODULE_1__routes_js__["a" /* router */];
 
 Vue.use(__webpack_require__(128), {
@@ -30731,7 +30731,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n* {\r\n    margin: 0;\r\n    padding: 0;\n}\n#app {\r\n    background-color: #eee;\r\n    min-height: 100vh;\n}\n.app-container {\r\n    min-height: 100vh;\r\n    margin: 0;\n}\n.container {\r\n    margin-top: 10px;\n}\nfooter {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    background-color: #5f2a62;\r\n    text-align: center;\r\n    color: #a976c3;\n}\n.toasted.bubble {\r\n    background-color: #5f2a62;\n}\n.api-loading {\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: rgba(255, 255, 255, 0.9);\r\n    position: absolute;\r\n    z-index: 999;\n}\r\n\r\n/*v-slim-dialog style*/\n.v-dialog-container {\r\n    background-color: #A976C3;\r\n    color: #fff;\n}\n.v-dialog-btn.success {\r\n    background-color: #F04747;\r\n    color: #fff;\r\n    border-radius: 5px;\n}\n.v-dialog-btn.success:hover {\r\n    background-color: #C73B3B;\n}\na.v-dialog-btn-danger,\r\n.v-dialog-btn-close,\r\n.v-dialog-title {\r\n    color: #fff !important;\n}\na.v-dialog-btn-danger:hover {\r\n    text-decoration: underline !important;\n}\r\n/*end v-slim-dialog style*/\n@-webkit-keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\n@keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n* {\r\n    margin: 0;\r\n    padding: 0;\n}\n#app {\r\n    background-color: #eee;\r\n    min-height: 100vh;\n}\n.app-container {\r\n    min-height: 100vh;\r\n    margin: 0;\n}\n.container {\r\n    margin-top: 10px;\n}\nfooter {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    text-align: center;\n}\n.toasted.bubble {\r\n    background-color: #5f2a62;\n}\n.api-loading {\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: rgba(255, 255, 255, 0.9);\r\n    position: absolute;\r\n    z-index: 999;\n}\r\n\r\n/*v-slim-dialog style*/\n.v-dialog-container {\r\n    background-color: #A976C3;\r\n    color: #fff;\n}\n.v-dialog-btn.success {\r\n    background-color: #F04747;\r\n    color: #fff;\r\n    border-radius: 5px;\n}\n.v-dialog-btn.success:hover {\r\n    background-color: #C73B3B;\n}\na.v-dialog-btn-danger,\r\n.v-dialog-btn-close,\r\n.v-dialog-title {\r\n    color: #fff !important;\n}\na.v-dialog-btn-danger:hover {\r\n    text-decoration: underline !important;\n}\r\n/*end v-slim-dialog style*/\n@-webkit-keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\n@keyframes lds-ripple {\n0% {\r\n        top: 45%;\r\n        left: 45%;\r\n        width: 0;\r\n        height: 0;\r\n        opacity: 1;\n}\n100% {\r\n        top: -1px;\r\n        left: -1px;\r\n        width: 95%;\r\n        height: 95%;\r\n        opacity: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -31204,7 +31204,9 @@ var render = function() {
       _vm._v(" "),
       _vm.loading ? _c("app-loader", { ref: "appload" }) : _vm._e(),
       _vm._v(" "),
-      _c("footer", [_vm._v("Footer © 2018")])
+      _c("footer", { staticClass: "bg-primary text-white" }, [
+        _vm._v("Surveys © 2018")
+      ])
     ],
     1
   )
@@ -34002,7 +34004,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.jumbotron[data-v-b9c20fb8] {\r\n    background-color: #fff;\n}\r\n", ""]);
+exports.push([module.i, "\n.main[data-v-b9c20fb8] {\r\n    width: 100%;\r\n    background-color: #0747A6;\n}\n.about[data-v-b9c20fb8] {\r\n    min-height: 200px;\n}\n.app-name[data-v-b9c20fb8] {\r\n    font-size: 1.5em;\n}\r\n", ""]);
 
 // exports
 
@@ -34042,7 +34044,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -34053,6 +34055,27 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -34087,34 +34110,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "jumbotron" }, [
-      _c("h1", { staticClass: "display-4" }, [_vm._v("Surveys")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "lead" }, [
-        _vm._v("Register and create survey or test!")
-      ]),
-      _vm._v(" "),
-      _c("hr", { staticClass: "my-4" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "cards" }, [
-        _c("div", { staticClass: "row cards-row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-block btn-outline-primary",
-                on: { click: _vm.toAuth }
-              },
-              [_vm._v("Continue")]
-            )
-          ])
+  return _c("div", { staticClass: "main col-md-12" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-12 about bg-white jumbotron" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h1", [_vm._v("Create surveys and get answers")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "lead" }, [
+          _vm._v("You can create and manage public and private surveys")
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-primary text-uppercase",
+              on: { click: _vm.toAuth }
+            },
+            [_vm._v("Sign up")]
+          )
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 my-2" }, [
+        _c(
+          "a",
+          { staticClass: "text-white app-name nav-link", attrs: { href: "/" } },
+          [_vm._v("Surveys")]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
