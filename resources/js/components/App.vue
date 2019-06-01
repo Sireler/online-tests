@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div v-if="$auth.ready()" class="row app-container">
+        <div v-if="$auth.ready()" class="row app-container bg-primary">
             <app-nav v-if="$route.path !== '/' && $auth.check()"></app-nav>
-            <router-view class="col-md-8"></router-view>
+            <router-view class="col-md-12"></router-view>
         </div>
         <app-loader ref="appload" v-if="loading"></app-loader>
         <footer class="bg-primary text-white">Surveys &copy; 2018</footer>

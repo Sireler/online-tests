@@ -1,30 +1,61 @@
 <template>
-    <div class="container register-container">
-        <div class="row">
-            <div class="col-md-10 offset-md-1 register-form">
-                <h3>Register</h3>
-                <form @submit.prevent="register">
+<!--    <div class="container register-container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-10 offset-md-1 register-form">-->
+<!--                <h3>Register</h3>-->
+<!--                <form @submit.prevent="register">-->
+<!--                    <div class="form-group">-->
+<!--                        <input v-model="name" type="text" class="form-control" placeholder="Your Name *" value="" />-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <input v-model="email" type="text" class="form-control" placeholder="Your Email *" value="" />-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <input v-model="password" type="password" class="form-control" placeholder="Your Password *" value="" />-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <input  @click.prevent="register"-->
+<!--                                type="submit" class="btnSubmit" value="Register" />-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <a href="#" class="ForgetPwd"-->
+<!--                           @click.prevent="showLoginForm">Login</a>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div class="main row col-md-12 h-100 justify-content-center align-items-center">
+        <div class="col-md-12">
+            <div class="container col-md-6 text-white">
+                <h3 class="display-4">Sign up</h3>
+            </div>
+            <div class="container col-md-6 bg-white rounded border border-info">
+                <form v-on:submit.prevent class="p-5">
                     <div class="form-group">
-                        <input v-model="name" type="text" class="form-control" placeholder="Your Name *" value="" />
+                        <input v-model="name" type="text" class="form-control" placeholder="Name" value="" />
                     </div>
                     <div class="form-group">
-                        <input v-model="email" type="text" class="form-control" placeholder="Your Email *" value="" />
+                        <input v-model="email" type="text" class="form-control" placeholder="Email" value="" />
                     </div>
                     <div class="form-group">
-                        <input v-model="password" type="password" class="form-control" placeholder="Your Password *" value="" />
+                        <input v-model="password" type="password" class="form-control" placeholder="Password" value="" />
                     </div>
                     <div class="form-group">
                         <input  @click.prevent="register"
-                                type="submit" class="btnSubmit" value="Register" />
-                    </div>
-                    <div class="form-group">
-                        <a href="#" class="ForgetPwd"
-                           @click.prevent="showLoginForm">Login</a>
+                                type="submit" class="btn btn-outline-primary" value="Sign up" />
                     </div>
                 </form>
             </div>
+            <div class="container col-md-6">
+                <a class="text-white"
+                   href="#login"
+                   @click.prevent="showLoginForm">Already have an account? Log in</a>
+            </div>
         </div>
     </div>
+
 </template>
 
 <script>

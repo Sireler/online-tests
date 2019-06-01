@@ -1,31 +1,38 @@
 <template>
-    <div class="container login-container">
-        <div class="row">
-            <div class="col-md-10 offset-md-1 login-form">
-                <h3>Login</h3>
-                <form v-on:submit.prevent>
-                    <div class="form-group">
-                        <input type="text" v-model="inputEmail" class="form-control" placeholder="Your Email *" value="" />
-                    </div>
-                    <div class="form-group">
-                        <input type="password" v-model="inputPassword" class="form-control" placeholder="Your Password *" value="" />
-                    </div>
-                    <div class="form-group">
-                        <input @click="login" type="submit" class="btnSubmit login-btn btn-light" value="Login" />
-                    </div>
-                    <div class="form-group">
-                        <a href="#" class="form-btn " value="Login">Forget Password?</a>
-                    </div>
-                    <div class="form-group">
-                        <a class="btn-register form-btn"
-                           href="#"
-                           value="Login"
-                           @click.prevent="showRegForm">Register</a>
-                    </div>
-                </form>
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="main col-md-12">
+            <div class="col-md-12">
+                <div class="container col-md-6 text-white">
+                    <h3 class="display-4">Log in</h3>
+                </div>
+                <div class="container col-md-6 bg-white rounded border border-info">
+                    <form v-on:submit.prevent class="p-5">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input type="text" v-model="inputEmail" class="form-control" placeholder="Email" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" v-model="inputPassword" class="form-control" placeholder="Password" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input @click="login" type="submit" class="btn btn-outline-primary" value="Continue" />
+                        </div>
+                        <div class="form-group">
+                            <a href="#">Forget Password?</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="container col-md-6">
+                    <a class="text-white"
+                       href="#signup"
+                       @click.prevent="showRegForm">Sign up</a>
+                </div>
             </div>
         </div>
     </div>
+
+
 </template>
 
 <script>
@@ -76,45 +83,6 @@ export default {
 </script>
 
 <style scoped>
-.login-container {
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-.login-form {
-    padding: 5%;
-    background: #5f2a62;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
-}
-.login-form h3{
-    text-align: center;
-    color: #fff;
-}
-.login-container form {
-    padding: 10%;
-}
-input:focus {
-    box-shadow: none;
-}
-.btnSubmit {
-    width: 50%;
-    border-radius: 1rem;
-    padding: 1.5%;
-    border: none;
-    cursor: pointer;
-    outline: none;
-}
-.login-form .btnSubmit {
-    font-weight: 600;
-}
-.login-form .form-btn {
-    font-weight: 600;
-    text-decoration: none;
-    color: #fff;
-}
-.login-form .form-btn:hover {
-    color: #eee;
-}
-.btn-register {
-    color: #fff;
-}
+
+
 </style>

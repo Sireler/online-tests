@@ -1,8 +1,7 @@
 <template>
-    <div class="container login-container">
+    <div class="bg-primary col-md-12 auth-container">
         <transition name="slide" mode="out-in">
-            <component :is="view"
-                       @changeView="changeView"></component>
+            <component :is="view" @changeView="changeView"></component>
         </transition>
     </div>
 </template>
@@ -39,7 +38,7 @@ export default {
 <style scoped>
 .slide-leave-active,
 .slide-enter-active {
-    transition: .5s;
+    transition: .35s;
 }
 .slide-enter {
     transform: translate(-100%, 0);
@@ -48,7 +47,7 @@ export default {
     transform: translate(100%, 0);
 }
 
-.login-container {
+.auth-container {
     overflow-x: hidden;
 }
 </style>
