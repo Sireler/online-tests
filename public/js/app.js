@@ -22903,7 +22903,7 @@ var axios = window.axios;
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_5_vue_axios___default.a, axios);
-Vue.axios.defaults.baseURL = "http://localhost/api";
+Vue.axios.defaults.baseURL = window.location.origin + '/api';
 Vue.router = __WEBPACK_IMPORTED_MODULE_1__routes_js__["a" /* router */];
 
 Vue.use(__webpack_require__(133), {

@@ -44,7 +44,7 @@ let axios = window.axios;
 import VueAxios from 'vue-axios';
 
 Vue.use(VueAxios, axios);
-Vue.axios.defaults.baseURL = process.env.MIX_API_ENDPOINT;
+Vue.axios.defaults.baseURL = window.location.origin + '/api';
 Vue.router = router;
 
 Vue.use(require('@websanova/vue-auth'), {
