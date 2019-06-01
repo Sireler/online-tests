@@ -62,7 +62,8 @@ footer {
 }
 
 .toasted.bubble {
-    background-color: #5f2a62;
+    background-color: #fff;
+    color: #0747A6;
 }
 
 .api-loading {
