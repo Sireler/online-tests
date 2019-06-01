@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md-12 my-2">
-            <a class="text-white app-name nav-link" href="/">Surveys</a>
+            <router-link class="text-white app-name nav-link" to="/">Surveys</router-link>
         </div>
     </div>
 </template>

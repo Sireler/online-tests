@@ -31204,9 +31204,18 @@ var render = function() {
       _vm._v(" "),
       _vm.loading ? _c("app-loader", { ref: "appload" }) : _vm._e(),
       _vm._v(" "),
-      _c("footer", { staticClass: "bg-primary text-white" }, [
-        _vm._v("Surveys © 2018")
-      ])
+      _c(
+        "footer",
+        { staticClass: "bg-primary" },
+        [
+          _c(
+            "router-link",
+            { staticClass: " text-white", attrs: { to: "/" } },
+            [_vm._v("Surveys © 2018")]
+          )
+        ],
+        1
+      )
     ],
     1
   )
@@ -34202,24 +34211,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 my-2" }, [
+  return _c("div", { staticClass: "row" }, [
+    _c(
+      "div",
+      { staticClass: "col-md-12 my-2" },
+      [
         _c(
-          "a",
-          { staticClass: "text-white app-name nav-link", attrs: { href: "/" } },
+          "router-link",
+          { staticClass: "text-white app-name nav-link", attrs: { to: "/" } },
           [_vm._v("Surveys")]
         )
-      ])
-    ])
-  }
-]
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
