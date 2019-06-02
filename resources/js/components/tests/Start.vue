@@ -1,43 +1,46 @@
 <template>
     <div class="container">
-        <div v-if="survey != null && status === true">
-            <div v-if="!finished">
-                <div class="alert alert-info">
-                    <h4>Survey name: {{ survey.title }}</h4>
-                    <hr>
-                    <p>Question {{ current + 1 }} of {{ questionsCount }}</p>
-                </div>
-                <div class="card border-secondary ">
-                    <div class="card-header bg-primary text-white">
-                        Question: {{ survey.questions[current].title }}
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group" v-for="(answer, i) in survey.questions[current].answers">
-                            <input :value="answer.id"
-                                   v-model="selectedAnswer"
-                                   type="radio"
-                                   :id="'a' + i">
-                            <label :for="'a' + i">
-                                {{ i + 1 }}) {{ answer.text }}
-                            </label>
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div v-if="survey != null && status === true">
+                    <div v-if="!finished">
+                        <div class="alert alert-info">
+                            <h4>Survey name: {{ survey.title }}</h4>
+                            <hr>
+                            <p>Question {{ current + 1 }} of {{ questionsCount }}</p>
                         </div>
+                        <div class="card border-secondary ">
+                            <div class="card-header bg-light text-primary">
+                                Question: {{ survey.questions[current].title }}
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group" v-for="(answer, i) in survey.questions[current].answers">
+                                    <input :value="answer.id"
+                                           v-model="selectedAnswer"
+                                           type="radio"
+                                           :id="'a' + i">
+                                    <label :for="'a' + i">
+                                        {{ i + 1 }}) {{ answer.text }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-next btn-secondary text-primary"
+                                @click="nextQuestion">
+                            Next
+                        </button>
+                    </div>
+                    <div v-else class="text-center mt-5">
+                        <h3 class="text-white">You have successfully completed the survey</h3>
+                        <router-link class="text-white" to="/home">Home</router-link>
                     </div>
                 </div>
-                <button class="btn btn-next btn-outline-primary"
-                        @click="nextQuestion">
-                    Next
-                </button>
             </div>
-            <div v-else class="text-center mt-5">
-                <h3>You have successfully completed the survey</h3>
-                <router-link to="/home">Home</router-link>
-            </div>
-
         </div>
 
-        <div class="full-message text-center mt-5" v-if="status === false">
+        <div class="full-message text-center text-white mt-5" v-if="status === false">
             <h3>You have already completed the survey</h3>
-            <router-link to="/home">Home</router-link>
+            <router-link class="btn btn-outline-secondary" to="/home">Home</router-link>
         </div>
     </div>
 </template>

@@ -5,8 +5,11 @@
             <div class="container">
                 <h1>Create surveys and get answers</h1>
                 <p class="lead">You can create and manage public and private surveys</p>
-                <div>
+                <div v-if="!$auth.check()">
                     <button @click="toAuth" class="btn btn-outline-primary text-uppercase">Sign up</button>
+                </div>
+                <div v-else>
+                    <button @click="toAuth" class="btn btn-outline-primary text-uppercase">Start</button>
                 </div>
             </div>
         </div>

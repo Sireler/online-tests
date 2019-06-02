@@ -9,7 +9,7 @@
                     <form v-on:submit.prevent class="p-5">
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input type="text" v-model="inputEmail" class="form-control" placeholder="Email" value="" />
+                                <input type="text" v-model="inputEmail" name="email" class="form-control" placeholder="Email" value="" />
                             </div>
                         </div>
                         <div class="form-group">

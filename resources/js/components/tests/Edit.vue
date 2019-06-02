@@ -1,101 +1,119 @@
 <template>
     <div class="container">
         <!-- Edit info -->
-        <div class="jumbotron">
-            <form @submit.prevent>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <label for="title">Title</label>
-                            <input id="title" type="text" class="form-control"
-                                   :disabled="!editFields"
-                                   v-model="title">
-                        </div>
-                        <div class="col-md-2 mt-3 mt-md-0"
-                             v-show="!editFields">
-                            <button class="btn btn-secondary btn-block"
-                                    @click="edit">
-                                Edit
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-10 text-right"
-                             v-show="editFields">
-                            <a @click.prevent="cancelEdit" class="edit-link" href="">Cancel</a>
-                            <button class="btn btn-success"
-                                    @click="save">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="jumbotron">
-            <h3>{{ editModeText }}</h3>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="create-question">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="question-title">Title:</label>
-                                    <input id="question-title" type="text" class="form-control" placeholder="Question title"
-                                           v-model="questionTitle">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="jumbotron">
+                    <form @submit.prevent>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <label for="title">Title</label>
+                                    <input id="title" type="text" class="form-control"
+                                           :disabled="!editFields"
+                                           v-model="title">
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group inline">
-                                    <label for="type">Type:</label>
-                                    <select class="form-control" id="type"
-                                            v-model="inputsType">
-                                        <option value="radio">Multiple choice</option>
-                                        <option value="checkbox">Checkboxes</option>
+                                <div class="col-md-10 mt-2">
+                                    <label for="surveyType">Type</label>
+                                    <select class="form-control" id="surveyType" v-model="type" :disabled="!editFields">
+                                        <option value="public">Public</option>
                                     </select>
                                 </div>
+                                <div class="col-md-2 mt-3 mt-md-0"
+                                     v-show="!editFields">
+                                    <button class="btn btn-primary btn-block"
+                                            @click="edit">
+                                        Edit
+                                    </button>
+                                </div>
                             </div>
                         </div>
-
-
-                    </div>
-                </div>
-            </div>
-            <div class="row answers">
-                <div class="col-md-12 answers-item"
-                     v-for="answer in answers">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input disabled :type="inputsType">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-10 text-right"
+                                     v-show="editFields">
+                                    <a @click.prevent="cancelEdit" class="edit-link" href="">Cancel</a>
+                                    <button class="btn btn-success"
+                                            @click="save">Save</button>
+                                </div>
                             </div>
                         </div>
-                        <input v-model="answer.text" type="text" class="form-control" placeholder="Enter an answer">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <button @click="handleSave" class="btn btn-success">
-                                Save
-                            </button>
-                            <button @click="cancelEditMode" class="btn btn-secondary">Cancel</button>
-                        </div>
-                        <div class="btn-group">
-                            <button @click="addAnswer" class="btn btn-success">+</button>
-                            <button @click="removeAnswer" class="btn btn-danger">-</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <div class="jumbotron">
+                    <h3>{{ editModeText }}</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="create-question">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="question-title">Title:</label>
+                                            <input id="question-title" type="text" class="form-control" placeholder="Question title"
+                                                   v-model="questionTitle">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group inline">
+                                            <label for="type">Type:</label>
+                                            <select class="form-control" id="type"
+                                                    v-model="inputsType">
+                                                <option value="radio">Multiple choice</option>
+                                                <option value="checkbox">Checkboxes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row answers">
+                        <div class="col-md-12 answers-item"
+                             v-for="answer in answers">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-primary">
+                                        <input disabled :type="inputsType">
+                                    </div>
+                                </div>
+                                <input v-model="answer.text" type="text" class="form-control" placeholder="Enter an answer">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <button @click="handleSave" class="btn btn-success">
+                                        Save
+                                    </button>
+                                    <button @click="cancelEditMode" class="btn btn-secondary">Cancel</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button @click="addAnswer" class="btn btn-success">+</button>
+                                    <button @click="removeAnswer" class="btn btn-danger">-</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!--list of questions and answers-->
+                <edit-questions @editQuestion="setEditMode" class="edit-questions" ref="questions"
+                                v-if="editModeText != 'Editing a question'"></edit-questions>
+            </div>
+        </div>
+
         <hr>
-        <!--list of questions and answers-->
-        <edit-questions @editQuestion="setEditMode" class="edit-questions" ref="questions"
-                        v-if="editModeText != 'Editing a question'"></edit-questions>
+
 
     </div>
 </template>
@@ -110,6 +128,7 @@ export default {
     data() {
         return {
             id: this.$route.params.id,
+            type: 'public',
             title: '',
             stTitle: '',
             editFields: false,
@@ -245,9 +264,6 @@ export default {
     border-bottom: 2px solid #fff;
     padding: 15px;
     margin: 10px 0;
-}
-.input-group-text {
-    background-color: #A976C3;
 }
 .answers {
     margin: 10px 0;

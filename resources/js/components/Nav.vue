@@ -1,13 +1,22 @@
 <template>
-    <nav class="col-md-2 text-center text-md-left app-nav">
-        <div class="nav flex-column nav-pills" id="v-pills-tab">
-            <router-link v-if="!$auth.check()" class="nav-link" to="/" exact-active-class="active">Main</router-link>
-            <router-link class="nav-link" to="/home" activeClass="active">Home</router-link>
-            <router-link class="nav-link" to="/tests" activeClass="active">Surveys</router-link>
-            <router-link v-if="!$auth.check()" class="nav-link" to="/auth" activeClass="active">Login</router-link>
-            <a href="" @click.prevent="logout" v-if="$auth.check()" class="nav-link" >Logout</a>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <router-link class="navbar-brand" to="/home">Surveys</router-link>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/tests" activeClass="active">My surveys</router-link>
+                </li>
+            </ul>
+            <button class="btn btn-outline-primary" @click="logout">
+              Logout
+            </button>
         </div>
     </nav>
+
 </template>
 
 <script>
@@ -30,17 +39,5 @@ export default {
 </script>
 
 <style scoped>
-.app-nav {
-    padding-top: 10px;
-    min-height: inherit;
-    background: #eaf0f5;
-    box-shadow: 5px 0 5px -5px #cccccc;
-}
 
-@media screen and (max-width: 767px) {
-    .app-nav {
-        min-height: 10px;
-        box-shadow: 2px 1px 5px 2px #ccc;
-    }
-}
 </style>

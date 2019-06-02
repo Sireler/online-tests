@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container col-md-8">
         <div class="jumbotron bg-primary text-white">
             <h1 class="display-4">Surveys</h1>
             <p class="lead">List of your surveys</p>

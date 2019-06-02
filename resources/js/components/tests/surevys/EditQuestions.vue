@@ -1,18 +1,5 @@
 <template>
     <div class="container">
-
-        <!--survey info-->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <div class="card bg-primary border-secondary mb-3 text-white" >
-                    <div class="card-header">Survey: {{ surveyName }}</div>
-                    <div class="card-body">
-                        <p class="card-text">Questions: {{ questions.length }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!--questions and answers-->
         <div id="accordion">
             <div class="card"
@@ -24,9 +11,9 @@
                             {{ question.title }}
                             <span class="oi oi-arrow-bottom ml-2"></span>
                         </button>
-                        <span class="oi oi-circle-x float-right" title="delete question" aria-hidden="true"
+                        <span class="oi oi-circle-x float-right" title="Delete this question" aria-hidden="true"
                               @click="questionDelete(i, question.id)"></span>
-                        <span class="oi oi-wrench float-right mr-2" title="edit question" aria-hidden="true"
+                        <span class="oi oi-wrench float-right mr-2" title="Edit this question" aria-hidden="true"
                               @click="questionEdit(i, question)" ></span>
                     </h5>
                 </div>
@@ -34,7 +21,7 @@
                 <div :id="`collapse${i}`" :class="`collapse ${i === 0 ? 'show' : ''}`"
                      :aria-labelledby="`heading${i}`" data-parent="#accordion">
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table bg-white">
                             <caption>Answers</caption>
                             <tr>
                                 <th>#</th>
@@ -45,7 +32,7 @@
                                 <td>{{ ai + 1 }}</td>
                                 <td>{{ answer.text }}</td>
                                 <td>
-                                    <span class="oi oi-delete" title="delete answer" aria-hidden="true"
+                                    <span class="oi oi-delete" title="Delete this answer" aria-hidden="true"
                                      @click="answerDelete(i, ai, answer.id)"></span>
                                 </td>
                             </tr>

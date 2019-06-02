@@ -1,16 +1,21 @@
 <template>
-    <div class="container">
-        <h2>New survey</h2>
-        <div>
-            <div class="form-group questions-start">
-                <label for="test-title">Name your survey</label>
-                <input v-model="surveyName" id="test-title" type="text" class="form-control">
+    <div class="container text-white">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2>New survey</h2>
+                <div>
+                    <div class="form-group questions-start">
+                        <label for="test-title">Name your survey</label>
+                        <input v-model="surveyName" id="test-title" type="text" class="form-control">
+                    </div>
+                    <button class="btn btn-secondary"
+                            @click="createSurvey">
+                        Create survey
+                    </button>
+                </div>
             </div>
-            <button class="btn btn-secondary"
-                    @click="createSurvey">
-                Create survey
-            </button>
         </div>
+
     </div>
 </template>
 

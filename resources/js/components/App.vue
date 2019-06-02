@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div v-if="$auth.ready()" class="row app-container bg-primary">
-            <app-nav v-if="$route.path !== '/' && $auth.check()"></app-nav>
-            <router-view class="col-md-12"></router-view>
+        <app-nav v-if="$route.path !== '/' && $auth.check()"></app-nav>
+        <div v-if="$auth.ready()" class="row m-0 bg-primary">
+            <router-view class="col-md-12 mt-3"></router-view>
         </div>
         <app-loader ref="appload" v-if="loading"></app-loader>
         <footer class="bg-primary"><router-link class=" text-white" to="/">Surveys &copy; 2018</router-link></footer>
@@ -43,15 +43,6 @@ export default {
 #app {
     background-color: #eee;
     min-height: 100vh;
-}
-
-.app-container {
-    min-height: 100vh;
-    margin: 0;
-}
-
-.container {
-    margin-top: 10px;
 }
 
 footer {

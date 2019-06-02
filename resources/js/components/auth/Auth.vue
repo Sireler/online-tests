@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-primary col-md-12 auth-container">
+    <div class="bg-primary col-md-12 auth-container mt-5">
         <transition name="slide" mode="out-in">
             <component :is="view" @changeView="changeView"></component>
         </transition>
@@ -36,6 +36,9 @@ export default {
 </script>
 
 <style scoped>
+.auth-container {
+    overflow-x: hidden;
+}
 .slide-leave-active,
 .slide-enter-active {
     transition: .35s;
@@ -45,9 +48,5 @@ export default {
 }
 .slide-leave-to {
     transform: translate(100%, 0);
-}
-
-.auth-container {
-    overflow-x: hidden;
 }
 </style>

@@ -1,39 +1,51 @@
 <template>
     <div class="container">
         <div class="row">
-            <table v-if="surveysTable !== null && surveysTable.length > 0" class="table table-bordered">
-                <thead>
-                    <tr class="table-thead">
-                        <th>TITLE</th>
-                        <th>CREATED</th>
-                        <th>RESPONSES</th>
-                        <th>MANAGE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(survey, index) in surveysTable">
-                        <td>{{ survey.title }}</td>
-                        <td>{{ survey.created_at }}</td>
-                        <td>0</td>
-                        <td>
-                            <span class="oi oi-circle-x" title="Delete survey"
-                                  @click="deleteSurvey(survey.id, index)"></span>
-                            <span class="oi oi-wrench" title="Edit survey"
-                                  @click="editSurvey(survey.id)"></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="alert alert-info"
-             v-if="surveysTable == null || surveysTable.length <= 0">
-            You have no surveys
-        </div>
-        <div class="row">
-            <div class="btn-group" role="group">
-                <router-link class="btn btn-secondary" to="tests/create">Create</router-link>
+            <div class="col-md-8 offset-md-2">
+                <table v-if="surveysTable !== null && surveysTable.length > 0" class="table bg-white rounded">
+                    <thead>
+                        <tr class="table-thead">
+                            <th>TITLE</th>
+                            <th>CREATED</th>
+                            <th>RESPONSES</th>
+                            <th>MANAGE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(survey, index) in surveysTable">
+                            <td>{{ survey.title }}</td>
+                            <td>{{ survey.created_at }}</td>
+                            <td>0</td>
+                            <td>
+                                <span class="oi oi-circle-x" title="Delete survey"
+                                      @click="deleteSurvey(survey.id, index)"></span>
+                                <span class="oi oi-wrench" title="Edit survey"
+                                      @click="editSurvey(survey.id)"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="alert alert-info"
+                     v-if="surveysTable == null || surveysTable.length <= 0">
+                    You have no surveys
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="btn-group" role="group">
+                    <router-link class="btn btn-secondary" to="tests/create">Create</router-link>
+                </div>
+            </div>
+        </div>
+
+
+
+
     </div>
 </template>
 
@@ -95,13 +107,6 @@ export default {
     color: #29ab0f;
 }
 
-.table-thead {
-    background-color: #5f2a62;
-    color: #fff;
-}
-.table tbody tr {
-    background-color: #fff;
-}
 span {
     cursor: pointer;
     color: #5f2a62;
