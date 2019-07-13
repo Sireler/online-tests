@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Traits\Responses;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Survey;
 use Illuminate\Support\Facades\Auth;
@@ -98,20 +99,18 @@ class SurveyController extends Controller
      */
     public function delete(Request $request, int $id)
     {
-        $user = $this->guard()->user();
+        $user = $request->user();
+        $survey = Survey::find($id);
 
-        if ($user->hasSurvey($id)) {
-            Survey::destroy($id);
+        if ($user->can('delete', $survey)) {
+            $survey->delete();
 
             return response()->json([
                 'status' => true,
-                'message' => 'Survey deleted'
-            ], 200);
+                'message' => 'Survey deleteted'
+            ]);
         } else {
-            return response()->json([
-                'status' => false,
-                'message' => 'Forbidden'
-            ], 403);
+            return $this->forbiddenResponse();
         }
     }
 
@@ -123,18 +122,12 @@ class SurveyController extends Controller
      */
     public function get(Request $request, int $id)
     {
-        $user = $request->user();
+        $survey = Survey::where('id', '=', $id)->get(['title', 'created_at']);
 
-        if ($user->hasSurvey($id)) {
-            $survey = Survey::where('id', '=', $id)->get(['title', 'created_at']);
-
-            return response()->json([
-                'status' => true,
-                'survey' => $survey
-            ], 200);
-        } else {
-            return $this->forbiddenResponse();
-        }
+        return response()->json([
+            'status' => true,
+            'survey' => $survey
+        ]);
     }
 
     /**
@@ -147,13 +140,10 @@ class SurveyController extends Controller
     public function update(Request $request, int $id)
     {
         $user = $request->user();
+        $survey = Survey::find($id);
 
-        if ($user->hasSurvey($id)) {
-            $fields = $request->all();
-
-            $survey = Survey::find($id);
-
-            $survey->fill($fields)->save();
+        if ($user->can('update', $survey)) {
+            $survey->update($request->all());
 
             return response()->json([
                 'status' => true,
