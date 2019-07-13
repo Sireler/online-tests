@@ -40,7 +40,9 @@ class AuthTest extends TestCase
             'password' => 'SecretPass'
         ]);
 
-        $response->assertStatus(200);
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure(['token']);
     }
 
     public function testRefreshUserToken()
@@ -50,9 +52,10 @@ class AuthTest extends TestCase
         ]);
 
         $response = $this->actingAs($user, 'api')
-            ->json('POST', '/api/refresh');
+            ->json('POST', '/api/auth/refresh');
 
-        $response->assertStatus(200);
+        $response
+            ->assertStatus(200);
     }
 
     public function testUserCantLoginWithIncorrectCredentials()
