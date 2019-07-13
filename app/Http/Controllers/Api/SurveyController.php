@@ -3,20 +3,29 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Traits\Responses;
 use Illuminate\Http\Request;
 use App\Survey;
 use Illuminate\Support\Facades\Auth;
 
 class SurveyController extends Controller
 {
+    use Responses;
+
     public function __construct()
     {
         $this->middleware('auth:api')->except('start');
     }
 
-    public function index()
+    /**
+     * Get all surveys of the user
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(Request $request)
     {
-        $user = $this->guard()->user();
+        $user = $request->user();
 
         return response()->json([
             'surveys' => $user->surveys
@@ -26,11 +35,12 @@ class SurveyController extends Controller
     /**
      * Surveys that have at least one question.
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function home()
+    public function home(Request $request)
     {
-        $user = $this->guard()->user();
+        $user = $request->user();
 
         return response()->json([
             'surveys' => $user->surveys()->has('questions')->get()
@@ -38,26 +48,19 @@ class SurveyController extends Controller
     }
 
     /**
-     * Get survey with answers
+     * Get a survey with questions and answers
      *
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function start(int $id)
     {
-        $survey = Survey::where('id', '=', $id)->with('questions.answers')->first();
+        $survey = Survey::where('id', '=', $id)->with('questions.answers')->firstOrFail();
 
-        if ($survey) {
-            return response()->json([
-                'status' => true,
-                'survey' => $survey
-            ]);
-        } else {
-            return response()->json([
-                 'status' => false,
-                'message' => 'Not found'
-            ], 404);
-        }
+        return response()->json([
+            'status' => true,
+            'survey' => $survey
+        ]);
     }
 
     /**
@@ -73,24 +76,21 @@ class SurveyController extends Controller
             'title' => 'required'
         ]);
 
-        $user = $this->guard()->user();
+        $user = $request->user();
 
-        $created = $user->surveys()->create([
+        $survey = $user->surveys()->create([
             'title' => $data['title']
         ]);
 
         return response()->json([
             'status' => true,
-            'data' => [
-                'id' => $created->id,
-                'title' => $created->title
-            ],
+            'data' => collect($survey)->only('id', 'title'),
             'message' => 'Survey created'
         ], 201);
     }
 
     /**
-     * Delete survey
+     * Delete a survey
      *
      * @param Request $request
      * @param int $id
@@ -116,14 +116,14 @@ class SurveyController extends Controller
     }
 
     /**
-     * Check access and return survey
+     * Get survey by id
      *
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function get(int $id)
+    public function get(Request $request, int $id)
     {
-        $user = $this->guard()->user();
+        $user = $request->user();
 
         if ($user->hasSurvey($id)) {
             $survey = Survey::where('id', '=', $id)->get(['title', 'created_at']);
@@ -146,7 +146,7 @@ class SurveyController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $user = $this->guard()->user();
+        $user = $request->user();
 
         if ($user->hasSurvey($id)) {
             $fields = $request->all();
@@ -162,23 +162,5 @@ class SurveyController extends Controller
         } else {
             return $this->forbiddenResponse();
         }
-    }
-
-    /**
-     * Current guard
-     *
-     * @return mixed
-     */
-    public function guard()
-    {
-        return Auth::guard();
-    }
-
-    private function forbiddenResponse()
-    {
-        return response()->json([
-            'status' => false,
-            'message' => 'Forbidden'
-        ], 403);
     }
 }
