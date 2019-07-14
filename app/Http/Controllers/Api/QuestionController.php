@@ -25,24 +25,24 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
         $user = $request->user();
 
-        $survey = Survey::findOrFail($data['survey_id']);
+        $survey = Survey::findOrFail($request->get('survey_id'));
 
-        if ($user->hasSurvey($data['survey_id'])) {
+        if ($user->can('update', $survey)) {
             try {
-                $question = $survey->questions()->create($data['question']);
+                $question = $survey->questions()
+                    ->create($request->get('question'));
 
-                $answers = $data['answers'];
-                $question->answers()->createMany($answers);
+                $question->answers()
+                    ->createMany($request->get('answers'));
 
                 $question->load('answers');
 
                 return response()->json([
                     'status' => true,
                     'question' => $question,
-                    'message' => 'Successful creation'
+                    'message' => 'Created'
                 ], 201);
             } catch (\Exception $e) {
                 return $this->UEResponse();
@@ -53,7 +53,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Update
+     * Update a question
      *
      * @param Request $request
      * @param int $id
@@ -61,16 +61,15 @@ class QuestionController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $data = $request->all();
         $user = $request->user();
+        $question = SurveyQuestion::findOrFail($id);
 
-        if ($user->hasQuestion($id)) {
-            $question = SurveyQuestion::find($id);
-            $question->update($data);
+        if ($user->can('update', $question)) {
+            $question->update($request->all());
 
             return response()->json([
                 'status' => true,
-                'message' => 'Question updated'
+                'message' => 'Updated'
             ]);
         } else {
             return $this->forbiddenResponse();
@@ -78,7 +77,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Get survey and answers
+     * Get a survey and answers
      *
      * @param Request $request
      * @param int $id
@@ -87,10 +86,9 @@ class QuestionController extends Controller
     public function get(Request $request, int $id)
     {
         $user = $request->user();
+        $survey = Survey::where('id', $id)->with('questions.answers')->firstOrFail();
 
-        if ($user->hasSurvey($id)) {
-            $survey = Survey::where('id', '=', $id)->with('questions.answers')->first();
-
+        if ($user->can('update', $survey)) {
             return response()->json($survey);
         } else {
             return $this->forbiddenResponse();
@@ -109,8 +107,8 @@ class QuestionController extends Controller
     {
         $user = $request->user();
 
-        if ($user->hasSurvey($surveyId)) {
-            $question = SurveyQuestion::find($id);
+        $question = SurveyQuestion::findOrFail($id);
+        if ($user->can('delete', $question)) {
             $question->delete();
 
             return response()->json([
