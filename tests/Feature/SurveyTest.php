@@ -98,7 +98,7 @@ class SurveyTest extends TestCase
         $response->assertStatus(401);
     }
 
-    public function userCanUpdateSurvey()
+    public function testUserCanUpdateSurvey()
     {
         // User is owner of this survey
         // Survey must be deleted
@@ -109,5 +109,18 @@ class SurveyTest extends TestCase
             ->json('PATCH', 'api/survey/update/' . $survey->id);
 
         $response->assertStatus(202);
+    }
+
+    public function testUserCantUpdateSurvey()
+    {
+        // User is not owner of this survey
+        // Survey cannot be deleted
+        $user = factory(User::class)->create();
+        $survey = factory(Survey::class)->create();
+
+        $response = $this->actingAs($user, 'api')
+            ->json('PATCH', 'api/survey/update/' . $survey->id);
+
+        $response->assertStatus(403);
     }
 }
