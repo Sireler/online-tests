@@ -13,6 +13,11 @@ docker-build:
 docker-containers:
 	docker container ls -a
 
+project-init: composer-install artisan-migrate assets-install assets-dev
+
+composer-install:
+	docker-compose run --rm manager-php-cli composer install
+
 artisan-migrate:
 	docker-compose run --rm php-cli php artisan migrate --no-interaction
 
