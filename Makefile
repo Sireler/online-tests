@@ -9,3 +9,10 @@ docker-down-clear:
 
 docker-build:
 	docker-compose build
+
+docker-containers:
+	docker container ls -a
+
+fix-permission:
+	sudo chgrp -R www-data storage bootstrap/cache
+	sudo chmod -R ug+rwx storage bootstrap/cache

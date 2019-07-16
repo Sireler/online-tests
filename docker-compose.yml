@@ -19,14 +19,14 @@ services:
     depends_on:
       - mysql
   mysql:
-    image: mysql:5.7
+    image: mysql:5.6
     volumes:
       - mysql:/var/lib/mysql
     environment:
-      MYQL_ROOT_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: survey_app
       MYSQL_USER: app
       MYSQL_PASSWORD: secret
-      MYSQL_DATABASE: app
     ports:
       - "33061:3306"
 
