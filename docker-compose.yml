@@ -38,6 +38,11 @@ services:
       MYSQL_PASSWORD: secret
     ports:
       - "33061:3306"
+  node:
+    image: node:12.6-alpine
+    volumes:
+      - ./:/app
+    working_dir: /app
 
 volumes:
   mysql:
