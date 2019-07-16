@@ -1,12 +1,10 @@
-## Install
+## Installation
 ```
-$ composer install
-$ cp .env.example .env
+$ make docker-build
+$ make docker-up
+$ make project-init
 
-change APP_URL in .env
-$ npm run dev
-
-$ php artisan key:generate
-$ php artisan jwt:secret
-$ php artisan migrate
+If you've got a permission problem
+$ make fix-permission
+$ make project-init
 ```
