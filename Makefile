@@ -33,6 +33,9 @@ assets-install:
 assets-dev:
 	docker-compose run --rm node npm run dev
 
+assets-watch:
+	docker-compose run --rm node npm run watch
+
 fix-permission:
 	sudo chgrp -R www-data storage bootstrap/cache
 	sudo chmod -R ug+rwx storage bootstrap/cache
