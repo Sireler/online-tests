@@ -16,6 +16,11 @@ services:
       dockerfile: php-fpm.docker
     volumes:
       - ./:/app
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: survey_app
+      DB_USERNAME: app
+      DB_PASSWORD: secret
     depends_on:
       - mysql
   php-cli:
