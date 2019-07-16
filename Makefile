@@ -16,7 +16,9 @@ docker-containers:
 project-init: composer-install project-install artisan-migrate assets-install assets-dev
 
 project-install:
-	docker-compose run --rm php-cli cp .env.example .env && php artisan key:generate && php artisan jwt:secret
+	docker-compose run --rm php-cli cp .env.example .env
+	docker-compose run --rm php-cli php artisan key:generate
+	docker-compose run --rm php-cli php artisan jwt:secret
 
 composer-install:
 	docker-compose run --rm php-cli composer install
