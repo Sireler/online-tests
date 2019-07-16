@@ -13,6 +13,9 @@ docker-build:
 docker-containers:
 	docker container ls -a
 
+artisan-migrate:
+	docker-compose run --rm php-cli php artisan migrate --no-interaction
+
 fix-permission:
 	sudo chgrp -R www-data storage bootstrap/cache
 	sudo chmod -R ug+rwx storage bootstrap/cache
