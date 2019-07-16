@@ -30,6 +30,11 @@ services:
     volumes:
       - ./:/app
       - composer:/root/.composer/cache
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: survey_app
+      DB_USERNAME: app
+      DB_PASSWORD: secret
     depends_on:
       - mysql
   mysql:
