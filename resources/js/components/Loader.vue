@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid app-loading">
+    <div class="container-fluid app-loading bg-primary">
         <div class="col-6 m-auto">
             <div class="lds-ripple"><div></div><div></div></div>
         </div>
@@ -17,7 +17,6 @@ export default {
     position: absolute;
     left: 0;
     top: 0;
-    background: #eee;
     width: 100%;
     height: 100vh;
 }
@@ -33,7 +32,7 @@ export default {
 }
 .lds-ripple div {
     position: absolute;
-    border: 4px solid #3490DC;
+    border: 4px solid #fff;
     opacity: 1;
     border-radius: 50%;
     animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
