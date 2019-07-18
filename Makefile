@@ -36,6 +36,9 @@ assets-dev:
 assets-watch:
 	docker-compose run --rm node npm run watch
 
+test:
+	docker-compose run --rm php-cli php ./vendor/bin/phpunit
+
 fix-permission:
 	sudo chgrp -R www-data storage bootstrap/cache
 	sudo chmod -R ug+rwx storage bootstrap/cache
