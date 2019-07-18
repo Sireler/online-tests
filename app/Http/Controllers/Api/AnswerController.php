@@ -43,6 +43,8 @@ class AnswerController extends Controller
     }
 
     /**
+     * (dep)
+     * TODO
      * Update answers
      *
      * @param Request $request
@@ -56,6 +58,7 @@ class AnswerController extends Controller
 
         if ($user->hasQuestion($questionId)) {
             $answers = $data['answers'];
+
             $question = SurveyQuestion::find($questionId);
 
             $question->answers()->delete();
