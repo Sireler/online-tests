@@ -2,7 +2,7 @@
     <div>
         <app-nav v-if="$route.path !== '/' && $auth.check()"></app-nav>
         <div v-if="$auth.ready()" class="row m-0 bg-primary">
-            <router-view class="col-md-12 mt-3"></router-view>
+            <router-view class="mt-3"></router-view>
         </div>
         <app-loader ref="appload" v-if="loading"></app-loader>
         <footer class="bg-primary"><router-link class=" text-white" to="/">Surveys &copy; 2018</router-link></footer>

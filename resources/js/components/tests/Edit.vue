@@ -7,19 +7,21 @@
                     <form @submit.prevent>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col-md-6">
                                     <label for="title">Title</label>
                                     <input id="title" type="text" class="form-control"
                                            :disabled="!editFields"
                                            v-model="title">
                                 </div>
-                                <div class="col-md-10 mt-2">
+                                <div class="col-md-6">
                                     <label for="surveyType">Type</label>
                                     <select class="form-control" id="surveyType" v-model="type" :disabled="!editFields">
                                         <option value="public">Public</option>
                                     </select>
                                 </div>
-                                <div class="col-md-2 mt-3 mt-md-0"
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-4"
                                      v-show="!editFields">
                                     <button class="btn btn-primary btn-block"
                                             @click="edit">
@@ -30,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-10 text-right"
+                                <div class="col-md-12 text-right"
                                      v-show="editFields">
                                     <a @click.prevent="cancelEdit" class="edit-link" href="">Cancel</a>
                                     <button class="btn btn-success"

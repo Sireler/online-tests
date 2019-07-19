@@ -1,18 +1,23 @@
 <template>
     <div class="main col-md-12">
         <navbar></navbar>
-        <div class="col-md-12 about bg-white jumbotron">
-            <div class="container">
-                <h1>Create surveys and get answers</h1>
-                <p class="lead">You can create and manage public and private surveys</p>
-                <div v-if="!$auth.check()">
-                    <button @click="toAuth" class="btn btn-outline-primary text-uppercase">Sign up</button>
-                </div>
-                <div v-else>
-                    <button @click="toAuth" class="btn btn-outline-primary text-uppercase">Start</button>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 about bg-white jumbotron">
+                    <div class="container">
+                        <h1>Create surveys and get answers</h1>
+                        <p class="lead">You can create and manage surveys</p>
+                        <div v-if="!$auth.check()">
+                            <button @click="toAuth" class="btn btn-outline-primary text-uppercase">Sign up</button>
+                        </div>
+                        <div v-else>
+                            <button @click="toAuth" class="btn btn-outline-primary text-uppercase">Start</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 

@@ -1,24 +1,28 @@
 <template>
-    <div class="container col-md-8">
-        <div class="jumbotron bg-primary text-white">
-            <h1 class="display-4">Surveys</h1>
-            <p class="lead">List of your surveys</p>
-            <hr class="my-4">
-            <div class="cards">
-                <div v-if="surveysTable !== null && surveysTable.length > 0" class="row cards-row">
-                    <div class="col-md-6">
-                        <div class="card" v-for="survey in surveysTable">
-                            <div class="card-body">
-                                <h5 class="card-title">Survey: {{ survey.title }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"></h6>
-                                <router-link class="card-link" :to="`/tests/start/${survey.id}`">Start</router-link>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron bg-primary text-white">
+                    <h1 class="display-4">Surveys</h1>
+                    <p class="lead">List of your surveys</p>
+                    <hr class="my-4 bg-secondary">
+                    <div class="cards">
+                        <div v-if="surveysTable !== null && surveysTable.length > 0" class="row cards-row">
+                            <div class="col-md-6">
+                                <div class="card" v-for="survey in surveysTable">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Survey: {{ survey.title }}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                        <router-link class="card-link" :to="`/tests/start/${survey.id}`">Start</router-link>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="alert alert-info"
+                             v-if="surveysTable == null || surveysTable.length <= 0">
+                            You don't have surveys ready
+                        </div>
                     </div>
-                </div>
-                <div class="alert alert-info"
-                     v-if="surveysTable == null || surveysTable.length <= 0">
-                    You don't have surveys ready
                 </div>
             </div>
         </div>

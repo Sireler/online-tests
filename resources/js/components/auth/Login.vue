@@ -18,9 +18,6 @@
                         <div class="form-group">
                             <input @click="login" type="submit" class="btn btn-outline-primary" value="Continue" />
                         </div>
-                        <div class="form-group">
-                            <a href="#">Forget Password?</a>
-                        </div>
                     </form>
                 </div>
                 <div class="container col-md-6">
