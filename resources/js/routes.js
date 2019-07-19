@@ -27,15 +27,37 @@ const routes = [
     // Auth
     { path: '/auth', component: Auth },
 
+    // Surveys
+    {
+        path: '/surveys',
+        name: 'surveys',
+        component: Tests
+    },
+    {
+        path: '/surveys/create',
+        name: 'surveys.create', component: CreateTest
+    },
+    {
+        path: '/surveys/start/:id',
+        name: 'surveys.start',
+        component: StartTest,
+        props: true
+    },
+    {
+        path: '/surveys/edit/:id',
+        name: 'surveys.edit',
+        component: EditTest,
+        props: true
+    },
+    {
+        path: '/surveys/edit/:id/questions',
+        name: 'surveys.questions.edit',
+        component: EditSurveyQuestions,
+        props: true
+    },
+
     // Not found
     { path: '*', component: NotFound },
-
-    // Tests
-    { path: '/tests', component: Tests },
-    { path: '/tests/create', component: CreateTest },
-    { path: '/tests/start/:id', component: StartTest, props: true },
-    { path: '/tests/edit/:id', component: EditTest, props: true },
-    { path: '/tests/edit/:id/questions', component: EditSurveyQuestions, props: true },
 ];
 
 const router = new VueRouter({

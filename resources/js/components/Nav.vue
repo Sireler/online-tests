@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/tests" activeClass="active">My surveys</router-link>
+                    <router-link class="nav-link" :to="{ name: 'surveys' }" activeClass="active">My surveys</router-link>
                 </li>
             </ul>
             <button class="btn btn-outline-primary" @click="logout">

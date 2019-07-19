@@ -31851,7 +31851,7 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "nav-link",
-                    attrs: { to: "/tests", activeClass: "active" }
+                    attrs: { to: { name: "surveys" }, activeClass: "active" }
                   },
                   [_vm._v("My surveys")]
                 )
@@ -31991,7 +31991,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.app-loading[data-v-e79ec684] {\n    position: absolute;\n    left: 0;\n    top: 0;\n    background: #eee;\n    width: 100%;\n    height: 100vh;\n}\n.lds-ripple[data-v-e79ec684] {\n    display: inline-block;\n    position: relative;\n    width: 256px;\n    height: 256px;\n    left: 50%;\n    margin-left: -128px;\n    margin-top: 35%;\n}\n.lds-ripple div[data-v-e79ec684] {\n    position: absolute;\n    border: 4px solid #3490DC;\n    opacity: 1;\n    border-radius: 50%;\n    -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\n            animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\n}\n.lds-ripple div[data-v-e79ec684]:nth-child(2) {\n    -webkit-animation-delay: -0.5s;\n            animation-delay: -0.5s;\n}\n", ""]);
+exports.push([module.i, "\n.app-loading[data-v-e79ec684] {\n    position: absolute;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100vh;\n}\n.lds-ripple[data-v-e79ec684] {\n    display: inline-block;\n    position: relative;\n    width: 256px;\n    height: 256px;\n    left: 50%;\n    margin-left: -128px;\n    margin-top: 35%;\n}\n.lds-ripple div[data-v-e79ec684] {\n    position: absolute;\n    border: 4px solid #fff;\n    opacity: 1;\n    border-radius: 50%;\n    -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\n            animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\n}\n.lds-ripple div[data-v-e79ec684]:nth-child(2) {\n    -webkit-animation-delay: -0.5s;\n            animation-delay: -0.5s;\n}\n", ""]);
 
 // exports
 
@@ -32030,11 +32030,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid app-loading" }, [
-      _c("div", { staticClass: "col-6 m-auto" }, [
-        _c("div", { staticClass: "lds-ripple" }, [_c("div"), _c("div")])
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "container-fluid app-loading bg-primary" },
+      [
+        _c("div", { staticClass: "col-6 m-auto" }, [
+          _c("div", { staticClass: "lds-ripple" }, [_c("div"), _c("div")])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -32063,7 +32067,7 @@ var render = function() {
         ? _c(
             "div",
             { staticClass: "row m-0 bg-primary" },
-            [_c("router-view", { staticClass: "col-md-12 mt-3" })],
+            [_c("router-view", { staticClass: "mt-3" })],
             1
           )
         : _vm._e(),
@@ -32149,11 +32153,33 @@ var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_Ma
 // Auth
 { path: '/auth', component: __WEBPACK_IMPORTED_MODULE_4__components_auth_Auth___default.a },
 
-// Not found
-{ path: '*', component: __WEBPACK_IMPORTED_MODULE_5__components_NotFound___default.a },
+// Surveys
+{
+    path: '/surveys',
+    name: 'surveys',
+    component: __WEBPACK_IMPORTED_MODULE_6__components_tests_Tests___default.a
+}, {
+    path: '/surveys/create',
+    name: 'surveys.create', component: __WEBPACK_IMPORTED_MODULE_7__components_tests_Create___default.a
+}, {
+    path: '/surveys/start/:id',
+    name: 'surveys.start',
+    component: __WEBPACK_IMPORTED_MODULE_8__components_tests_Start___default.a,
+    props: true
+}, {
+    path: '/surveys/edit/:id',
+    name: 'surveys.edit',
+    component: __WEBPACK_IMPORTED_MODULE_9__components_tests_Edit___default.a,
+    props: true
+}, {
+    path: '/surveys/edit/:id/questions',
+    name: 'surveys.questions.edit',
+    component: __WEBPACK_IMPORTED_MODULE_10__components_tests_surevys_EditQuestions___default.a,
+    props: true
+},
 
-// Tests
-{ path: '/tests', component: __WEBPACK_IMPORTED_MODULE_6__components_tests_Tests___default.a }, { path: '/tests/create', component: __WEBPACK_IMPORTED_MODULE_7__components_tests_Create___default.a }, { path: '/tests/start/:id', component: __WEBPACK_IMPORTED_MODULE_8__components_tests_Start___default.a, props: true }, { path: '/tests/edit/:id', component: __WEBPACK_IMPORTED_MODULE_9__components_tests_Edit___default.a, props: true }, { path: '/tests/edit/:id/questions', component: __WEBPACK_IMPORTED_MODULE_10__components_tests_surevys_EditQuestions___default.a, props: true }];
+// Not found
+{ path: '*', component: __WEBPACK_IMPORTED_MODULE_5__components_NotFound___default.a }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     mode: 'history',
@@ -34919,7 +34945,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -34932,6 +34958,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TopNavbar__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TopNavbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__TopNavbar__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -35119,35 +35150,39 @@ var render = function() {
     [
       _c("navbar"),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-12 about bg-white jumbotron" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("h1", [_vm._v("Create surveys and get answers")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "lead" }, [
-            _vm._v("You can create and manage public and private surveys")
-          ]),
-          _vm._v(" "),
-          !_vm.$auth.check()
-            ? _c("div", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary text-uppercase",
-                    on: { click: _vm.toAuth }
-                  },
-                  [_vm._v("Sign up")]
-                )
-              ])
-            : _c("div", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary text-uppercase",
-                    on: { click: _vm.toAuth }
-                  },
-                  [_vm._v("Start")]
-                )
-              ])
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12 about bg-white jumbotron" }, [
+            _c("div", { staticClass: "container" }, [
+              _c("h1", [_vm._v("Create surveys and get answers")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "lead" }, [
+                _vm._v("You can create and manage surveys")
+              ]),
+              _vm._v(" "),
+              !_vm.$auth.check()
+                ? _c("div", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-outline-primary text-uppercase",
+                        on: { click: _vm.toAuth }
+                      },
+                      [_vm._v("Sign up")]
+                    )
+                  ])
+                : _c("div", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-outline-primary text-uppercase",
+                        on: { click: _vm.toAuth }
+                      },
+                      [_vm._v("Start")]
+                    )
+                  ])
+            ])
+          ])
         ])
       ])
     ],
@@ -35288,6 +35323,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -35324,58 +35366,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container col-md-8" }, [
-    _c("div", { staticClass: "jumbotron bg-primary text-white" }, [
-      _c("h1", { staticClass: "display-4" }, [_vm._v("Surveys")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "lead" }, [_vm._v("List of your surveys")]),
-      _vm._v(" "),
-      _c("hr", { staticClass: "my-4" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "cards" }, [
-        _vm.surveysTable !== null && _vm.surveysTable.length > 0
-          ? _c("div", { staticClass: "row cards-row" }, [
-              _c(
-                "div",
-                { staticClass: "col-md-6" },
-                _vm._l(_vm.surveysTable, function(survey) {
-                  return _c("div", { staticClass: "card" }, [
-                    _c(
-                      "div",
-                      { staticClass: "card-body" },
-                      [
-                        _c("h5", { staticClass: "card-title" }, [
-                          _vm._v("Survey: " + _vm._s(survey.title))
-                        ]),
-                        _vm._v(" "),
-                        _c("h6", {
-                          staticClass: "card-subtitle mb-2 text-muted"
-                        }),
-                        _vm._v(" "),
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "jumbotron bg-primary text-white" }, [
+          _c("h1", { staticClass: "display-4" }, [_vm._v("Surveys")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "lead" }, [_vm._v("List of your surveys")]),
+          _vm._v(" "),
+          _c("hr", { staticClass: "my-4 bg-secondary" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "cards" }, [
+            _vm.surveysTable !== null && _vm.surveysTable.length > 0
+              ? _c("div", { staticClass: "row cards-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-6" },
+                    _vm._l(_vm.surveysTable, function(survey) {
+                      return _c("div", { staticClass: "card" }, [
                         _c(
-                          "router-link",
-                          {
-                            staticClass: "card-link",
-                            attrs: { to: "/tests/start/" + survey.id }
-                          },
-                          [_vm._v("Start")]
+                          "div",
+                          { staticClass: "card-body" },
+                          [
+                            _c("h5", { staticClass: "card-title" }, [
+                              _vm._v("Survey: " + _vm._s(survey.title))
+                            ]),
+                            _vm._v(" "),
+                            _c("h6", {
+                              staticClass: "card-subtitle mb-2 text-muted"
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "card-link",
+                                attrs: {
+                                  to: {
+                                    name: "surveys.start",
+                                    params: { id: survey.id }
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        Start\n                                    "
+                                )
+                              ]
+                            )
+                          ],
+                          1
                         )
-                      ],
-                      1
-                    )
-                  ])
-                })
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.surveysTable == null || _vm.surveysTable.length <= 0
-          ? _c("div", { staticClass: "alert alert-info" }, [
-              _vm._v(
-                "\n                You don't have surveys ready\n            "
-              )
-            ])
-          : _vm._e()
+                      ])
+                    })
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.surveysTable == null || _vm.surveysTable.length <= 0
+              ? _c("div", { staticClass: "alert alert-info" }, [
+                  _vm._v(
+                    "\n                        You don't have surveys ready\n                    "
+                  )
+                ])
+              : _vm._e()
+          ])
+        ])
       ])
     ])
   ])
@@ -35614,7 +35669,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -35625,9 +35680,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -35808,9 +35860,7 @@ var render = function() {
                       attrs: { type: "submit", value: "Continue" },
                       on: { click: _vm.login }
                     })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(1)
+                  ])
                 ]
               )
             ]
@@ -35844,14 +35894,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container col-md-6 text-white" }, [
       _c("h3", { staticClass: "display-4" }, [_vm._v("Log in")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Forget Password?")])
     ])
   }
 ]
@@ -36500,7 +36542,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.oi[data-v-eca353d0] {\n    font-size: 1.15em;\n}\n.oi-circle-x[data-v-eca353d0] {\n    color: #ff0000;\n}\n.oi-wrench[data-v-eca353d0] {\n    color: #29ab0f;\n}\nspan[data-v-eca353d0] {\n    cursor: pointer;\n    color: #5f2a62;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    margin-left: 10px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36511,26 +36553,8 @@ exports.push([module.i, "\n.oi[data-v-eca353d0] {\n    font-size: 1.15em;\n}\n.o
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__surveys_SurveysTable__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__surveys_SurveysTable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__surveys_SurveysTable__);
 //
 //
 //
@@ -36559,7 +36583,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        SurveysTable: __WEBPACK_IMPORTED_MODULE_0__surveys_SurveysTable___default.a
+    },
     data: function data() {
         return {
             surveysTable: null
@@ -36579,25 +36608,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.$toasted.show('Request error');
                 window.location.reload();
             });
-        },
-        deleteSurvey: function deleteSurvey(id, index) {
-            var _this2 = this;
-
-            this.$dialogs.confirm('Are you sure you want to delete a survey?', {
-                title: 'Delete survey', okLabel: 'Delete'
-            }).then(function (res) {
-                if (res.ok) {
-                    _this2.axios.delete('/survey/delete/' + id).then(function (res) {
-                        _this2.surveysTable.splice(index, 1);
-                        _this2.$toasted.show(res.data.message);
-                    }).catch(function (err) {
-                        _this2.$toasted.show('Forbidden');
-                    });
-                }
-            });
-        },
-        editSurvey: function editSurvey(id) {
-            this.$router.push({ path: '/tests/edit/' + id });
         }
     },
     mounted: function mounted() {
@@ -36617,44 +36627,11 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-8 offset-md-2" }, [
         _vm.surveysTable !== null && _vm.surveysTable.length > 0
-          ? _c("table", { staticClass: "table bg-white rounded" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.surveysTable, function(survey, index) {
-                  return _c("tr", [
-                    _c("td", [_vm._v(_vm._s(survey.title))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(survey.created_at))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("0")]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("span", {
-                        staticClass: "oi oi-circle-x",
-                        attrs: { title: "Delete survey" },
-                        on: {
-                          click: function($event) {
-                            _vm.deleteSurvey(survey.id, index)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", {
-                        staticClass: "oi oi-wrench",
-                        attrs: { title: "Edit survey" },
-                        on: {
-                          click: function($event) {
-                            _vm.editSurvey(survey.id)
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                })
-              )
-            ])
+          ? _c(
+              "div",
+              [_c("SurveysTable", { attrs: { surveys: _vm.surveysTable } })],
+              1
+            )
           : _vm._e()
       ])
     ]),
@@ -36679,7 +36656,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-secondary",
-                attrs: { to: "tests/create" }
+                attrs: { to: { name: "surveys.create" } }
               },
               [_vm._v("Create")]
             )
@@ -36690,24 +36667,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", { staticClass: "table-thead" }, [
-        _c("th", [_vm._v("TITLE")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("CREATED")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("RESPONSES")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("MANAGE")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -36859,7 +36819,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'title': this.surveyName
                 }).then(function (res) {
                     _this.$toasted.show(res.data.message);
-                    _this.$router.push({ path: '/tests' });
+                    _this.$router.push({ name: 'surveys' });
                 }).catch(function (err) {
                     // err
                 });
@@ -37739,6 +37699,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -37875,7 +37837,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this4.title = _this4.stTitle = res.data.survey[0].title;
         }).catch(function (err) {
             _this4.$toasted.show('Forbidden');
-            _this4.$router.push({ path: '/tests' });
+            _this4.$router.push({ name: 'surveys' });
         });
     }
 });
@@ -38041,7 +38003,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this3.surveyName = res.data.title;
         }).catch(function (err) {
             _this3.$toasted.show('Forbidden');
-            _this3.$router.push({ path: '/tests' });
+            _this3.$router.push({ name: 'surveys' });
         });
     }
 });
@@ -38212,7 +38174,7 @@ var render = function() {
             [
               _c("div", { staticClass: "form-group" }, [
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-10" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
                     _vm._v(" "),
                     _c("input", {
@@ -38242,7 +38204,7 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-10 mt-2" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c("label", { attrs: { for: "surveyType" } }, [
                       _vm._v("Type")
                     ]),
@@ -38282,8 +38244,10 @@ var render = function() {
                         ])
                       ]
                     )
-                  ]),
-                  _vm._v(" "),
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mt-3" }, [
                   _c(
                     "div",
                     {
@@ -38295,7 +38259,7 @@ var render = function() {
                           expression: "!editFields"
                         }
                       ],
-                      staticClass: "col-md-2 mt-3 mt-md-0"
+                      staticClass: "col-md-4"
                     },
                     [
                       _c(
@@ -38328,7 +38292,7 @@ var render = function() {
                           expression: "editFields"
                         }
                       ],
-                      staticClass: "col-md-10 text-right"
+                      staticClass: "col-md-12 text-right"
                     },
                     [
                       _c(
@@ -40180,6 +40144,231 @@ module.exports = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 141 */,
+/* 142 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(143)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(145)
+/* template */
+var __vue_template__ = __webpack_require__(146)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-61368056"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/surveys/SurveysTable.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-61368056", Component.options)
+  } else {
+    hotAPI.reload("data-v-61368056", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(144);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("5e878943", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61368056\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SurveysTable.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61368056\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SurveysTable.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.oi[data-v-61368056] {\n    font-size: 1.15em;\n}\n.oi-circle-x[data-v-61368056] {\n    color: #ff0000;\n}\n.oi-wrench[data-v-61368056] {\n    color: #29ab0f;\n}\nspan[data-v-61368056] {\n    cursor: pointer;\n    color: #5f2a62;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    margin-left: 10px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 145 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "SurveysTable",
+    props: ['surveys'],
+    methods: {
+        deleteSurvey: function deleteSurvey(id, index) {
+            var _this = this;
+
+            this.$dialogs.confirm('Are you sure you want to delete a survey?', {
+                title: 'Delete survey', okLabel: 'Delete'
+            }).then(function (res) {
+                if (res.ok) {
+                    _this.axios.delete('/survey/delete/' + id).then(function (res) {
+                        _this.surveysTable.splice(index, 1);
+                        _this.$toasted.show(res.data.message);
+                    }).catch(function (err) {
+                        _this.$toasted.show('Forbidden');
+                    });
+                }
+            });
+        },
+        editSurvey: function editSurvey(id) {
+            this.$router.push({ name: 'surveys.edit', params: { id: id } });
+        }
+    }
+});
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("table", { staticClass: "table bg-white rounded" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "tbody",
+      _vm._l(_vm.surveys, function(survey, index) {
+        return _c("tr", [
+          _c("td", [_vm._v(_vm._s(survey.title))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(survey.created_at))]),
+          _vm._v(" "),
+          _c("td", [_vm._v("0")]),
+          _vm._v(" "),
+          _c("td", [
+            _c("span", {
+              staticClass: "oi oi-circle-x",
+              attrs: { title: "Delete survey" },
+              on: {
+                click: function($event) {
+                  _vm.deleteSurvey(survey.id, index)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("span", {
+              staticClass: "oi oi-wrench",
+              attrs: { title: "Edit survey" },
+              on: {
+                click: function($event) {
+                  _vm.editSurvey(survey.id)
+                }
+              }
+            })
+          ])
+        ])
+      })
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", { staticClass: "table-thead text-uppercase" }, [
+        _c("th", [_vm._v("Title")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Created")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Responses")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-61368056", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

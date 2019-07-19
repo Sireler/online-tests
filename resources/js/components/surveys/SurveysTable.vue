@@ -46,7 +46,7 @@ export default {
             });
         },
         editSurvey(id) {
-            this.$router.push({ path: `/tests/edit/${id}` });
+            this.$router.push({ name: 'surveys.edit', params: { id: id } });
         }
     }
 }

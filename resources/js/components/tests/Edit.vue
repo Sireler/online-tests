@@ -247,7 +247,7 @@ export default {
             })
             .catch((err) => {
                 this.$toasted.show('Forbidden');
-                this.$router.push({ path: '/tests' });
+                this.$router.push({ name: 'surveys' });
             });
     },
 }

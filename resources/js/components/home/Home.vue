@@ -13,7 +13,10 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Survey: {{ survey.title }}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted"></h6>
-                                        <router-link class="card-link" :to="`/tests/start/${survey.id}`">Start</router-link>
+                                        <router-link class="card-link"
+                                                     :to="{ name: 'surveys.start', params: { id: survey.id } }">
+                                            Start
+                                        </router-link>
                                     </div>
                                 </div>
                             </div>

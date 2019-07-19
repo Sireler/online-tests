@@ -38,7 +38,7 @@ export default {
                     'title': this.surveyName
                 }).then((res) => {
                     this.$toasted.show(res.data.message);
-                    this.$router.push({ path: '/tests' });
+                    this.$router.push({ name: 'surveys' });
                 }).catch((err) => {
                     // err
                 });
