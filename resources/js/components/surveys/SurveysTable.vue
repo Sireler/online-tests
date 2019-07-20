@@ -4,7 +4,6 @@
         <tr class="table-thead text-uppercase">
             <th>Title</th>
             <th>Created</th>
-            <th>Responses</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -12,7 +11,6 @@
         <tr v-for="(survey, index) in surveys">
             <td>{{ survey.title }}</td>
             <td>{{ survey.created_at }}</td>
-            <td>0</td>
             <td>
                                 <span class="oi oi-circle-x" title="Delete survey"
                                       @click="deleteSurvey(survey.id, index)"></span>
