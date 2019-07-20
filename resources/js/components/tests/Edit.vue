@@ -44,6 +44,15 @@
                 </div>
             </div>
         </div>
+        <!-- View responses button -->
+        <div class="row my-2">
+            <div class="col-md-10 offset-md-1">
+                <router-link class="btn btn-block btn-success"
+                             :to="{ name: 'surveys.responses', props: { id: id } }">
+                    View responses
+                </router-link>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-6 offset-md-1">

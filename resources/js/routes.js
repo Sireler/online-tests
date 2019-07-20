@@ -16,6 +16,7 @@ import CreateTest from './components/tests/Create';
 import StartTest from './components/tests/Start';
 import EditTest from './components/tests/Edit';
 import EditSurveyQuestions from './components/tests/surevys/EditQuestions';
+import SurveyResposnes from './components/surveys/responses/SurveyResponses';
 
 Vue.use(VueRouter);
 
@@ -54,6 +55,11 @@ const routes = [
         name: 'surveys.questions.edit',
         component: EditSurveyQuestions,
         props: true
+    },
+    {
+        path: '/surveys/:id/responses',
+        name: 'surveys.responses',
+        component: SurveyResposnes
     },
 
     // Not found

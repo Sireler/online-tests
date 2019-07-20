@@ -2,7 +2,7 @@
     <div class="container">
         <!--questions and answers-->
         <div id="accordion">
-            <div class="card"
+            <div class="card mb-1"
                  v-for="(question, i) in questions">
                 <div class="card-header" :id="`heading${i}`">
                     <h5 class="mb-0">
