@@ -2,6 +2,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <div class="alert alert-info">
+                    <router-link :to="{ name: 'surveys.edit', params: { id: id } }">
+                        Back to the survey
+                    </router-link>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <h4>Responses</h4>
@@ -17,8 +26,20 @@
                                 </div>
                             </div>
                         </div>
-
-
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <div class="card">
+                    <h3 class="p-3">Number of responses: {{ votes.length }}</h3>
+                    <div class="card-body">
+                        <div class="votes">
+                            <div class="vote-item" v-for="(vote, i) in votes">
+                                Response {{ i + 1}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -31,7 +52,8 @@ export default {
     name: "SurveyResponses",
     data() {
         return {
-            questions: []
+            questions: [],
+            votes: []
         }
     },
     methods: {
@@ -39,6 +61,7 @@ export default {
             this.axios.get(`/survey/votes/${this.id}/responses`)
                 .then((res) => {
                     this.questions = res.data.questions;
+                    this.votes = res.data.votes;
                 })
                 .catch((err) => {
                     this.$toasted.show('Forbidden');

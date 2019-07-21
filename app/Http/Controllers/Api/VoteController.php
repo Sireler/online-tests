@@ -85,10 +85,15 @@ class VoteController extends Controller
 
     public function responses(Request $request, int $id)
     {
-        $questions = SurveyQuestion::where('survey_id', $id)->with('votes', 'answers')->get();
+        $questions = SurveyQuestion::where('survey_id', $id)
+            ->with('answers', 'votes')->get();
+
+        // TODO - new table, first name instead of ip
+        $votes = SurveyVote::select('ip')->distinct('ip')->where('survey_id', $id)->get();
 
         return response()->json([
-            'questions' => $questions
+            'questions' => $questions,
+            'votes' => $votes
         ]);
     }
 }
