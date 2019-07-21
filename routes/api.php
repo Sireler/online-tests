@@ -59,6 +59,7 @@ Route::namespace('Api')->group(function () {
 
         Route::post('votes', 'VoteController@store');
         Route::get('votes/check/{id}', 'VoteController@check');
+        Route::get('votes/{id}/responses', 'VoteController@responses');
     });
 });
 

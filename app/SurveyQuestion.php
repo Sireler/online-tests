@@ -19,4 +19,9 @@ class SurveyQuestion extends Model
     {
         return $this->hasMany('App\SurveyAnswer');
     }
+
+    public function votes()
+    {
+        return $this->hasMany('App\SurveyVote');
+    }
 }

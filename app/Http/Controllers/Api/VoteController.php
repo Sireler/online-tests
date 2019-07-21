@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\SurveyQuestion;
 use App\SurveyVote;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -80,5 +81,14 @@ class VoteController extends Controller
                 'message' => 'You have already completed the survey'
             ], 403);
         }
+    }
+
+    public function responses(Request $request, int $id)
+    {
+        $questions = SurveyQuestion::where('survey_id', $id)->with('votes', 'answers')->get();
+
+        return response()->json([
+            'questions' => $questions
+        ]);
     }
 }
