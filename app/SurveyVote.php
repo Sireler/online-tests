@@ -10,7 +10,7 @@ class SurveyVote extends Model
 
     public function answer()
     {
-        return $this->belongsTo('App\SurveyAnswer');
+        return $this->belongsTo('App\SurveyAnswer', 'survey_answer_id', 'id');
     }
 
     public function survey()
@@ -20,6 +20,6 @@ class SurveyVote extends Model
 
     public function question()
     {
-        return $this->belongsTo('App\SurveyQuestion');
+        return $this->belongsTo('App\SurveyQuestion', 'survey_question_id', 'id');
     }
 }
