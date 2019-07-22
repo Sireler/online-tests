@@ -38884,7 +38884,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38944,13 +38944,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "SurveyResponses",
     data: function data() {
         return {
             questions: [],
-            votes: []
+            analyze: [],
+            rendered: []
         };
     },
 
@@ -38960,10 +38963,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.axios.get("/survey/votes/" + this.id + "/responses").then(function (res) {
                 _this.questions = res.data.questions;
-                _this.votes = res.data.votes;
+                _this.analyze = res.data.analyze;
             }).catch(function (err) {
                 _this.$toasted.show('Forbidden');
             });
+        },
+        checkQuestion: function checkQuestion(a) {
+            this.rendered[a.question.id] = 1;
+
+            return a.question.title;
         }
     },
     computed: {
@@ -39062,25 +39070,35 @@ var render = function() {
     _c("div", { staticClass: "row mt-2" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
-          _c("h3", { staticClass: "p-3" }, [
-            _vm._v("Number of responses: " + _vm._s(_vm.votes.length))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c(
-              "div",
-              { staticClass: "votes" },
-              _vm._l(_vm.votes, function(vote, i) {
-                return _c("div", { staticClass: "vote-item" }, [
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            _vm._l(_vm.analyze, function(a) {
+              return _c("div", [
+                _vm.rendered[a.question.id] === undefined
+                  ? _c("div", { staticClass: "question-title" }, [
+                      _vm._v(
+                        "\n                            Question: " +
+                          _vm._s(_vm.checkQuestion(a)) +
+                          "\n                        "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-success ml-4" }, [
                   _vm._v(
-                    "\n                            Response " +
-                      _vm._s(i + 1) +
-                      "\n                        "
+                    "\n                            " +
+                      _vm._s(a.question.title) +
+                      " : " +
+                      _vm._s(a.answer.text) +
+                      " (" +
+                      _vm._s(a.answers_count) +
+                      ")\n                        "
                   )
                 ])
-              })
-            )
-          ])
+              ])
+            })
+          )
         ])
       ])
     ])

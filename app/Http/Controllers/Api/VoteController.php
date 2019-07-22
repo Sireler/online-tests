@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\Responses as JsonResponses;
+use Illuminate\Support\Facades\DB;
 
 class VoteController extends Controller
 {
@@ -83,17 +84,31 @@ class VoteController extends Controller
         }
     }
 
+    /**
+     * Get survey responses
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function responses(Request $request, int $id)
     {
         $questions = SurveyQuestion::where('survey_id', $id)
             ->with('answers', 'votes')->get();
 
-        // TODO - new table, first name instead of ip
-        $votes = SurveyVote::select('ip')->distinct('ip')->where('survey_id', $id)->get();
+        $analyze = SurveyVote::select([
+            'survey_question_id',
+            'survey_answer_id',
+            DB::raw('count(survey_answer_id) as answers_count')
+        ])
+            ->with('question', 'answer')
+            ->where('survey_id', $id)
+            ->groupBy('survey_question_id', 'survey_answer_id')
+            ->get();
 
         return response()->json([
             'questions' => $questions,
-            'votes' => $votes
+            'analyze' => $analyze
         ]);
     }
 }

@@ -33,12 +33,14 @@
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="p-3">Number of responses: {{ votes.length }}</h3>
                     <div class="card-body">
-                        <div class="votes">
-                            <div class="vote-item" v-for="(vote, i) in votes">
-                                Response {{ i + 1}}
+                        <div v-for="a in analyze">
+                            <div class="question-title" v-if="rendered[a.question.id] === undefined">
+                                Question: {{ checkQuestion(a) }}
                             </div>
+                            <span class="text-success ml-4">
+                                {{ a.question.title }} : {{ a.answer.text }} ({{ a.answers_count }})
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -53,7 +55,8 @@ export default {
     data() {
         return {
             questions: [],
-            votes: []
+            analyze: [],
+            rendered: []
         }
     },
     methods: {
@@ -61,11 +64,16 @@ export default {
             this.axios.get(`/survey/votes/${this.id}/responses`)
                 .then((res) => {
                     this.questions = res.data.questions;
-                    this.votes = res.data.votes;
+                    this.analyze = res.data.analyze;
                 })
                 .catch((err) => {
                     this.$toasted.show('Forbidden');
                 });
+        },
+        checkQuestion(a) {
+            this.rendered[a.question.id] = 1;
+
+            return a.question.title;
         }
     },
     computed: {
