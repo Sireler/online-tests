@@ -14,23 +14,31 @@
                 <div class="card">
                     <div class="card-body">
                         <h4>Responses</h4>
-
+                        
                         <div class="questions mb-2" v-for="question in questions">
-                            <div class="question-title p-2 bg-info text-primary rounded mb-2">
-                                Question: {{ question.title }}
-                            </div>
-
                             <div class="answers ml-4">
-                                <div class="answer-item" v-for="(answer,i) in question.answers">
-                                    Answer ({{ i+1 }}): {{ answer.text }}
-                                </div>
+                                <table class="table table-striped">
+                                    <caption class="text-secondary rounded-top p-2 bg-primary">
+                                        Question: {{ question.title }}
+                                    </caption>
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Answer choices</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="answer in question.answers">
+                                        <td>{{ answer.text }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mt-2">
+        <div class="row my-4">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
@@ -89,5 +97,8 @@ export default {
 </script>
 
 <style scoped>
-
+caption {
+    caption-side: top;
+    font-size: 1.25em;
+}
 </style>

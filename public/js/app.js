@@ -38884,7 +38884,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\ncaption[data-v-26ae2e6c] {\n    caption-side: top;\n    font-size: 1.25em;\n}\n", ""]);
 
 // exports
 
@@ -38895,6 +38895,14 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39028,36 +39036,35 @@ var render = function() {
               _vm._v(" "),
               _vm._l(_vm.questions, function(question) {
                 return _c("div", { staticClass: "questions mb-2" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "question-title p-2 bg-info text-primary rounded mb-2"
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Question: " +
-                          _vm._s(question.title) +
-                          "\n                        "
+                  _c("div", { staticClass: "answers ml-4" }, [
+                    _c("table", { staticClass: "table table-striped" }, [
+                      _c(
+                        "caption",
+                        {
+                          staticClass:
+                            "text-secondary rounded-top p-2 bg-primary"
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    Question: " +
+                              _vm._s(question.title) +
+                              "\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(0, true),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(question.answers, function(answer) {
+                          return _c("tr", [
+                            _c("td", [_vm._v(_vm._s(answer.text))])
+                          ])
+                        })
                       )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "answers ml-4" },
-                    _vm._l(question.answers, function(answer, i) {
-                      return _c("div", { staticClass: "answer-item" }, [
-                        _vm._v(
-                          "\n                                Answer (" +
-                            _vm._s(i + 1) +
-                            "): " +
-                            _vm._s(answer.text) +
-                            "\n                            "
-                        )
-                      ])
-                    })
-                  )
+                    ])
+                  ])
                 ])
               })
             ],
@@ -39067,7 +39074,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row mt-2" }, [
+    _c("div", { staticClass: "row my-4" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
           _c(
@@ -39104,7 +39111,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Answer choices")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
