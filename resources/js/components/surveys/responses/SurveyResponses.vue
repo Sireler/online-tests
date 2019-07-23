@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4>Responses</h4>
-                        
+
                         <div class="questions mb-2" v-for="question in questions">
                             <div class="answers ml-4">
                                 <table class="table table-striped">

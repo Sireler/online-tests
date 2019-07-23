@@ -70,7 +70,10 @@ class VoteController extends Controller
     {
         $ip = $request->ip();
 
-        $voted = SurveyVote::where('survey_id', '=', $id)->where('ip', $ip)->first();
+        $voted = SurveyVote::where([
+            'survey_id' => $id,
+            'ip' => $ip
+        ])->first();
 
         if (!$voted) {
             return response()->json([
